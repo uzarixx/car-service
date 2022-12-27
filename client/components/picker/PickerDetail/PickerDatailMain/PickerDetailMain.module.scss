@@ -1,0 +1,18 @@
+.pickerMainContainer {
+  padding: 20px;
+  background: var(--darkWhite);
+  border-radius: 4px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+
+  .description {
+    max-width: 50%;
+    font-weight: 400;
+  }
+
+  .locationText {
+    display: flex;
+    align-items: center;
+  }
+}

@@ -1,0 +1,25 @@
+.input {
+  width: 100%;
+  font-family: 'Roboto', 'sans-serif';
+  font-weight: 500;
+  padding: 14px 16px;
+  border-radius: 4px;
+  border: none;
+  margin-bottom: 20px;
+
+  &::placeholder {
+
+    opacity: .5;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1.1px;
+  }
+
+  &:focus {
+    box-shadow: 0 2px 0 0 var(--green);
+  }
+}
+
+.active {
+    box-shadow: 0 2px 0 0 var(--red);
+}

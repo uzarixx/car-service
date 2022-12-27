@@ -1,0 +1,18 @@
+.linksContainer {
+  display: flex;
+  a {
+    color: var(--text);
+  }
+}
+.mainBackButton {
+  margin-right: 20px;
+  svg {
+    margin-right: 5px;
+  }
+}
+.linksWrapper {
+  a {
+    margin: 5px;
+  }
+}
+

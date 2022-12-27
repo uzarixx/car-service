@@ -1,0 +1,18 @@
+.textArea {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  resize: none;
+  width: 100%;
+  border: 1px solid var(--borderInputOpacity);
+  border-radius: 4px;
+  padding: 10px;
+  outline: none;
+&::placeholder {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+}
+}
+
+.active {
+  border-color: var(--red);
+}

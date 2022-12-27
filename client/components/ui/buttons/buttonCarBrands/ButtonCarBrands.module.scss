@@ -1,0 +1,26 @@
+.carWrapper {
+  display: flex;
+  flex-direction: column;
+
+  .car {
+    margin-right: 20px;
+    padding: 10px;
+    background: var(--white);
+    cursor: pointer;
+    color: var(--textPrimary);
+    border: 1px solid var(--borderInputOpacity);
+    border-radius: 4px;
+    max-width: 700px;
+  }
+
+  .active {
+    border-color: var(--red);
+  }
+
+  span {
+    transform: translateY(5px);
+    font-weight: 400;
+    font-size: 13px;
+    color: var(--textPrimary);
+  }
+}

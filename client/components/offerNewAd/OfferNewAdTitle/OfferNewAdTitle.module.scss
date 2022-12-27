@@ -1,0 +1,27 @@
+.postNewAdTitle {
+  padding: 30px;
+  border-radius: 4px;
+  background: var(--darkWhite);
+
+  h3 {
+    font-weight: 500;
+  }
+
+  .inputsWrapper {
+    display: flex;
+    flex-direction: column;
+    max-width: 700px;
+
+    p {
+      font-weight: 400;
+      color: var(--textPrimary);
+    }
+
+    span {
+      font-size: 13px;
+      color: var(--textPrimary);
+      font-weight: 400;
+      transform: translateY(5px);
+    }
+  }
+}

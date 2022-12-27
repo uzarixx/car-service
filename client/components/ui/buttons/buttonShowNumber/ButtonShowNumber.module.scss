@@ -1,0 +1,13 @@
+.phoneNumber {
+  padding: 10px;
+  background: var(--green);
+  color: var(--white);
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+max-width: 160px;
+  text-align: center;
+  a {
+    color: var(--white);
+  }
+}

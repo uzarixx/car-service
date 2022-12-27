@@ -1,0 +1,53 @@
+.postNewAdBudget {
+  margin-top: 30px;
+  padding: 30px;
+  border-radius: 4px;
+  background: var(--darkWhite);
+
+  h3 {
+    font-weight: 500;
+  }
+
+  p {
+    font-weight: 400;
+    color: var(--textPrimary);
+  }
+
+  .inputContainer {
+    max-width: 700px;
+    display: flex;
+    justify-content: space-between;
+
+
+    .inputWrapper {
+      width: 100%;
+      margin-right: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      &:last-child {
+        margin-right: 0;
+      }
+
+      input {
+        width: 100%;
+      }
+    }
+
+    select {
+      padding: 9px 0px;
+    }
+  }
+
+  .inputServiceBudget {
+    max-width: 700px;
+  }
+
+  span {
+    transform: translateY(5px);
+    font-weight: 400;
+    font-size: 13px;
+    color: var(--textPrimary);
+  }
+}

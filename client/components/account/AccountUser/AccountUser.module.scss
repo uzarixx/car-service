@@ -1,0 +1,54 @@
+.navBar {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  width: 100%;
+  margin-right: 10px;
+}
+
+.userBlock {
+  padding: 20px 10px;
+  background: var(--darkWhite);
+
+  width: 100%;
+
+  max-height: 125px;
+
+  h2 {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+
+  p {
+    font-size: 13px;
+    font-weight: 400;
+    margin-bottom: 5px;
+  }
+
+  p:last-child {
+    cursor: pointer;
+  }
+}
+
+.router {
+  display: flex;
+  flex-direction: column;
+
+  a {
+    color: var(--text);
+    margin-bottom: 10px;
+    padding: 5px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &:hover {
+      background: var(--darkWhite);
+    }
+  }
+  .active {
+    background: var(--darkWhite);
+  }
+
+}

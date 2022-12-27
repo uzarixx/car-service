@@ -1,0 +1,37 @@
+.pickersWrapper {
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+
+
+  .pickerBlock {
+    position: relative;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+    padding: 20px;
+    background: var(--darkWhite);
+    box-shadow: 0 10px 10px rgba(5, 5, 6, 0.13);
+
+    p {
+      font-weight: 500;
+    }
+
+    .Date {
+      position: absolute;
+      right: 20px;
+      top: 10px;
+      font-weight: 300;
+      color: var(--textPrimary);
+    }
+
+    button {
+      max-width: 20%;
+    }
+    .description {
+      max-width: 500px;
+      font-weight: 400;
+    }
+  }
+}

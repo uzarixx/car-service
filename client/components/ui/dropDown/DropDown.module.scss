@@ -1,0 +1,16 @@
+.dropDown {
+  position: absolute;
+  z-index: 99;
+  background: var(--white);
+  border: 1px solid var(--borderInputOpacity);
+  border-radius: 4px;
+  width: 240px;
+  padding: 5px;
+  max-height: 150px;
+  overflow-y: auto;
+
+  p {
+    cursor: pointer;
+    margin-bottom: 2px;
+  }
+}

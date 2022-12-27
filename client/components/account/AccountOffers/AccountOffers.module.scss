@@ -1,0 +1,58 @@
+.accountSettingsWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 640px;
+
+  h4 {
+    text-align: center;
+  }
+
+  .offersWrapper {
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+    color: var(--text);
+    gap: 20px;
+
+    .offerBlock {
+      position: relative;
+      padding: 10px;
+      background: var(--darkWhite);
+
+      .deleteButton {
+        position: absolute;
+        display: none;
+        right: 10px;
+        top: 10px;
+        background: var(--red);
+        color: var(--white);
+        padding: 5px;
+        border-radius: 4px;
+
+      }
+
+      &:hover {
+        .deleteButton {
+          display: flex;
+        }
+      }
+
+      span {
+        display: block;
+        margin-top: 20px;
+      }
+
+      .offerFooter {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+
+        p {
+          font-size: 13px;
+          font-weight: 400;
+        }
+      }
+    }
+  }
+}

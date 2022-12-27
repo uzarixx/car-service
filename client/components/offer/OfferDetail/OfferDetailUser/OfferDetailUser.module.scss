@@ -1,0 +1,14 @@
+.offerUserContainer {
+  margin-left: 20px;
+  background: var(--darkWhite);
+  padding: 20px;
+  width: 30%;
+  .location {
+    .locationWrapper {
+      .locationName {
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}

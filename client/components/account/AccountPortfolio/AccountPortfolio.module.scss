@@ -1,0 +1,15 @@
+.accountPortfolioWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 640px;
+  .portfolioWrapper{
+    span {
+      transform: translateY(5px);
+      font-weight: 400;
+      font-size: 13px;
+      color: var(--textPrimary);
+    }
+  }
+}
+

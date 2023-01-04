@@ -10,21 +10,27 @@ interface props {
   value?: any;
   fetching?: any;
 }
+
 const PostNewAdInput: FC<props> = ({
   name,
   placeholder,
   type,
   error,
   value,
-  fetching
+  fetching,
 }) => {
   const { register } = useFormContext();
+
   return (
     <input
       defaultValue={value}
       className={`${styles.input} ${error && styles.active}`}
       type={type}
-      {...register(name as string, { required: true, onChange: (e) => {name === 'city' && fetching(e.target.value)}})}
+      {...register(name as string, {
+        required: true, onChange: (e) => {
+          name === 'city' && fetching(e.target.value);
+        }
+      })}
       placeholder={placeholder} />
   );
 };

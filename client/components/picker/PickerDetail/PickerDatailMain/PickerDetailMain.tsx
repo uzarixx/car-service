@@ -4,11 +4,11 @@ import { pickerProps } from '../../../../constants/type';
 import SpacingSmall from '../../../ui/spacings/SpacingSmall';
 import LocationIco from '../../../ui/icons/LocationIco';
 import LocationImage from '../../../ui/locationImage/locationImage';
-import SpacingMiddle from '../../../ui/spacings/SpacingMiddle';
-import ButtonShowNumber
-  from '../../../ui/buttons/buttonShowNumber/ButtonShowNumber';
+import ButtonShowNumber from '../../../ui/buttons/buttonShowNumber/ButtonShowNumber';
+import SliderGallery from '../../../ui/sliderGallery/SliderGallery';
 
-const PickerDetailMain: FC<pickerProps> = ({ picker }) => {
+
+const PickerDetailMain: FC<pickerProps> = ({ picker, photos }) => {
   const [phoneShower, setPhoneShower] = useState(false);
   const onClickNumber = () => {
     setPhoneShower(true);
@@ -22,6 +22,9 @@ const PickerDetailMain: FC<pickerProps> = ({ picker }) => {
         <p className={styles.description}>{picker.description}</p>
         <SpacingSmall />
         <p>Досвід: {picker.experience}</p>
+        <SpacingSmall />
+        <p>Портфоліо</p>
+        <SliderGallery photos={photos} />
         <SpacingSmall />
         <ButtonShowNumber
           phoneShower={phoneShower}

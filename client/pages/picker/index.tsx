@@ -22,7 +22,6 @@ export const getServerSideProps: GetServerSideProps = async ({ req }: any) => {
   try {
     pickers = await userService.getAllPickers(req.cookies.authToken);
   } catch (e) {
-    console.log(e);
     return redirectToHome();
   }
   const response = pickers.data;

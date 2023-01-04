@@ -1,0 +1,90 @@
+.chatForm {
+  width: 100%;
+  margin-left: 10px;
+
+  .mainChat {
+    border: 1px solid var(--borderInputOpacity);
+    overflow-y: auto;
+    height: 100%;
+    min-height: 70vh;
+    max-height: 70vh;
+    border-radius: 4px;
+    padding: 5px 20px;
+
+    &::-webkit-scrollbar {
+      width: 5px;
+      background: var(--darkWhite);
+      margin: 5px;
+      border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--green);
+      border-radius: 4px;
+    }
+  }
+
+  .inputMenu {
+    margin-top: 10px;
+    display: flex;
+
+    button {
+      margin-left: 15px;
+      background: none;
+    }
+  }
+
+  .chatList {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    position: relative;
+
+    .isSender {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      margin-bottom: 10px;
+
+      p {
+        padding: 5px 10px;
+        background: var(--darkWhite);
+        border-radius: 4px;
+        max-width: 45%;
+        width: auto;
+        text-align: right;
+
+        span {
+          display: none;
+        }
+      }
+    }
+
+    .isReceiver {
+      margin-bottom: 10px;
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+
+
+      p {
+        padding: 20px 10px 2px 10px;
+        background: var(--darkWhite);
+        border-radius: 4px;
+        max-width: 45%;
+        min-width: 20%;
+        width: auto;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        text-align: left;
+
+        span {
+          position: absolute;
+          top: 4px;
+          font-size: 0.7rem;
+        }
+      }
+    }
+  }
+}

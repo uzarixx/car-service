@@ -1,7 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import OfferNewAdTitle from '../OfferNewAdTitle/OfferNewAdTitle';
-import OfferNewAdDescription from '../OfferNewAdDescription/OfferNewAdDescription';
+import OfferNewAdDescription
+  from '../OfferNewAdDescription/OfferNewAdDescription';
 import OfferNewAdDetails from '../OfferNewAdDetails/OfferNewAdDetails';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { offerNewAdValidate } from '../../../utils/offerNewAdValidate';
@@ -28,7 +29,7 @@ const OfferNewAdForm: FC = () => {
         methods.setValue('city', data.city);
         methods.setValue('phoneNumber', data.phoneNumber);
       } catch (e) {
-        destroyCookie(null, 'authToken', {path: '/'});
+        destroyCookie(null, 'authToken', { path: '/' });
       }
     };
     getAuthUser();
@@ -44,7 +45,8 @@ const OfferNewAdForm: FC = () => {
         <OfferNewAdDetails methods={methods} />
         <OfferNewAdDescription methods={methods} />
         <OfferNewAdBudget methods={methods} />
-        <PostNewAdUser methods={methods} city={authUser?.city} phoneNumber={authUser?.phoneNumber} />
+        <PostNewAdUser methods={methods} city={authUser?.city}
+                       phoneNumber={authUser?.phoneNumber} />
         <SpacingMiddle />
         <ButtonGreen type={'submit'}>Створити оголошення</ButtonGreen>
         <SpacingMiddle />

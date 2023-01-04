@@ -41,6 +41,5 @@ export const validationUserSettings = [
 
 export const pickerChangePortfolioValidate = [
   body('description').isLength({min: 80, max: 9000}).isString(),
-  body('experience').isLength({min: 3, max: 40}).isString(),
-
+  body('experience').isLength({min: 3, max: 40}).isString()
 ]

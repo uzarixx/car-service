@@ -4,8 +4,7 @@ import offerService from '../../../service/offerService';
 import date from '../../../utils/date';
 import ButtonLinkGreen from '../../ui/buttons/buttonLinks/ButtonLinkGreen';
 import PreloaderDots from '../../ui/preloaders/PreloaderDots';
-import DeleteOfferAlert
-  from '../../ui/alerts/deleteOfferAlert/DeleteOfferAlert';
+import DeletePortfolioImage from '../../ui/alerts/deleteAlert/DeleteAlert';
 
 interface offerType {
   title: string;
@@ -43,7 +42,14 @@ const AccountOffers: FC = () => {
         {offers.map((el: offerType, i: number) =>
           <div key={i} className={styles.offerBlock}>
             <h3>{el.title}</h3>
-            <DeleteOfferAlert active={alertActive} setActive={setAlertActive} fetchOffers={fetchOffers} id={offerId}/>
+            <DeletePortfolioImage
+              active={alertActive}
+              title={'Видалити це оголошення?'}
+              setActive={setAlertActive}
+              fetchData={fetchOffers}
+              id={offerId}
+              service={offerService.deleteOffer}
+            />
             <button className={styles.deleteButton} onClick={()=>onDeleteOffer(el.id)}>Видалити оголошення</button>
             <span>{el.description}</span>
             <div className={styles.offerFooter}>

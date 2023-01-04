@@ -5,10 +5,10 @@ import Layout from '../../components/ui/layout/Layout';
 import PickerDetail from '../../components/picker/PickerDetail';
 import { pickerProps } from '../../constants/type';
 
-const Picker: FC<pickerProps> = ({ picker }) => {
+const Picker: FC<pickerProps> = ({ picker, photos }) => {
   return (
     <Layout>
-      <PickerDetail picker={picker}/>
+      <PickerDetail picker={picker} photos={photos}/>
     </Layout>
   );
 };
@@ -19,7 +19,8 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }: an
   const { data } = await userService.getPickerById(id, req.cookies.authToken);
   return {
     props: {
-      picker: data,
+      picker: data.picker,
+      photos: data.photos
     },
   };
 

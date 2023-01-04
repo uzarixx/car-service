@@ -66,9 +66,40 @@ export interface userType {
   description: string;
 }
 
+export interface photosType {
+  id: number;
+  secure_url: string;
+  public_id: string;
+  createdAt: string;
+  updatedAt: string;
+  userId: number;
+
+}
+
+
 export interface userProps {
   users: userType[];
 }
 export interface pickerProps {
   picker: userType;
+  photos: photosType[];
+}
+
+export interface chatsType {
+  id: number;
+  secondId: number;
+  lastId: number;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface userChatType {
+  id: number;
+  userName: string;
+  photo: string;
+}
+
+export interface chatType {
+  chats: chatsType[],
+  user: userChatType[];
 }

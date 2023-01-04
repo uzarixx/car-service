@@ -1,0 +1,39 @@
+
+.sliderGallery {
+  max-width: 800px;
+  margin-top: 10px;
+}
+
+.myWrapper {
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .swiperSlide {
+    max-width: 40%;
+    max-height: 200px;
+
+    img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+  }
+
+}

@@ -1,4 +1,5 @@
 import { Router } from 'express';
+import multer from 'multer';
 import {
   AuthController,
   UserController,
@@ -13,7 +14,10 @@ import {
 } from '../service/validateParams';
 import { CheckRoleMiddleware } from '../middlewares/checkRoleMiddlewate';
 import handleErrorMiddleware from '../middlewares/handleErrorMiddleware';
+import ChatController from '../controllers/chat';
 
+const storage = multer.memoryStorage();
+const multerUpload = multer({ storage });
 const router = Router();
 
 /*
@@ -29,9 +33,11 @@ User
  */
 
 router.patch('/user-info-settings', ...validationUserSettings, authUser, handleErrorMiddleware(UserController.userInfoSettings));
-router.patch('/picker-change-portfolio', ...pickerChangePortfolioValidate, authUser, CheckRoleMiddleware('Picker'), handleErrorMiddleware(UserController.pickerChangePortfolio));
+router.patch('/picker-change-portfolio', ...pickerChangePortfolioValidate, authUser, CheckRoleMiddleware('Picker'), multerUpload.array('image'), handleErrorMiddleware(UserController.pickerChangePortfolio));
+router.delete('/delete-picker-portfolio-images', CheckRoleMiddleware('Picker'), handleErrorMiddleware(UserController.deletePickerPortfolioImages))
+router.get('/picker-portfolio-images', authUser, CheckRoleMiddleware('Picker'), handleErrorMiddleware(UserController.pickerPortfolioImages));
 router.get('/get-all-pickers', authUser, CheckRoleMiddleware('Client'), handleErrorMiddleware(UserController.getAllPickers));
-router.get('/get-picker-id/:id', authUser, CheckRoleMiddleware('Client'), handleErrorMiddleware(UserController.getPickerById))
+router.get('/get-picker-id/:id', authUser, CheckRoleMiddleware('Client'), handleErrorMiddleware(UserController.getPickerById));
 
 
 /*
@@ -43,5 +49,16 @@ router.post('/offer-new-create', authUser, ...validationCreateOffer, handleError
 router.get('/offer-get-id/:id', authUser, handleErrorMiddleware(OfferController.getOfferById));
 router.get('/offer-get-all', CheckRoleMiddleware('Picker'), handleErrorMiddleware(OfferController.getAllOffers));
 router.get('/offer-get-client', CheckRoleMiddleware('Client'), authUser, handleErrorMiddleware(OfferController.getOffers));
+
+
+/*
+Chat
+ */
+
+router.post('/new-chat-create', authUser, handleErrorMiddleware(ChatController.createChat))
+router.post('/new-message', authUser, handleErrorMiddleware(ChatController.createMessage))
+router.get('/get-messages/:chatId', authUser, handleErrorMiddleware(ChatController.getMessage))
+router.get('/get-chat/:chatId', authUser, handleErrorMiddleware(ChatController.getChat))
+router.get('/get-chats', authUser, handleErrorMiddleware(ChatController.getChats))
 
 export default router;

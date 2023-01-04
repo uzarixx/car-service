@@ -5,12 +5,12 @@ import SpacingMiddle from '../../ui/spacings/SpacingMiddle';
 import PickerDetailMain from './PickerDatailMain/PickerDetailMain';
 
 
-const PickerDetail: FC<pickerProps> = ({ picker }) => {
+const PickerDetail: FC<pickerProps> = ({ picker, photos }) => {
   return (
     <>
       <PickerDetailHead id={picker.id} title={picker.userName} />
       <SpacingMiddle />
-      <PickerDetailMain picker={picker}/>
+      <PickerDetailMain picker={picker} photos={photos}/>
     </>
   );
 };

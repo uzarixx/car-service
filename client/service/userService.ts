@@ -13,11 +13,14 @@ export default class userService {
     });
   }
 
-  static async pickerChangePortfolio(description: string, experience: string) {
-    return $api.patch('/picker-change-portfolio', {
-      description,
-      experience,
-    });
+  static async pickerChangePortfolio(formData: any) {
+    return $api.patch('/picker-change-portfolio',
+      formData ,
+      { headers: { 'content-type': 'multipart/form-data' } });
+  }
+
+  static async pickerPortfolioImages() {
+    return $api.get('/picker-portfolio-images')
   }
 
   static async getAllPickers(token: string) {
@@ -28,7 +31,7 @@ export default class userService {
     });
   }
 
-  static async getPickerById( id: string, token: string,) {
+  static async getPickerById(id: string, token: string) {
     return axios.get(`${process.env.NEXT_PUBLIC_API_URL}get-picker-id/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -36,4 +39,7 @@ export default class userService {
     });
   }
 
+  static async deleteImage(id: number) {
+    return $api.delete('/delete-picker-portfolio-images', { data: { id } });
+  }
 }

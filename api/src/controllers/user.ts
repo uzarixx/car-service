@@ -6,7 +6,15 @@ import {
   getUserById,
 } from '../db/user';
 import { validationResult } from 'express-validator';
+import {
+  deleteFromCloudinary,
+  uploadToCloudinary,
+} from '../service/cloudinary';
+import { createPhoto, deletePhoto, getPhoto, getPhotoById } from '../db/photo';
 
+
+class T {
+}
 
 const UserController = {
   userInfoSettings: async (req: Request | any, res: Response) => {
@@ -19,10 +27,37 @@ const UserController = {
     res.json(userData);
   },
   pickerChangePortfolio: async (req: Request | any, res: Response) => {
-    const { description, experience } = req.body;
     const user = req.user;
+    const { description, experience } = req.body;
+    let image: Array<T> = req.files as Array<T>;
+    if (image) {
+      const uploader = (await Promise.all(image.map((e) => uploadToCloudinary(e, 'portfolio')))).map(
+        ({ secure_url, public_id }) => ({
+          secure_url,
+          public_id,
+          userId: user.id,
+        }));
+      image = uploader;
+    }
+    await createPhoto(image);
     await changePortfolio(user.id, description, experience);
     res.json(changePortfolio);
+  },
+  pickerPortfolioImages: async (req: Request | any, res: Response) => {
+    const user = req.user;
+    const photos = await getPhoto(user.id);
+    res.json(photos);
+  },
+  deletePickerPortfolioImages: async (req: Request | any, res: Response) => {
+    const user = req.user;
+    const { id } = req.body;
+    const photo = await getPhotoById(id);
+    if (!photo || photo.userId !== user.id) {
+      return res.status(400).json({ message: 'Нічого не знайдено або ви не автор фото' });
+    }
+    deleteFromCloudinary(photo.public_id)
+    await deletePhoto(id)
+    res.json('Видалено.')
   },
   getAllPickers: async (req: Request | any, res: Response) => {
     const pickers = await getPickers();
@@ -34,7 +69,8 @@ const UserController = {
     if (!picker) {
       return res.status(400).json({ message: 'Користувач не знайден' });
     }
-    res.json(picker);
+    const photos = await getPhoto(Number(id));
+    res.json({ picker, photos });
   },
 };
 

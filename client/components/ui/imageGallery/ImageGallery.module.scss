@@ -1,0 +1,70 @@
+.galleryMain {
+  button {
+    margin-top: 20px;
+  }
+}
+
+.galleryWrapper {
+  width: 100%;
+  max-width: 1000px;
+  max-height: 340px;
+  overflow-y: auto;
+  margin: 0 auto;
+  margin-top: 10px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+
+  .imageBlock {
+    position: relative;
+    flex: 0 1 calc(34.3% - 20px);
+    max-height: 150px;
+    min-height: 150px;
+    cursor: pointer;
+    overflow: hidden;
+    .delete {
+      position: absolute;
+      color: white;
+      left: 50%;
+      top: -10%;
+      transform: translate(-50%, -50%);
+      transition: .3s;
+    }
+
+    .open {
+      position: absolute;
+      color: white;
+      left: 50%;
+      top: 110%;
+      transform: translate(-50%, -50%);
+      transition: .3s;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    &:hover {
+      &::after {
+        position: absolute;
+        left: 0;
+        top: 0;
+        content: '';
+        width: 100%;
+        height: 100%;
+        background-color: var(--background-popup);
+      }
+      .delete {
+        top: 40%;
+        z-index: 2;
+      }
+      .open {
+        top: 60%;
+        z-index: 2;
+      }
+    }
+  }
+
+}

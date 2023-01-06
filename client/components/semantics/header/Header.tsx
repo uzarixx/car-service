@@ -3,20 +3,17 @@ import styles from './Header.module.scss';
 import Link from 'next/link';
 import ButtonLinkGreen from '../../ui/buttons/buttonLinks/ButtonLinkGreen';
 import nookies from 'nookies';
-import authServices from '../../../service/authService';
-
+import ChatIco from '../../ui/icons/ChatIco';
+import { useStore } from 'effector-react';
+import { $data } from '../../../store/userData';
+import { userType } from '../../../constants/type';
 
 const Header: FC = () => {
   const [isAuth, seIsAuth] = useState('');
-  const [authUser, setAuthUser] = useState<{ role?: string }>({});
-  const getRole = async () => {
-    const { data } = await authServices.getUserData();
-    setAuthUser(data);
-  };
+  const authUser: userType | any = useStore($data);
   useEffect(() => {
     const authToken: any = 'authToken';
     seIsAuth(nookies.get(authToken).authToken);
-    isAuth && getRole();
   }, [isAuth]);
 
   return (
@@ -26,7 +23,8 @@ const Header: FC = () => {
           LOGO
         </Link>
         <div className={styles.headerRight}>
-          {authUser.role === 'Client' &&
+
+          {authUser?.role === 'Client' &&
             <button className={styles.userButton}>
               <Link href={'/picker'}>Підбирачі авто</Link>
             </button>}
@@ -35,6 +33,7 @@ const Header: FC = () => {
               Ваш профіль
             </Link>
           </button>
+          <button className={styles.userButton}><Link href={isAuth ? '/messages' : '/authorization'}><ChatIco/></Link>   </button>
           <ButtonLinkGreen
             href={isAuth ? (authUser.role === 'Client' ? '/offer-new-ad' : '/offer') : '/authorization'}>
             {isAuth ? authUser.role === 'Client' ? 'Додати оголошення' : 'Всі оголошення' : 'Додати оголошення'}

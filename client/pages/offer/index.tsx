@@ -14,6 +14,7 @@ const Offer: FC<offersProps> = ({ offers }) => {
   );
 };
 export default Offer;
+
 export const getServerSideProps: GetServerSideProps = async ({ req }: any) => {
   let offers;
   try {

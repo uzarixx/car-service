@@ -14,7 +14,7 @@ import { destroyCookie, setCookie } from 'nookies';
 const AuthorizationForm: FC = () => {
   const router = useRouter();
   const [authType, setAuthType] = useState(0);
-  const [roleState, setRoleState] = useState('Client')
+  const [roleState, setRoleState] = useState('Client');
   const [errorHandler, setErrorHandler] = useState('');
   const methods = useForm({
     resolver: yupResolver(authType === 0 ? login : register),
@@ -33,6 +33,7 @@ const AuthorizationForm: FC = () => {
           maxAge: 30 * 24 * 60 * 60, path: '/',
         });
       }
+
       router.push('/account');
     } catch (e: any) {
       setErrorHandler(e.response.data.message);
@@ -61,7 +62,9 @@ const AuthorizationForm: FC = () => {
             <form onSubmit={methods.handleSubmit(onSubmit)}>
               {authType === 0 ?
                 <LoginForm errors={methods.formState.errors} /> :
-                <RegisterForm errors={methods.formState.errors} setRoleState={setRoleState}  roleState={roleState}/>}
+                <RegisterForm errors={methods.formState.errors}
+                              setRoleState={setRoleState}
+                              roleState={roleState} />}
               <ButtonGreen
                 type={'submit'}>{`${authType === 0 ? 'Увійти' : 'Реєстарція'}`}</ButtonGreen>
               {errorHandler && <b>{errorHandler}</b>}

@@ -2,9 +2,12 @@ import React, { FC } from 'react';
 import styles from './MessagesUsers.module.scss';
 import { useRouter } from 'next/router';
 import { chatType } from '../../../constants/type';
+import UserIcon from '../../ui/icons/UserIcon';
+
 interface props {
-  chatsData:chatType;
+  chatsData: chatType;
 }
+
 const MessagesUsers: FC<props> = ({ chatsData }) => {
   const router = useRouter();
   const onClickUser = (id: number) => {
@@ -12,18 +15,19 @@ const MessagesUsers: FC<props> = ({ chatsData }) => {
   };
   return (
     <nav className={styles.nav}>
-      {
-        chatsData.user?.map((user, i) =>
-          <div key={i}>
-            {chatsData.chats?.filter((e) => e.secondId === user.id || e.lastId === user.id).map((el) =>
-              <div className={styles.user} key={i}
-                   onClick={() => onClickUser(el.id)}>
-                <div className={styles.img}>IMG</div>
-                <div>{user.userName}</div>
-              </div>)}
-          </div>,
-        )
-      }
+      {chatsData.chats?.map((chat) =>
+        <div key={chat.id}>
+          <div className={styles.user} onClick={() => onClickUser(chat.id)}>
+            {chatsData.user?.map((el, i) =>
+              <div className={styles.userWrapper} key={i}>
+                {el.id === chat.secondId || el.id === chat.lastId ?
+                 <><div className={styles.img}>{el.photo ? <img src={el.photo} alt='user-avatar'/> : <UserIcon />}
+                 </div><p>{el.userName}</p></> : <></>}
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </nav>
   );
 };

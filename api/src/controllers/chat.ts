@@ -13,11 +13,11 @@ const ChatController = {
     const { id } = req.user;
     const isCreated = await findCreatedChat(id, lastId);
     if (isCreated) {
-      return res.status(500).json({message: 'Чат вже створен.'})
+      return res.json(isCreated.id)
     }
     const chat = await createChat(lastId, id);
     await createMessage(chat.id, message, id);
-    res.json('success');
+    res.json(chat.id);
   },
   getChats: async (req: Request | any, res: Response) => {
     const { id } = req.user;

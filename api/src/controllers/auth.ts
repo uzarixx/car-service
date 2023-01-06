@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt';
 import {getUserByEmail, createUser} from "../db/user";
-import {NextFunction, Request, Response} from "express";
+import {Request, Response} from "express";
 import {generateJWt} from "../service/generateJwt";
 import { validationResult } from 'express-validator';
 

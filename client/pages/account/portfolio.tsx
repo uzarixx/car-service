@@ -14,8 +14,6 @@ const Portfolio: FC = () => {
     </Layout>
   );
 };
-
-
 export default Portfolio;
 
 export const getServerSideProps: GetServerSideProps = async ({ req }: any) => {

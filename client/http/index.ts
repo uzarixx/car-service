@@ -1,6 +1,7 @@
 import axios from 'axios';
 import nookies from 'nookies';
 
+
 export const API_URL = 'http://localhost:4000/';
 
 const $api = axios.create({
@@ -10,7 +11,8 @@ const $api = axios.create({
 
 $api.interceptors.request.use((config: any) => {
   const authToken: any = 'authToken';
-  config.headers.Authorization = `Bearer ${nookies.get(authToken).authToken}`;
+  const token = nookies.get(authToken).authToken;
+  config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
 

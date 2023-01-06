@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import OfferNewAdTitle from '../OfferNewAdTitle/OfferNewAdTitle';
 import OfferNewAdDescription
@@ -8,31 +8,23 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { offerNewAdValidate } from '../../../utils/offerNewAdValidate';
 import OfferNewAdBudget from '../OfferNewAdBudget/OfferNewAdBudget';
 import PostNewAdUser from '../OfferNewAdUser/PostNewAdUser';
-import authServices from '../../../service/authService';
 import ButtonGreen from '../../ui/buttons/buttonGreen';
 import SpacingMiddle from '../../ui/spacings/SpacingMiddle';
 import offerService from '../../../service/offerService';
 import { useRouter } from 'next/router';
-import { destroyCookie } from 'nookies';
+import { userType } from '../../../constants/type';
+import { useStore } from 'effector-react';
+import { $data } from '../../../store/userData';
 
 const OfferNewAdForm: FC = () => {
   const router = useRouter();
-  const [authUser, setAuthUser] = useState<{ city: string; phoneNumber: string } | null>(null);
+  const authUser: userType | any = useStore($data);
   const methods = useForm({
     resolver: yupResolver(offerNewAdValidate),
   });
   useEffect(() => {
-    const getAuthUser = async () => {
-      try {
-        const { data } = await authServices.getUserData();
-        setAuthUser(data);
-        methods.setValue('city', data.city);
-        methods.setValue('phoneNumber', data.phoneNumber);
-      } catch (e) {
-        destroyCookie(null, 'authToken', { path: '/' });
-      }
-    };
-    getAuthUser();
+    methods.setValue('city', authUser.city);
+    methods.setValue('phoneNumber', authUser.phoneNumber);
   }, [methods]);
   const onSubmit = async (data: any) => {
     await offerService.createOffer(data);
@@ -45,8 +37,7 @@ const OfferNewAdForm: FC = () => {
         <OfferNewAdDetails methods={methods} />
         <OfferNewAdDescription methods={methods} />
         <OfferNewAdBudget methods={methods} />
-        <PostNewAdUser methods={methods} city={authUser?.city}
-                       phoneNumber={authUser?.phoneNumber} />
+        <PostNewAdUser methods={methods} city={authUser?.city} phoneNumber={authUser?.phoneNumber} />
         <SpacingMiddle />
         <ButtonGreen type={'submit'}>Створити оголошення</ButtonGreen>
         <SpacingMiddle />

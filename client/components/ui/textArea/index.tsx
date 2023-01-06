@@ -8,9 +8,10 @@ interface props {
   placeholder: string;
   errors: boolean;
   title?: string;
+  rows?: number
 }
 
-const TextArea: FC<props> = ({ name, placeholder, errors, title }) => {
+const TextArea: FC<props> = ({ name, placeholder, errors, title, rows }) => {
   const { register } = useFormContext();
   return (
     <>
@@ -19,7 +20,7 @@ const TextArea: FC<props> = ({ name, placeholder, errors, title }) => {
       <textarea className={`${styles.textArea} ${errors && styles.active}`}
                 aria-invalid={'true'}
                 autoComplete={'off'}
-                rows={11} {...register(name, { required: true })}
+                rows={rows || 11} {...register(name, { required: true })}
                 placeholder={placeholder}>
     </textarea>
     </>

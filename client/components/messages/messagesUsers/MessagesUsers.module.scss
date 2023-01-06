@@ -4,7 +4,7 @@
   background: var(--darkWhite);
   padding: 15px;
   border-radius: 4px;
-  min-height: 400px;
+  height: 100%;
 
   .user {
     padding: 10px;
@@ -15,6 +15,11 @@
     transition: background .3s;
     border-radius: 4px;
 
+    .userWrapper {
+      display: flex;
+      align-items: center;
+    }
+
     .img {
       width: 30px;
       height: 30px;
@@ -24,7 +29,13 @@
       justify-content: center;
       align-items: center;
       margin-right: 5px;
+      overflow: hidden;
+
+      img {
+        max-width: 30px;
+      }
     }
+
     &:hover {
       background: var(--white);
     }

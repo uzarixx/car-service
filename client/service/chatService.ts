@@ -1,6 +1,11 @@
 import $api from '../http';
 
 export default class chatService {
+
+  static async createChat (lastId: number, message: number) {
+    return $api.post('/new-chat-create', {lastId, message})
+  }
+
   static async createMessage(chatId: number, message: string) {
     return $api.post(`/new-message`, { chatId, message });
   }

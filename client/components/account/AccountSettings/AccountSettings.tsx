@@ -13,6 +13,7 @@ import userService from '../../../service/userService';
 import DropDown from '../../ui/dropDown';
 import { useFetchCities } from '../../../utils/fetchCity';
 import SuccessData from '../../ui/alerts/successData/SuccessData';
+import { changeUserData, loadingUserData } from '../../../store/userData';
 
 interface User {
   id: number;
@@ -27,10 +28,9 @@ interface User {
 
 interface Props {
   user: User;
-  authUser: Dispatch<SetStateAction<null>>;
 }
 
-const AccountSettings: FC<Props> = ({ user, authUser }) => {
+const AccountSettings: FC<Props> = ({ user}) => {
   const inputs = useMemo(() => [
     {
       text: 'Ім\'я',
@@ -77,7 +77,7 @@ const AccountSettings: FC<Props> = ({ user, authUser }) => {
     try {
       setSuccessChange(true);
       const changeData = await userService.userInfoSettings(data.email, data.userName, data.userLastName, data.city, data.phoneNumber);
-      authUser(changeData.data);
+      changeUserData(changeData.data)
       setTimeout(() => {
         setSuccessChange(false);
       }, 2000);

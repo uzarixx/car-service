@@ -2,36 +2,31 @@ import React, { FC, useEffect, useState } from 'react';
 import MessagesComponentDetail from '../../components/messages/DetailComponent';
 import Layout from '../../components/ui/layout/Layout';
 import chatService from '../../service/chatService';
-import authServices from '../../service/authService';
 import { useRouter } from 'next/router';
-
+import { $data, getChats } from '../../store/chatData';
+import { useStore } from 'effector-react';
 
 const MessagesDetail: FC = () => {
   const router = useRouter();
   const chatId: any = router.query.id;
-  const [chats, setChats] = useState([]);
-  const [authUser, setAuthUser] = useState(null);
-  const [chatData, setChatData] = useState([]);
-  const getAuthUser = async () => {
-    const { data } = await authServices.getUserData();
-    setAuthUser(data);
-  };
-  const getChats = async () => {
-    const { data } = await chatService.getChats();
-    setChats(data);
-  };
+  const chats = useStore($data);
+  const [isLoading, setIsLoading] = useState(false);
+  const [chatMessages, setChatMessages] = useState([]);
   const getChatById = async () => {
+    setIsLoading(true);
     const { data } = await chatService.getChatData(chatId);
-    setChatData(data);
+    setChatMessages(data);
+    await setIsLoading(false);
   };
   useEffect(() => {
-    getChats();
-    getAuthUser();
+    chats.length >= 0 && getChats()
+  }, []);
+  useEffect(() => {
     chatId && getChatById();
   }, [chatId]);
   return (
     <Layout>
-      <MessagesComponentDetail chats={chats} authUser={authUser} chatData={chatData} />
+      <MessagesComponentDetail chats={chats} chatData={chatMessages} isLoading={isLoading} />
     </Layout>
   );
 };

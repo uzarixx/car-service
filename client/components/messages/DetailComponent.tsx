@@ -2,19 +2,24 @@ import React, { FC } from 'react';
 import styles from './Messages.module.scss';
 import MessagesUsers from './messagesUsers/MessagesUsers';
 import MessagesChat from './messagesChat/MessagesChat';
-import { chatType, userType } from '../../constants/type';
+import { chatType } from '../../constants/type';
+import PreloaderDots from '../ui/preloaders/PreloaderDots';
 
 interface props {
   chats: any | chatType;
-  authUser: any | userType;
   chatData: any | chatType;
+  isLoading: any | boolean;
 }
 
-const MessagesComponentDetail: FC<props> = ({ chats, authUser, chatData }) => {
+const MessagesComponentDetail: FC<props> = ({
+  chats,
+  chatData,
+  isLoading,
+}) => {
   return (
     <div className={styles.chatWrapper}>
       <MessagesUsers chatsData={chats} />
-      <MessagesChat authUser={authUser} chatData={chatData} />
+      {isLoading ? <PreloaderDots /> : <MessagesChat chatData={chatData} />}
     </div>
   );
 };

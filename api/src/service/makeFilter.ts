@@ -1,0 +1,1 @@
+export const makeFilter = (data: any) => Object.entries(data).reduce((p: any, [k, v]) => (v ? p[k] = v : 0, p), {})

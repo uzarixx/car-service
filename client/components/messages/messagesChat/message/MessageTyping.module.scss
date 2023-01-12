@@ -1,7 +1,22 @@
 .isTyping {
+  opacity: 0;
+  visibility: hidden;
+  height: 0;
+  transition:visibility, opacity .3s ease-in;
+  transition-delay: .4s;
+  overflow: hidden;
+  position: relative;
   .avatar {
     width: 30px;
     height: 30px;
     border-radius: 50%;
   }
+
+}
+.active {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+  height: auto;
+  overflow: auto;
 }

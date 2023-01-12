@@ -15,13 +15,18 @@ export interface offersType {
   city: string;
   currency: string;
   description: string;
+  sliceDesc: string;
   title: string;
   createdAt: string;
   id: number;
 }
 
 export interface offersProps {
-  offers: offersType[];
+  offers:offersType[];
+  pageCount?: number;
+}
+export interface offersPropsResponse {
+  offers: {count: number, rows: offersType[]}
 }
 
 export interface offerType {
@@ -64,6 +69,7 @@ export interface userType {
   userName: string;
   experience: string;
   description: string;
+  status: boolean;
 }
 
 export interface photosType {
@@ -80,6 +86,7 @@ export interface photosType {
 export interface userProps {
   users: userType[];
 }
+
 export interface pickerProps {
   picker: userType;
   photos: photosType[];

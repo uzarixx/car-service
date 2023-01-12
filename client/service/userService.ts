@@ -13,10 +13,16 @@ export default class userService {
     });
   }
 
-  static async pickerChangePortfolio(formData: any) {
+  static async pickerChangePortfolio(formData: FormData | any) {
     return $api.patch('/picker-change-portfolio',
       formData ,
       { headers: { 'content-type': 'multipart/form-data' } });
+  }
+
+  static async userUploadAvatar(formData: FormData) {
+    return $api.post('/user-upload-avatar', formData, {
+      headers: {'content-type': 'multipart/form-data'}
+    })
   }
 
   static async pickerPortfolioImages() {
@@ -31,6 +37,14 @@ export default class userService {
     });
   }
 
+  static async createActivationLink() {
+    return $api.get('/create-activate-token')
+  }
+
+  static async activateAccount (token: string) {
+    return $api.get(`/user-activated/${token}`)
+  }
+
   static async getPickerById(id: string, token: string) {
     return axios.get(`${process.env.NEXT_PUBLIC_API_URL}get-picker-id/${id}`, {
       headers: {
@@ -41,5 +55,12 @@ export default class userService {
 
   static async deleteImage(id: number) {
     return $api.delete('/delete-picker-portfolio-images', { data: { id } });
+  }
+  static async deleteAvatar(secure_url: string) {
+    return $api.delete('/user-delete-avatar', {data: {secure_url}})
+  }
+
+  static async getAllCarParams () {
+    return $api.get('/get-all-car-params')
   }
 }

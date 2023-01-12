@@ -13,9 +13,12 @@ import { useStore } from 'effector-react';
 const Messages: FC = () => {
   const chats = useStore($data);
   const isLoading = useStore($loadingData);
+
   useEffect(() => {
     getChats();
   }, []);
+
+
   return (
     <Layout>
       {isLoading ? <PreloaderDots /> : <MessagesComponent chats={chats} />}

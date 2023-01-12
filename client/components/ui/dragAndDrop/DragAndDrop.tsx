@@ -19,7 +19,7 @@ const DragAndDrop: FC<props> = ({ setImages }) => {
   const onFileHandler = (e: any) => {
     e.preventDefault();
     const fileArray = [];
-    const file: any = (e.target as HTMLInputElement).files as FileList;
+    const file = (e.target as HTMLInputElement).files;
     const fileDrop = e.dataTransfer?.files;
     if (file) fileArray.push(...file);
     else fileArray.push(...fileDrop);
@@ -36,7 +36,6 @@ const DragAndDrop: FC<props> = ({ setImages }) => {
   };
   return (
     <>
-
       <div
         className={`${styles.dragAndDropWrapper} ${drag ? styles.active : ''}`}
         onDragStart={e => dragStartHandler(e)}

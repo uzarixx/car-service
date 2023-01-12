@@ -1,12 +1,15 @@
 import { v2 as cloudinary } from 'cloudinary';
 import streamifier from 'streamifier';
 import { v4 as uuid } from 'uuid';
+import dotenv from 'dotenv';
+dotenv.config();
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_SECRET,
 });
+
 
 interface UploadToCloudinaryPayload {
   secure_url: string;

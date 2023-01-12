@@ -7,8 +7,8 @@ interface props {
   placeholder: string;
   type?: 'email' | 'password' | 'text' | undefined | any;
   error?: { message: string } | undefined | any;
-  value?: any;
-  fetching?: any;
+  value?: string | null | undefined | any;
+  fetching?: (e: string) => void ;
 }
 
 const PostNewAdInput: FC<props> = ({
@@ -20,7 +20,6 @@ const PostNewAdInput: FC<props> = ({
   fetching,
 }) => {
   const { register } = useFormContext();
-
   return (
     <input
       defaultValue={value}
@@ -28,7 +27,7 @@ const PostNewAdInput: FC<props> = ({
       type={type}
       {...register(name as string, {
         required: true, onChange: (e) => {
-          name === 'city' && fetching(e.target.value);
+          name === 'city' && fetching && fetching(e.target.value);
         }
       })}
       placeholder={placeholder} />

@@ -1,24 +1,24 @@
-import { GetServerSideProps } from 'next';
 import React, { FC } from 'react';
 import Layout from '../../components/ui/layout/Layout';
 import offerService from '../../service/offerService';
 import OfferComponent from '../../components/offer';
-import { offersProps } from '../../constants/type';
+import { offersPropsResponse } from '../../constants/type';
 import { redirectToHome } from '../../utils/protectRoute';
 
-const Offer: FC<offersProps> = ({ offers }) => {
+const Offer: FC<offersPropsResponse> = ({ offers }) => {
   return (
     <Layout>
-      <OfferComponent offers={offers} />
+      <OfferComponent offers={offers?.rows} pageCount={offers?.count} />
     </Layout>
   );
 };
 export default Offer;
 
-export const getServerSideProps: GetServerSideProps = async ({ req }: any) => {
+export const getServerSideProps = async ({ req, query }: any) => {
+  const { carTransmission, carType, carDrive, carGas, city, page } = query;
   let offers;
   try {
-    offers = await offerService.getAllOffers(req.cookies.authToken);
+    offers = await offerService.getAllOffers(req.cookies.authToken, carTransmission, carType, carDrive, carGas, city, page);
   } catch (e) {
     return redirectToHome();
   }

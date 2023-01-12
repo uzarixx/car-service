@@ -1,15 +1,14 @@
 .avatar {
   margin-right: 10px;
-  position: relative;
+  display: flex;
+  flex-direction: column-reverse;
   img {
     height: 30px;
     border-radius: 50%;
     max-width: 30px;
   }
   span {
-    position: absolute;
-    top: -20px;
-    left: 0;
+    margin-bottom: 5px;
     font-size: 0.7rem;
   }
 }

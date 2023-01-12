@@ -7,12 +7,11 @@ import cors from 'cors';
 import routes from './routes/routes';
 import cookieParser from 'cookie-parser';
 import socket from './socket';
-
-
 dotenv.config();
 const app = express();
 
 app.use(cookieParser());
+
 app.use(
   cors({
     origin: [process.env.FRONTEND_URL],

@@ -6,13 +6,20 @@ import {
   getMessages,
 } from '../db/chat';
 import { getReceiversUsers } from '../db/user';
+import { validationResult } from 'express-validator';
 
 const ChatController = {
   createChat: async (req: Request | any, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return res.status(400).json({ message: `Помилка валідації` });
     const { lastId, message } = req.body;
     const { id } = req.user;
     const isCreated = await findCreatedChat(id, lastId);
+    if (lastId === id) {
+      return res.status(500).json({message: "Ви не можете створити чат з самим собою"})
+    }
     if (isCreated) {
+      await createMessage(isCreated.id, message, id);
       return res.json(isCreated.id)
     }
     const chat = await createChat(lastId, id);
@@ -43,6 +50,8 @@ const ChatController = {
     res.json(user);
   },
   createMessage: async (req: Request | any, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) return res.status(400).json({ message: `Помилка валідації` });
     const { chatId, message } = req.body;
     const { id } = req.user;
     const chat = await getChatById(chatId);

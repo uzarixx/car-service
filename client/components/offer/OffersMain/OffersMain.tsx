@@ -21,7 +21,7 @@ const OffersMain: FC<offersProps> = ({ offers }) => {
           <p>Авто: {el.carBrand} {el.carModel}</p>
           <SpacingSmall />
           <p>Опис:</p>
-          <p className={styles.description}>{el.description.slice(0, 45)}...</p>
+          <p className={styles.description}>{el.sliceDesc}...</p>
           <SpacingSmall />
           <p>Бюджет за послуги: {el.budgetService} грн.</p>
           <SpacingSmall />

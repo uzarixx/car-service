@@ -13,8 +13,6 @@ export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {
     token && getAuthUser();
   }, [token]);
-
-
   return (
     <Component {...pageProps} />
   );

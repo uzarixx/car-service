@@ -4,20 +4,38 @@
   max-width: 300px;
   width: 100%;
   margin-right: 10px;
+
+  .isNotActive {
+    font-size: 12px;
+    text-align: center;
+    margin-bottom: 10px;
+    color: var(--white);
+    background: var(--green);
+    padding: 5px 0;
+    cursor: pointer;
+  }
 }
 
 .userBlock {
   padding: 20px 10px;
   background: var(--darkWhite);
-
   width: 100%;
-
   max-height: 125px;
 
-  h2 {
-    font-size: 18px;
-    font-weight: 500;
+  .userName {
+    display: flex;
+    align-items: center;
     margin-bottom: 5px;
+
+    img {
+      border-radius: 50%;
+    }
+
+    h2 {
+      font-size: 18px;
+      font-weight: 500;
+      margin-left: 5px;
+    }
   }
 
   p {
@@ -43,10 +61,12 @@
     &:last-child {
       margin-bottom: 0;
     }
+
     &:hover {
       background: var(--darkWhite);
     }
   }
+
   .active {
     background: var(--darkWhite);
   }

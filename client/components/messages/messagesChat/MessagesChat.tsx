@@ -16,6 +16,8 @@ import { useChatMessage } from '../../../utils/chatHooks/useChatMessage';
 import { useChatActive } from '../../../utils/chatHooks/useChatActive';
 import Message from './message/Message';
 import MessageTyping from './message/MessageTyping';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { chatValidate } from '../../../utils/validation/chatValidate';
 
 interface messagesProps {
   chatData: { id: number, userName: string, photo: string }[];
@@ -32,7 +34,9 @@ const MessagesChat: FC<messagesProps> = ({ chatData }) => {
   const authUser: userType | any = useStore($data);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messages: messageDataType[] = useStore($messages);
-  const methods = useForm();
+  const methods = useForm({
+    resolver: yupResolver(chatValidate)
+  });
   const inputValue = methods.watch('send');
   const chatId = router.query.id;
   const messageData: messageDataType = {
@@ -46,7 +50,6 @@ const MessagesChat: FC<messagesProps> = ({ chatData }) => {
   useConnectChat(chatId);
   useChatMessage(messages, messagesEndRef);
   const { isActive } = useChatActive(messageData, inputValue, messagesEndRef, authUser.id);
-
   return (
     <FormProvider {...methods}>
       <form
@@ -68,7 +71,7 @@ const MessagesChat: FC<messagesProps> = ({ chatData }) => {
                 <Message authUserId={authUser?.id} senderId={el.senderId} message={el.message} chatData={chatData}/>
               </div>
             )}
-            {isActive && <MessageTyping chatData={chatData}/>}
+          <MessageTyping isActive={isActive} chatData={chatData}/>
             <div ref={messagesEndRef} />
           </div>
         </div>
@@ -77,7 +80,9 @@ const MessagesChat: FC<messagesProps> = ({ chatData }) => {
             placeholder={'Введіть повідомлення..'}
             name={'send'}
             type={'text'}
+            error={methods.formState.errors.send}
           />
+          {methods.formState.errors.send && <p>{`${methods.formState.errors.send?.message}`}</p>}
           <button type={'submit'}><SendIco /></button>
         </div>
       </form>

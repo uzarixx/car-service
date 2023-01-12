@@ -3,7 +3,7 @@ import {
   changeAuthUser,
   changePortfolio, getPickerById,
   getPickers,
-  getUserById,
+  getUserById
 } from '../db/user';
 import { validationResult } from 'express-validator';
 import {
@@ -11,7 +11,6 @@ import {
   uploadToCloudinary,
 } from '../service/cloudinary';
 import { createPhoto, deletePhoto, getPhoto, getPhotoById } from '../db/photo';
-
 
 class T {
 }
@@ -43,6 +42,7 @@ const UserController = {
     await changePortfolio(user.id, description, experience);
     res.json(changePortfolio);
   },
+
   pickerPortfolioImages: async (req: Request | any, res: Response) => {
     const user = req.user;
     const photos = await getPhoto(user.id);
@@ -55,9 +55,9 @@ const UserController = {
     if (!photo || photo.userId !== user.id) {
       return res.status(400).json({ message: 'Нічого не знайдено або ви не автор фото' });
     }
-    deleteFromCloudinary(photo.public_id)
-    await deletePhoto(id)
-    res.json('Видалено.')
+    deleteFromCloudinary(photo.public_id);
+    await deletePhoto(id);
+    res.json('Видалено.');
   },
   getAllPickers: async (req: Request | any, res: Response) => {
     const pickers = await getPickers();

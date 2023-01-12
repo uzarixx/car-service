@@ -21,10 +21,18 @@ export default class offerService {
     });
   }
 
-  static async getAllOffers(token: string) {
+  static async getAllOffers(token: string, carTransmission: string, carType: string, carDrive: string, carGas: string, city: string, page: string) {
     return axios.get(`${process.env.NEXT_PUBLIC_API_URL}offer-get-all`, {
       headers: {
         Authorization: `Bearer ${token}`,
+      },
+      params: {
+        carType: carType || '',
+        carTransmission: carTransmission || '',
+        carDrive: carDrive || '',
+        carGas: carGas || '',
+        city: city || '',
+        page: page || '1',
       },
     });
   }

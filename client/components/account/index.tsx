@@ -10,9 +10,10 @@ import AccountOffers from './AccountOffers/AccountOffers';
 import AccountPortfolio from './AccountPortfolio/AccountPortfolio';
 import { useStore } from 'effector-react';
 import { $data, $loadingData } from '../../store/userData';
+import { userType } from '../../constants/type';
 
 const AccountComponent: FC = () => {
-  const authUser: any = useStore($data)
+  const authUser: userType | any = useStore($data)
   const isLoading = useStore($loadingData)
   const router = useRouter()
   const pathname = router.pathname

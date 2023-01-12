@@ -1,5 +1,5 @@
 export const debounce = (callback: any, delay: number) => {
-  let timer = null as any;
+  let timer: any = null ;
   return (...args: any) => {
     if (timer) {
       clearTimeout(timer);

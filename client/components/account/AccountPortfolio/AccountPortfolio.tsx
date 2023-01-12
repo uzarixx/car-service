@@ -6,7 +6,7 @@ import TextArea from '../../ui/textArea';
 import SpacingMiddle from '../../ui/spacings/SpacingMiddle';
 import { ExperienceArray } from '../../../constants/selectArrays';
 import SelectDefault from '../../ui/select/selectDefault';
-import { portfolioAccountValidate } from '../../../utils/portfolioAccountValidate';
+import { portfolioAccountValidate } from '../../../utils/validation/portfolioAccountValidate';
 import ButtonGreen from '../../ui/buttons/buttonGreen';
 import userService from '../../../service/userService';
 import SuccessData from '../../ui/alerts/successData/SuccessData';

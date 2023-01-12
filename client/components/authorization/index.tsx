@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import styles from './Authorization.module.scss';
 import ButtonGreen from '../ui/buttons/buttonGreen';
 import { useForm, FormProvider } from 'react-hook-form';
-import { login, register } from '../../utils/authValidate';
+import { login, register } from '../../utils/validation/authValidate';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -33,10 +33,9 @@ const AuthorizationForm: FC = () => {
           maxAge: 30 * 24 * 60 * 60, path: '/',
         });
       }
-
-      router.push('/account');
-    } catch (e: any) {
-      setErrorHandler(e.response.data.message);
+      await router.push('/account');
+    } catch (e:any) {
+      setErrorHandler(e.response?.data.message);
       console.log(e);
     }
   };

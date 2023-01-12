@@ -18,6 +18,9 @@ declare global {
     interface ProcessEnv {
       PORT: number;
       FRONTEND_URL: string;
+      DB_NAME: string;
+      DB_USER: string;
+      DB_PORT: number;
       MONGO_URL: string;
       SECRET_KEY: string;
       ENV: 'test' | 'dev' | 'prod';

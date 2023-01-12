@@ -17,6 +17,6 @@ export default async function authUser(req: any, res: Response, next: NextFuncti
     req.user = user
     next()
   } catch (e) {
-    console.log(e, '}}', 'ERRORRR')
+    console.log(e)
   }
 }

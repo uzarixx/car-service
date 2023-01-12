@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import styles from './Message.module.scss';
 import UserIcon from '../../../ui/icons/UserIcon';
+import { isURL } from '../../../../utils/isUrl';
 
 interface props {
   authUserId: number;
@@ -23,7 +24,7 @@ const Message: FC<props> = ({ authUserId, senderId, chatData, message }) => {
         )}
         </div>}
       <p className={styles.messageBlock}>
-        {message}
+        {isURL(message) ? <a href={message} target='_blank' rel='noreferrer'>{message}</a> : `${ message }`}
       </p>
     </>
   );

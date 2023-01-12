@@ -1,12 +1,22 @@
 import { Request, Response } from 'express';
 import {
   createOffer,
-  deleteOffer,
-  getOfferById,
+  createOfferParams,
+  deleteOffer, getFilteredAll,
+  getOfferById, getOfferParamsById,
   getOffers,
-  getOffersAll,
 } from '../db/offer';
 import { validationResult } from 'express-validator';
+
+
+interface Query {
+  carTransmission: string;
+  carDrive: string;
+  carType: string;
+  carGas: string;
+  city: string;
+  page: string;
+}
 
 
 const OfferController = {
@@ -22,8 +32,8 @@ const OfferController = {
       userId: user.id,
       userName: user.userName,
     });
-    res.json(offer);
-
+    await createOfferParams({ data, offerId: offer.id });
+    res.json(data);
   },
   getOffers: async (req: Request | any, res: Response) => {
     const { id } = req.user;
@@ -36,10 +46,27 @@ const OfferController = {
     if (!offer) {
       return res.status(404).json({ message: 'Нічого не знайдено' });
     }
-    res.json(offer);
+    const offerParams = await getOfferParamsById(offer.id);
+    res.json({ ...offer.dataValues, ...offerParams.dataValues });
   },
   getAllOffers: async (req: Request, res: Response) => {
-    const offers = await getOffersAll();
+    const {
+      carTransmission,
+      carDrive,
+      carType,
+      carGas,
+      city,
+      page,
+    } = req.query as unknown as Query;
+    console.log(city);
+    const offers = await getFilteredAll(
+      carTransmission || undefined,
+      carDrive || undefined,
+      carType || undefined,
+      carGas || undefined,
+      city || undefined,
+      page || '1',
+    );
     res.json(offers);
   },
   offerDelete: async (req: Request | any, res: Response) => {

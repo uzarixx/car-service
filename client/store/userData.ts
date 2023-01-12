@@ -10,7 +10,6 @@ export const $loadingData = createStore(true).on(loadingUserData, (_, loading: b
 
 
 export const getAuthUser = async () => {
-
   try {
     loadingUserData(true);
     const { data } = await authServices.getUserData();

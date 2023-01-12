@@ -1,4 +1,4 @@
-const currentDate = (timeStamp: any) => {
+const currentDate = (timeStamp: number | string) => {
   if (!timeStamp) {
     return false;
   }

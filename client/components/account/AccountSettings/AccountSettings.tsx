@@ -1,4 +1,4 @@
-import React, { FC, useState, useMemo, Dispatch, SetStateAction } from 'react';
+import React, { FC, useState, useMemo } from 'react';
 import styles from './AccountSettings.module.scss';
 import SpacingMiddle from '../../ui/spacings/SpacingMiddle';
 import SpacingSmall from '../../ui/spacings/SpacingSmall';
@@ -8,12 +8,13 @@ import ButtonGreen from '../../ui/buttons/buttonGreen';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
   accountSettingsValidate,
-} from '../../../utils/accountSettingsValidate';
+} from '../../../utils/validation/accountSettingsValidate';
 import userService from '../../../service/userService';
 import DropDown from '../../ui/dropDown';
 import { useFetchCities } from '../../../utils/fetchCity';
 import SuccessData from '../../ui/alerts/successData/SuccessData';
-import { changeUserData, loadingUserData } from '../../../store/userData';
+import { changeUserData } from '../../../store/userData';
+import AvatarUpload from '../../ui/avatarUpload/AvatarUpload';
 
 interface User {
   id: number;
@@ -24,13 +25,14 @@ interface User {
   photo: string;
   phoneNumber: string;
   city: string;
+  status: boolean;
 }
 
 interface Props {
   user: User;
 }
 
-const AccountSettings: FC<Props> = ({ user}) => {
+const AccountSettings: FC<Props> = ({ user }) => {
   const inputs = useMemo(() => [
     {
       text: 'Ім\'я',
@@ -77,7 +79,7 @@ const AccountSettings: FC<Props> = ({ user}) => {
     try {
       setSuccessChange(true);
       const changeData = await userService.userInfoSettings(data.email, data.userName, data.userLastName, data.city, data.phoneNumber);
-      changeUserData(changeData.data)
+      changeUserData(changeData.data);
       setTimeout(() => {
         setSuccessChange(false);
       }, 2000);
@@ -94,6 +96,8 @@ const AccountSettings: FC<Props> = ({ user}) => {
       <SpacingSmall />
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
+          <AvatarUpload photo={user.photo}/>
+          <SpacingSmall/>
           {inputs.map((el, i) =>
             <React.Fragment key={i}>
               <div className={styles.formInput}>

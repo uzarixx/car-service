@@ -1,7 +1,6 @@
 import $api from '../http';
 import axios from 'axios';
 
-
 export default class authServices {
   static async registerData(userName: string, email: string, password: string, role: string) {
     return $api.post(`/signup`, {

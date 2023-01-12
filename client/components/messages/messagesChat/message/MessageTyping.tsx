@@ -4,13 +4,14 @@ import styles from './MessageTyping.module.scss';
 
 interface messagesProps {
   chatData: { id: number, userName: string, photo: string }[];
+  isActive: boolean;
 }
 
-const MessageTyping: FC<messagesProps> = ({ chatData }) => {
+const MessageTyping: FC<messagesProps> = ({ chatData, isActive }) => {
   return (
     <>
       {chatData.map((el, i) =>
-        <div className={styles.isTyping} key={i}>
+        <div className={`${styles.isTyping} ${isActive ? styles.active : ''}`} key={i}>
           {el.photo ? <img src={el.photo} alt={'user-avatar'} className={styles.avatar}/> : <UserIcon />}
           <img
             src={'https://media.tenor.com/y29vJ0OqaQ4AAAAj/typing-texting.gif'}

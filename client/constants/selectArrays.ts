@@ -36,11 +36,11 @@ export const PostNewAdCarType = [
     name: 'carTransmission',
     options: [
       { title: '' },
-      { title: 'Ручна / Механіка' },
+      { title: 'Ручна / Механіка'},
       { title: 'Автомат' },
       { title: 'Типтронік' },
       { title: 'Робот' },
-      { title: 'Варіатор' },
+      { title: 'Варіатор'},
     ],
   },
   {

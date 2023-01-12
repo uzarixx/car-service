@@ -1,0 +1,15 @@
+.selectWrapper {
+  flex: 0 1 calc(50% - 20px);
+
+  select {
+    padding: 10px;
+    width: 100%;
+    border: 1px solid var(--borderInputOpacity);
+    border-radius: 4px;
+    font-family: "Roboto", "sans-serif";
+    font-size: 16px;
+    color: var(--textPrimary);
+    outline: none;
+    cursor: pointer;
+  }
+}

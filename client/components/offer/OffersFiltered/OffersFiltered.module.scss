@@ -1,0 +1,17 @@
+.filterWrapper {
+  display: flex;
+  margin-bottom: 20px;
+  flex-direction: column;
+
+  h2 {
+    margin-bottom: 10px;
+    color: var(--text);
+  }
+
+  .filterParams {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,11 @@
+.input {
+  font-family: Roboto, 'sans-serif';
+  border: 1px solid var(--borderInputOpacity);
+  border-radius: 4px;
+  padding: 10px;
+  margin-top: 20px;
+  font-size: 16px;
+  &::placeholder {
+    font-size: 16px;
+  }
+}

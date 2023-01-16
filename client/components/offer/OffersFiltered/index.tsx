@@ -3,9 +3,11 @@ import styles from './OffersFiltered.module.scss';
 import { PostNewAdCarType } from '../../../constants/selectArrays';
 import SelectFiltered from '../../ui/select/selectFiltered';
 import { useOfferFilter } from '../../../utils/offerFilterHooks';
+import AccountSettingsInput from '../../ui/inputs/accountSettingsInput';
+import Input from '../../ui/inputs/input';
 
 const OffersFiltered: FC = () => {
-  const { filteredParam, setFilteredParam } = useOfferFilter();
+  const {filterCity, filteredParam, setFilteredParam } = useOfferFilter();
   return (
     <div className={styles.filterWrapper}>
       <div>
@@ -21,6 +23,7 @@ const OffersFiltered: FC = () => {
         </Fragment>,
       )}
       </div>
+      <Input filterCity={filterCity}/>
     </div>
   );
 };

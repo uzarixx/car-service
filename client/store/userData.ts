@@ -3,7 +3,7 @@ import { userType } from '../constants/type';
 import authServices from '../service/authService';
 
 
-export const changeUserData = createEvent<userType>('change user data');
+export const changeUserData = createEvent<userType | {  }>('change user data');
 export const loadingUserData = createEvent<boolean>('loading user data');
 export const $data = createStore([]).on(changeUserData, (_, newData: any) => newData);
 export const $loadingData = createStore(true).on(loadingUserData, (_, loading: boolean) => loading);
@@ -19,3 +19,8 @@ export const getAuthUser = async () => {
     console.log(e);
   }
 };
+
+
+export const logoutUser = () => {
+  changeUserData({  })
+}

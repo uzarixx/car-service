@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { destroyCookie } from 'nookies';
 import userService from '../../../service/userService';
 import UserIcon from '../../ui/icons/UserIcon';
+import { logoutUser } from '../../../store/userData';
 
 interface User {
   id: number;
@@ -31,13 +32,14 @@ const AccountUser: FC<Props> = ({ user }) => {
   const isSettings = pathname === '/account';
   const isOffer = pathname === '/account/offers';
   const isPortfolio = pathname === '/account/portfolio';
-  const onLogout = () => {
+  const onLogout = async () => {
     destroyCookie(null, 'authToken', { path: '/' });
-    router.push('/');
+    logoutUser();
+    await router.push('/');
   };
-  const onCreateLink = async() => {
+  const onCreateLink = async () => {
     setStatusClick(true);
-    await userService.createActivationLink()
+    await userService.createActivationLink();
   };
   return (
     <nav className={styles.navBar}>
@@ -47,10 +49,12 @@ const AccountUser: FC<Props> = ({ user }) => {
           надійшло повідомлення, то натисіть сюди</p>}</div>}
       <div className={styles.userBlock}>
         <div className={styles.userName}>
-          {user.photo ? <img src={user.photo} alt='user-avatar' width={30} height={30}/> : <UserIcon/>}
-       <h2>
-          {user.userName}
-       </h2>
+          {user.photo ?
+            <img src={user.photo} alt='user-avatar' width={30} height={30} /> :
+            <UserIcon />}
+          <h2>
+            {user.userName}
+          </h2>
         </div>
         <p>ID {user.id}</p>
         <p>{!user.phoneNumber ? 'Вкажіть номер телефону' : user.phoneNumber}</p>
@@ -60,9 +64,11 @@ const AccountUser: FC<Props> = ({ user }) => {
       <div className={styles.router}>
         <Link href={'/account'} className={`${isSettings && styles.active}`}>Налаштування
           акаунту</Link>
-        {user.role === UserRole.Client && <Link href={'/account/offers'} className={`${isOffer && styles.active}`}>Мої
+        {user.role === UserRole.Client && <Link href={'/account/offers'}
+                                                className={`${isOffer && styles.active}`}>Мої
           оголошення</Link>}
-        {user.role === UserRole.Picker && <Link href={'/account/portfolio'} className={`${isPortfolio && styles.active}`}>Моє
+        {user.role === UserRole.Picker && <Link href={'/account/portfolio'}
+                                                className={`${isPortfolio && styles.active}`}>Моє
           портфоліо</Link>}
       </div>
     </nav>

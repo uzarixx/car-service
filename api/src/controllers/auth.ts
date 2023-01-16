@@ -25,8 +25,12 @@ const AuthController = {
     });
     const token = generateJWt(user.id, user.userName, user.role);
     const activationLink = uuid.v4();
-    await createAuthToken(user.id, activationLink)
-    await sendEmail({ to: email, link: `${process.env.API_URL}/activated/${activationLink}`})
+    await createAuthToken(user.id, activationLink);
+    await sendEmail({
+      to: email,
+      link: `${process.env.API_URL}/activated/${activationLink}`,
+      subject: 'Створення аккаунту на сайті "Car service"',
+    });
     res.json({ token });
   },
   login: async (req: Request, res: Response) => {

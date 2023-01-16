@@ -1,7 +1,7 @@
 import { User } from '../models/user';
 import { Op } from 'sequelize';
 
-const attributesArray = ['id', 'role', 'photo', 'userName', 'city', 'email', 'userLastName', 'phoneNumber', 'experience', 'description', 'status']
+const attributesArray = ['id', 'role', 'photo', 'userName', 'city', 'email', 'userLastName', 'phoneNumber', 'experience', 'description', 'status'];
 
 export const getUserByEmail = async (email: string): Promise<any> => {
   const user = await User.findOne({ where: { email } });
@@ -29,7 +29,7 @@ export const getUserById = async (id: string): Promise<any> => {
 export const getReceiversUsers = async (array: any): Promise<any> => {
   const user = await User.findAll({
     where: { id: { [Op.in]: array } },
-    attributes: ['id', 'userName', 'photo']
+    attributes: ['id', 'userName', 'photo'],
   });
   return user;
 };
@@ -66,9 +66,9 @@ export const changeAuthUser = async (id: string, email: string, userName: string
 };
 
 export const updateIsActive = async (id: number): Promise<any> => {
-  const user = await User.update({status: true}, {where: {id}})
-  return user
-}
+  const user = await User.update({ status: true }, { where: { id } });
+  return user;
+};
 
 export const changePortfolio = async (id: string, description: string, experience: string): Promise<any> => {
   const user = await User.update({
@@ -76,5 +76,9 @@ export const changePortfolio = async (id: string, description: string, experienc
     experience,
   }, { where: { id } });
   return user;
+};
+
+export const updateUserPassword = async (password: string, id: number): Promise<any> => {
+  return await User.update({ password: password }, { where: { id } });
 };
 

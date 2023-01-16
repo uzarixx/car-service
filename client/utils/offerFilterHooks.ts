@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
+import { debounce } from './debounce';
 
 
 
@@ -16,10 +17,16 @@ export const useOfferFilter = () => {
   });
   useEffect(() => {
     Object.keys(filteredParam).forEach(key => filteredParam[key] && query.append(key, filteredParam[key]));
-    router.push(`/offer${query && '?'}${query}`);
+    router.push(`/offer?${query}`);
   }, [filteredParam]);
 
+  const callFilter = (city: string) => {
+    setFilteredParam({...filteredParam, city: city})
+  }
+
+  const filterCity = debounce(callFilter, 300);
+
   return {
-    filteredParam, setFilteredParam,
+    filteredParam, setFilteredParam, filterCity
   };
 };

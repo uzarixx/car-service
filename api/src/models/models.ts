@@ -6,11 +6,13 @@ import { AuthTokens } from './authTokens';
 import { Chat } from './chat';
 import { AvatarsPhoto } from './avatarsPhoto';
 import { OfferParams } from './offerParams';
+import { ForgotTokens } from './forgotTokens';
 
 User.hasOne(Offer, { foreignKey: 'userId' });
 User.hasMany(Photo, { foreignKey: 'userId' });
 User.hasMany(AvatarsPhoto, { foreignKey: 'userId' });
 User.hasOne(AuthTokens, { foreignKey: 'userId' });
+User.hasOne(ForgotTokens, {foreignKey: 'userId'})
 Offer.hasMany(OfferParams, { foreignKey: 'offerId' });
 Chat.hasMany(Messages, { foreignKey: 'chatId' });
 
@@ -24,6 +26,7 @@ export const models = {
   AuthTokens,
   AvatarsPhoto,
   OfferParams,
+  ForgotTokens
 };
 
 

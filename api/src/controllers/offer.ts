@@ -58,7 +58,6 @@ const OfferController = {
       city,
       page,
     } = req.query as unknown as Query;
-    console.log(city);
     const offers = await getFilteredAll(
       carTransmission || undefined,
       carDrive || undefined,

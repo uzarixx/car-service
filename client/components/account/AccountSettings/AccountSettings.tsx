@@ -15,6 +15,7 @@ import { useFetchCities } from '../../../utils/fetchCity';
 import SuccessData from '../../ui/alerts/successData/SuccessData';
 import { changeUserData } from '../../../store/userData';
 import AvatarUpload from '../../ui/avatarUpload/AvatarUpload';
+import { userInputs } from '../../../constants/userInputArray';
 
 interface User {
   id: number;
@@ -33,46 +34,16 @@ interface Props {
 }
 
 const AccountSettings: FC<Props> = ({ user }) => {
-  const inputs = useMemo(() => [
-    {
-      text: 'Ім\'я',
-      value: user.userName,
-      placeholder: 'Введіть ім\'я',
-      type: 'text',
-      name: 'userName',
-    },
-    {
-      text: 'Прізвище',
-      value: user.userLastName,
-      placeholder: 'Введіть прізвище',
-      type: 'text',
-      name: 'userLastName',
-    },
-    {
-      text: 'Місто',
-      value: user.city,
-      placeholder: 'Введіть ваше місто',
-      type: 'text',
-      name: 'city',
-    },
-    {
-      text: 'E-mail',
-      value: user.email,
-      placeholder: 'Введіть e-mail',
-      type: 'text',
-      name: 'email',
-    },
-    {
-      text: 'Телефон',
-      value: user.phoneNumber,
-      placeholder: 'Номер телефону',
-      type: 'text',
-      name: 'phoneNumber',
-    },
-  ], [user]);
   const [successChange, setSuccessChange] = useState(false);
-  const methods = useForm({
+  const methods = useForm<any>({
     resolver: yupResolver(accountSettingsValidate),
+    defaultValues: {
+      email: user.email || '',
+      phoneNumber: user.phoneNumber || '',
+      city: user.city || '',
+      userLastName: user.userLastName || '',
+      userName: user.userName || '',
+    },
   });
   const { dropDown, fetching, onClickTown } = useFetchCities(methods);
   const onSubmit = async (data: any) => {
@@ -88,7 +59,6 @@ const AccountSettings: FC<Props> = ({ user }) => {
       setSuccessChange(false);
     }
   };
-
   return (
     <div className={styles.accountSettingsWrapper}>
       <h2>Моя анкета</h2>
@@ -96,9 +66,9 @@ const AccountSettings: FC<Props> = ({ user }) => {
       <SpacingSmall />
       <FormProvider {...methods}>
         <form onSubmit={methods.handleSubmit(onSubmit)}>
-          <AvatarUpload photo={user.photo}/>
-          <SpacingSmall/>
-          {inputs.map((el, i) =>
+          <AvatarUpload photo={user.photo} />
+          <SpacingSmall />
+          {userInputs.map((el: any, i) =>
             <React.Fragment key={i}>
               <div className={styles.formInput}>
                 <p>{el.text}</p>

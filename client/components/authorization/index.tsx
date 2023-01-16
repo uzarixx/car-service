@@ -8,7 +8,9 @@ import RegisterForm from './RegisterForm';
 import { yupResolver } from '@hookform/resolvers/yup';
 import authServices from '../../service/authService';
 import { useRouter } from 'next/router';
-import { destroyCookie, setCookie } from 'nookies';
+import { destroyCookie } from 'nookies';
+import { cookieSet } from '../../utils/cookie';
+import Link from 'next/link';
 
 
 const AuthorizationForm: FC = () => {
@@ -24,17 +26,13 @@ const AuthorizationForm: FC = () => {
       destroyCookie(null, 'authToken', { path: '/' });
       if (authType === 0) {
         const response = await authServices.loginData(data.email, data.password);
-        setCookie(null, 'authToken', response.data.token, {
-          maxAge: 30 * 24 * 60 * 60, path: '/',
-        });
+        await cookieSet(response.data.token);
       } else {
         const response = await authServices.registerData(data.userName, data.email, data.password, roleState);
-        setCookie(null, 'authToken', response.data.token, {
-          maxAge: 30 * 24 * 60 * 60, path: '/',
-        });
+        await cookieSet(response.data.token);
       }
       await router.push('/account');
-    } catch (e:any) {
+    } catch (e: any) {
       setErrorHandler(e.response?.data.message);
       console.log(e);
     }
@@ -64,9 +62,11 @@ const AuthorizationForm: FC = () => {
                 <RegisterForm errors={methods.formState.errors}
                               setRoleState={setRoleState}
                               roleState={roleState} />}
+
               <ButtonGreen
                 type={'submit'}>{`${authType === 0 ? 'Увійти' : 'Реєстарція'}`}</ButtonGreen>
               {errorHandler && <b>{errorHandler}</b>}
+              {authType === 0 && <Link href={'/reset'}>Забули пароль?</Link>}
             </form>
           </FormProvider>
         </div>

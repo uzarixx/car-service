@@ -26,10 +26,10 @@ const CreateChat: FC<props> = ({ userId }) => {
         <div className={styles.createChat}>
           <TextArea
             name={'message'}
-            rows={5}
+            rows={2}
             placeholder={'Введіть повідомлення...'}
             errors={methods.formState.errors.message as any} />
-          <ButtonGreen type={'submit'}>Надіслати</ButtonGreen>
+          <ButtonGreen type={'submit'}>Надіслати повідомлення</ButtonGreen>
         </div>
       </form>
     </FormProvider>

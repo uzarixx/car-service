@@ -17,7 +17,7 @@ const AccountSettingsInput: FC<props> = ({
   type,
   error,
   value,
-  fetching
+  fetching,
 }) => {
   const { register } = useFormContext();
   return (
@@ -25,7 +25,11 @@ const AccountSettingsInput: FC<props> = ({
       defaultValue={value}
       className={`${styles.input} ${error && styles.active}`}
       type={type}
-      {...register(name as string, { required: true, onChange: (e) => {name === 'city' && fetching(e.target.value)}})}
+      {...register(name as string, {
+        required: true, onChange: (e) => {
+          name === 'city' && fetching(e.target.value);
+        },
+      })}
       placeholder={placeholder} />
   );
 };

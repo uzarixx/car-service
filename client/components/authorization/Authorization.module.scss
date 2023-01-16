@@ -70,6 +70,14 @@
         color: var(--textPrimary);
       }
 
+      a {
+        display: block;
+        font-size: 13px;
+        margin-top: 10px;
+        color: var(--textPrimary);
+        text-align: center;
+      }
+
       .roleWrapper {
         display: flex;
         justify-content: space-between;
@@ -86,6 +94,7 @@
           cursor: pointer;
 
         }
+
         .active {
           background: var(--green);
           color: var(--white);

@@ -35,7 +35,7 @@ const Header: FC = () => {
           </button>
           <button className={styles.userButton}><Link href={isAuth ? '/messages' : '/authorization'}><ChatIco/></Link>   </button>
           <ButtonLinkGreen
-            href={isAuth ? (authUser.role === 'Client' ? '/offer-new-ad' : '/offer') : '/authorization'}>
+            href={isAuth ? (authUser.role === 'Client' ? '/offer-new-ad' : '/offer?page=1') : '/authorization'}>
             {isAuth ? authUser.role === 'Client' ? 'Додати оголошення' : 'Всі оголошення' : 'Додати оголошення'}
           </ButtonLinkGreen>
         </div>

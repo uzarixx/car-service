@@ -5,17 +5,20 @@ import { userProps } from '../../../constants/type';
 import SpacingSmall from '../../ui/spacings/SpacingSmall';
 import ButtonGreen from '../../ui/buttons/buttonGreen';
 import { useRouter } from 'next/router';
+import UserIcon from '../../ui/icons/UserIcon';
 
 const PickerMain: FC<userProps> = ({ users }) => {
   const router = useRouter();
   const onClickPicker = (id: number) => {
-    router.push(`/picker/${id}`)
+    router.push(`/picker/${id}`);
   };
   return (
     <div className={styles.pickersWrapper}>
       {users.map((el, i) =>
-        <div key={i} className={styles.pickerBlock} onClick={() => onClickPicker(el.id)}>
-          <p>{'Ім\'я: '}{el.userName}</p>
+        <div key={i} className={styles.pickerBlock}
+             onClick={() => onClickPicker(el.id)}>
+          {el.photo ? <img src={el.photo} alt='avatar' /> : <UserIcon />}
+          <p> {'Ім\'я: '}{el.userName}</p>
           <span
             className={styles.Date}>Зареєстрован: {Date(el.createdAt)}</span>
           <SpacingSmall />

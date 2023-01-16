@@ -29,6 +29,31 @@
   .dragAndDropImage {
     flex: 0 1 calc(34.3% - 20px);
     max-height: 150px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+
+    svg {
+      position: absolute;
+      display: none;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    &:hover {
+      svg {
+        display: flex;
+      }
+      &::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: var(--background-popup);
+      }
+    }
+
 
     img {
       width: 100%;

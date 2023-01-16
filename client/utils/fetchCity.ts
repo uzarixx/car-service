@@ -3,7 +3,7 @@ import { debounce } from './debounce';
 import { useState } from 'react';
 
 export const fetchCity = async (city: string) => {
-  const { data } = await axios.get(`https://api.sat.ua/study/hs/api/v1.0/main/json/getTowns?searchString=${city}&rsp=10&language=ua`);
+  const { data } = await axios.get(`https://api.sat.ua/study/hs/api/v1.0/main/json/getTowns?searchString=${city}&rsp=10&language=uk`);
   return data;
 };
 

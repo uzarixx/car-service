@@ -6,6 +6,15 @@
   display: flex;
   justify-content: space-between;
 
+  .avatar {
+    img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+  }
+
   .description {
     max-width: 50%;
     font-weight: 400;

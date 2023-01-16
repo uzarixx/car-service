@@ -18,6 +18,7 @@ import handleErrorMiddleware from '../middlewares/handleErrorMiddleware';
 import ChatController from '../controllers/chat';
 import UserActivateController from '../controllers/userActivate';
 import UserAvatarController from 'controllers/userAvatar';
+import UserForgot from '../controllers/userForgot';
 
 const storage = multer.memoryStorage();
 const multerUpload = multer({ storage });
@@ -37,6 +38,14 @@ UserActivate
 router.get('/create-activate-token', authUser, handleErrorMiddleware(UserActivateController.createActivateToken));
 router.get('/user-activated/:token', authUser, handleErrorMiddleware(UserActivateController.userActivate));
 
+
+/*
+UserForgot
+ */
+
+router.post('/create-forgot-token', handleErrorMiddleware(UserForgot.createForgotToken))
+router.post('/update-user-password/:token', handleErrorMiddleware(UserForgot.resetPassword))
+router.get('/verify-forgot-token/:token', handleErrorMiddleware(UserForgot.verifyForgotToken))
 
 /*
 User

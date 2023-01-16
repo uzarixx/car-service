@@ -6,9 +6,11 @@ import LocationIco from '../../../ui/icons/LocationIco';
 import LocationImage from '../../../ui/locationImage/locationImage';
 import ButtonShowNumber from '../../../ui/buttons/buttonShowNumber/ButtonShowNumber';
 import SliderGallery from '../../../ui/sliderGallery/SliderGallery';
+import UserBigIcon from '../../../ui/icons/UserBigIcon';
+import CreateChat from '../../../ui/createChat/CreateChat';
 
 
-const PickerDetailMain: FC<pickerProps> = ({ picker, photos }) => {
+const PickerDetailMain: FC<pickerProps> = ({ picker, photos, photo }) => {
   const [phoneShower, setPhoneShower] = useState(false);
   const onClickNumber = () => {
     setPhoneShower(true);
@@ -16,6 +18,9 @@ const PickerDetailMain: FC<pickerProps> = ({ picker, photos }) => {
   return (
     <div className={styles.pickerMainContainer}>
       <div>
+        <div className={styles.avatar}>
+          {photo ? <img src={photo} alt='user-avatar' /> : <UserBigIcon/>}
+        </div>
         <h2>{picker.userName}</h2>
         <SpacingSmall />
         <p>Опис:</p>
@@ -30,6 +35,7 @@ const PickerDetailMain: FC<pickerProps> = ({ picker, photos }) => {
           phoneShower={phoneShower}
           onClick={onClickNumber}
           phoneNumber={picker.phoneNumber} />
+        <CreateChat userId={picker.id}/>
       </div>
       <div>
         <div className={styles.location}>

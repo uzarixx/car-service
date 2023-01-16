@@ -9,7 +9,7 @@ const OfferComponent: FC<offersProps> = ({ offers,pageCount }) => {
     <>
       <OffersFiltered/>
       <OffersMain offers={offers} />
-      <Pagination pageCount={pageCount || 10}/>
+      <Pagination pageCount={pageCount || 10} paginateRoute={'offer'}/>
     </>
   );
 };

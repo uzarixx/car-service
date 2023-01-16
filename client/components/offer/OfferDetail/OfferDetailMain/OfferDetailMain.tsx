@@ -1,10 +1,25 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import styles from './OfferDetailMain.module.scss';
 import { offerProps } from '../../../../constants/type';
 import SpacingSmall from '../../../ui/spacings/SpacingSmall';
 import SpacingMiddle from '../../../ui/spacings/SpacingMiddle';
+import CreateChat from '../../../ui/createChat/CreateChat';
+import { useStore } from 'effector-react';
+import { $data } from '../../../../store/userData';
+import ButtonGreen from '../../../ui/buttons/buttonGreen';
 
 const OfferDetailMain: FC<offerProps> = ({ offer }) => {
+  const user: any = useStore($data)
+  const [openDesc, setOpenDesc] = useState(false)
+  const [descHeight, setDescHeight] = useState(0)
+  const ref = useRef<any>(null)
+  useEffect(() => {
+    setDescHeight(ref.current.clientHeight)
+  }, [])
+  const onOpenDesc = () => {
+    setOpenDesc(true)
+  }
+
   return (
     <div className={styles.offerMainContainer}>
       <h3>{offer.title}</h3>
@@ -24,11 +39,14 @@ const OfferDetailMain: FC<offerProps> = ({ offer }) => {
         {offer.carYear && <span>Рік авто: {offer.carYear}</span>}
       </div>
       <SpacingMiddle />
-      <div className={styles.description}>
+      <div className={`${styles.description} ${openDesc && styles.active}`} ref={ref}>
         <h2>Опис</h2>
         <SpacingSmall />
         <p>{offer.description}</p>
+        {descHeight >= 250 && !openDesc && <ButtonGreen onClick={onOpenDesc}>Детальніше</ButtonGreen>}
       </div>
+      <SpacingMiddle />
+      {user.id !== offer.userId && <CreateChat userId={offer.userId} />}
     </div>
   );
 };

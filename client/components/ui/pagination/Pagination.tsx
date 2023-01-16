@@ -4,9 +4,11 @@ import { usePaginationHook } from '../../../utils/paginationHook';
 
 interface props {
   pageCount: number;
+  paginateRoute: string;
 }
 
-const Pagination: FC<props> = ({ pageCount }) => {
+const Pagination: FC<props> = ({ pageCount, paginateRoute }) => {
+
   const {
     pagesValue,
     onClickPlus,
@@ -14,7 +16,8 @@ const Pagination: FC<props> = ({ pageCount }) => {
     onClickPage,
     page,
     pages,
-  } = usePaginationHook(pageCount);
+  } = usePaginationHook(pageCount, paginateRoute);
+
   return (
     <div className={styles.paginationWrapper}>
       {page >= 2 && <button onClick={onClickMinus}>{'<'}</button>}

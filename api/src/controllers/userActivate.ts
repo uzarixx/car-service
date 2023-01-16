@@ -18,6 +18,7 @@ const UserActivateController = {
     await sendEmail({
       to: email,
       link: `${process.env.FRONTEND_URL}/activated/${activationLink}`,
+      subject: 'Створення аккаунту на сайті "Car service"'
     });
     res.json('На вашу пошту надіслано письмо активації');
   },
@@ -25,7 +26,7 @@ const UserActivateController = {
     const { id, isActivated } = req.user;
     const { token } = req.params;
     const getToken = await getTokenByUserData(id, token);
-    if (!getToken || getToken.createdAt > Date.now() + 1000 * 60 * 5 || isActivated) {
+    if (!getToken || getToken.expiresAt < Date.now() || isActivated) {
       await deleteToken(token);
       return res.status(400).json('Посилання активації не дійсне, зробіть новий запит та спробуйте знову');
     }

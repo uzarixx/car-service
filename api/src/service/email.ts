@@ -1,5 +1,11 @@
 import nodemailer from 'nodemailer'
 
+interface sendMail {
+  to: string;
+  link: string;
+  subject: string
+}
+
 const transporter = nodemailer.createTransport({
   host: 'smtp.gmail.com',
   port: 587,
@@ -9,12 +15,12 @@ const transporter = nodemailer.createTransport({
   }
 });
 
-export const sendEmail = ({to, link}: { to: string, link: string }) => {
+export const sendEmail = ({to, link, subject}: sendMail) => {
   return new Promise((resolve, reject) => {
     const mailDetails = {
       from: 'Car service <is3.andrei.2@gmail.com>',
       to,
-      subject: 'Створення аккаунту на сайті "Car service"',
+      subject,
       html: `
              <div> 
           <h1>Для активації перейдіть по посиланню</h1>

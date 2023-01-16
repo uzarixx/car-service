@@ -1,5 +1,6 @@
 import React, { FC, useState } from 'react';
 import styles from './DragAndDrop.module.scss';
+import DeleteIcon from '../icons/DeleteIcon';
 
 interface props {
   setImages?: any;
@@ -34,6 +35,8 @@ const DragAndDrop: FC<props> = ({ setImages }) => {
   const closeImagePreview = (index: number) => {
     setImages.setValue('images', (images.filter((_: unknown, i: number) => i !== index)));
   };
+
+
   return (
     <>
       <div
@@ -58,6 +61,7 @@ const DragAndDrop: FC<props> = ({ setImages }) => {
           {images.map((el: File | any, i: number) =>
             <div key={i} className={styles.dragAndDropImage}
                  onClick={() => closeImagePreview(i)}>
+              <DeleteIcon/>
               <img src={el.secure_url  || URL.createObjectURL(el) } alt='image' />
             </div>,
           )}

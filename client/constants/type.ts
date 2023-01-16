@@ -89,6 +89,7 @@ export interface userProps {
 
 export interface pickerProps {
   picker: userType;
+  photo?: string;
   photos: photosType[];
 }
 

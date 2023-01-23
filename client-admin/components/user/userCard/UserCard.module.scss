@@ -28,10 +28,14 @@
     gap: 20px;
 
     .avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      img {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
     }
 
     p {

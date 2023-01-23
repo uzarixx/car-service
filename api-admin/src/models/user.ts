@@ -12,6 +12,7 @@ export const User = sequelize.define('user', {
   phoneNumber: { type: DataTypes.STRING, defaultValue: '' },
   role: { type: DataTypes.STRING, defaultValue: '' },
   description: { type: DataTypes.TEXT, defaultValue: ''},
+  sliceDesc: {type: DataTypes.STRING, defaultValue: ''},
   experience: {type: DataTypes.STRING, defaultValue: ''},
   status: {type: DataTypes.BOOLEAN, defaultValue: false},
   verify: {type: DataTypes.BOOLEAN, defaultValue: false}

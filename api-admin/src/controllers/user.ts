@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getAllUsers } from '../db/users';
+import { getAllUsers, getUserById } from '../db/users';
 
 
 const UserController = {
@@ -7,6 +7,11 @@ const UserController = {
     const users = await getAllUsers()
     res.json(users);
   },
+  getUserById: async (req: Request, res: Response) => {
+    const {id} = req.params
+    const user = await getUserById(id)
+    res.json(user)
+  }
 };
 
 export default UserController;

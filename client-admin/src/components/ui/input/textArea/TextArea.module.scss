@@ -1,0 +1,16 @@
+.textArea {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  resize: none;
+  max-width: 400px;
+  width: 100%;
+  border: 1px solid var(--borderInputOpacity);
+  box-shadow: rgb(0 0 0 / 12%) 0 2px 5px, rgb(0 0 0 / 14%) 0 1px 2px;
+  border-radius: 4px;
+  padding: 10px;
+  outline: none;
+  &::placeholder {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+  }
+}

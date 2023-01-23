@@ -11,7 +11,7 @@ import bcrypt from 'bcrypt';
 import { generateJWt } from '../service/generateJwt';
 
 
-const UserForgot = {
+const UserForgotController = {
   createForgotToken: async (req: Request, res: Response) => {
     const { email } = req.body;
     const user = await getUserByEmail(email);
@@ -20,7 +20,7 @@ const UserForgot = {
     }
     await deleteTokenByUser(user.id);
     const token = uuid.v4();
-    const createToken = await createForgotToken(token, user.id);
+    const createToken = await createForgotToken(token, user.id, Date.now() + 1000 * 60 * 5);
     await sendEmail({
       to: email,
       link: `${process.env.FRONTEND_URL}/reset/${token}`,
@@ -31,8 +31,7 @@ const UserForgot = {
   verifyForgotToken: async (req: Request, res: Response) => {
     const { token } = req.params;
     const response = await findToken(token);
-    console.log(response);
-    if (!response || response.expiresAt < Date.now()) {
+    if (!response || response?.expiresAt < Date.now()) {
       await deleteToken(token);
       return res.status(404).json('Токен не активен, або не знайден');
     }
@@ -56,4 +55,4 @@ const UserForgot = {
 };
 
 
-export default UserForgot;
+export default UserForgotController;

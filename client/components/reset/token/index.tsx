@@ -1,15 +1,15 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import forgotService from '../../../service/forgotService';
-import PreloaderDots from '../../ui/preloaders/PreloaderDots';
-import ButtonLinkGreen from '../../ui/buttons/buttonLinks/ButtonLinkGreen';
+import forgotService from '@/service/forgotService';
+import PreloaderDots from '@/components/ui/preloaders/PreloaderDots';
+import ButtonLinkGreen from '@/components/ui/buttons/buttonLinks/ButtonLinkGreen';
 import styles from './ForgotToken.module.scss';
-import StandardInput from '../../ui/inputs/standardInput';
+import StandardInput from '@/components/ui/inputs/standardInput';
 import { FormProvider, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { passwordsValidate } from '../../../utils/validation/resetPassword';
-import ButtonGreen from '../../ui/buttons/buttonGreen';
-import { cookieSet } from '../../../utils/cookie';
+import { passwordsValidate } from '@/utils/validation/resetPassword';
+import ButtonGreen from '@/components/ui/buttons/buttonGreen';
+import { cookieSet } from '@/utils/cookie';
 import { destroyCookie } from 'nookies';
 
 const ForgotToken: FC = () => {

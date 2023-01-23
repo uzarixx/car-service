@@ -9,8 +9,8 @@ import { useRouter } from 'next/router';
 import AccountOffers from './AccountOffers/AccountOffers';
 import AccountPortfolio from './AccountPortfolio/AccountPortfolio';
 import { useStore } from 'effector-react';
-import { $data, $loadingData } from '../../store/userData';
-import { userType } from '../../constants/type';
+import { $data, $loadingData } from '@/store/userData';
+import { userType } from '@/constants/type';
 
 const AccountComponent: FC = () => {
   const authUser: userType | any = useStore($data)

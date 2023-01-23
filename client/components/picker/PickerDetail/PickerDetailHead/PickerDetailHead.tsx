@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import React, { FC } from 'react';
 import styles from './PickerDetailHead.module.scss';
-import Arrow from '../../../ui/icons/Arrow';
+import Arrow from '@/components/ui/icons/Arrow';
 
 interface props {
   id: number;

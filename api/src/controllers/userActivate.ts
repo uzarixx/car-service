@@ -14,7 +14,7 @@ const UserActivateController = {
     const token = await getTokenByUserId(id);
     if (token) await deleteToken(token.token);
     const activationLink = uuid.v4();
-    await createAuthToken(id, activationLink);
+    await createAuthToken(id, activationLink, Date.now() + 1000 * 60 * 5);
     await sendEmail({
       to: email,
       link: `${process.env.FRONTEND_URL}/activated/${activationLink}`,

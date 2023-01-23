@@ -1,7 +1,10 @@
 .chatWrapper {
   display: flex;
   height: 80vh;
-
+  @media (max-height: 639px) {
+    max-height: 60vh;
+    height: 100%;
+  }
   .notSelectedChat {
     margin-left: 10px;
     border-radius: 4px;

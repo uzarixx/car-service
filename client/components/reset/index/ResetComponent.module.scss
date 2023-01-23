@@ -5,6 +5,10 @@
   border-radius: 4px;
   max-width: 60%;
   margin: 0 auto;
+  
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
 
   h3 {
     color: var(--text);
@@ -12,10 +16,16 @@
 
   input {
     max-width: 70%;
+    @media (max-width: 425px) {
+      max-width: 100%;
+    }
   }
 
   button {
     max-width: 70%;
+    @media (max-width: 425px) {
+      max-width: 100%;
+    }
   }
 
   p {

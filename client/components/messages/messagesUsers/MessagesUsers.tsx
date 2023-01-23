@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import styles from './MessagesUsers.module.scss';
 import { useRouter } from 'next/router';
-import { chatType } from '../../../constants/type';
-import UserIcon from '../../ui/icons/UserIcon';
+import { chatType } from '@/constants/type';
+import UserIcon from '@/components/ui/icons/UserIcon';
 
 interface props {
   chatsData: chatType;

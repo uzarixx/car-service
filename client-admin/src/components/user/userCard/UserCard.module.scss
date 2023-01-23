@@ -1,0 +1,44 @@
+.userCardWrapper {
+  background: var(--white);
+  box-shadow: rgb(0 0 0 / 12%) 0 2px 5px, rgb(0 0 0 / 14%) 0 1px 2px;
+  margin: 20px;
+  border-radius: 4px;
+  padding: 20px;
+  position: relative;
+  cursor: pointer;
+
+  .statusDot {
+    display: block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--green);
+    right: 10px;
+    transform: translateY(-50%);
+    top: 50%;
+  }
+
+  .statusDotActive {
+    background: var(--red);
+  }
+
+  .userParams {
+    display: flex;
+    gap: 20px;
+
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: black;
+    }
+
+    p {
+      padding: 10px;
+      box-shadow: rgb(0 0 0 / 12%) 0 2px 5px, rgb(0 0 0 / 14%) 0 1px 2px;
+      border-radius: 4px;
+    }
+  }
+
+}

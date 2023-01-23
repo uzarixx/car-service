@@ -16,11 +16,11 @@ const ChatController = {
     const { id } = req.user;
     const isCreated = await findCreatedChat(id, lastId);
     if (lastId === id) {
-      return res.status(500).json({message: "Ви не можете створити чат з самим собою"})
+      return res.status(500).json({ message: 'Ви не можете створити чат з самим собою' });
     }
     if (isCreated) {
       await createMessage(isCreated.id, message, id);
-      return res.json(isCreated.id)
+      return res.json(isCreated.id);
     }
     const chat = await createChat(lastId, id);
     await createMessage(chat.id, message, id);
@@ -33,7 +33,7 @@ const ChatController = {
     if (!chats) {
       return res.status(500).json({ message: 'Ви не можете надсилати повідомлення в цьому чаті.' });
     }
-    chats.map((el: any) => array.push(el.secondId, el.lastId),);
+    chats.map((el: any) => array.push(el.secondId, el.lastId));
     const filteredArray = array.filter((el: number) => el !== id);
     const user = await getReceiversUsers(filteredArray);
     res.json({ chats, user });

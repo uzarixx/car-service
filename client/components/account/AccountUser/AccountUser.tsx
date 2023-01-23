@@ -1,13 +1,13 @@
 import React, { FC, useState } from 'react';
 import styles from './AccountUser.module.scss';
 import { useRouter } from 'next/router';
-import SpacingSmall from '../../ui/spacings/SpacingSmall';
-import { UserRole } from '../../../constants/type';
+import SpacingSmall from '@/components/ui/spacings/SpacingSmall';
+import { UserRole } from '@/constants/type';
 import Link from 'next/link';
 import { destroyCookie } from 'nookies';
-import userService from '../../../service/userService';
-import UserIcon from '../../ui/icons/UserIcon';
-import { logoutUser } from '../../../store/userData';
+import userService from '@/service/userService';
+import UserIcon from '@/components//ui/icons/UserIcon';
+import { logoutUser } from '@/store/userData';
 
 interface User {
   id: number;

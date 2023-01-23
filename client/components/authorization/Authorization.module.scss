@@ -83,16 +83,20 @@
         justify-content: space-between;
         margin-bottom: 20px;
         gap: 20px;
+        
+
 
         .role {
           padding: 10px;
-          background: var(--white);
+          background: var(--darkWhite);
           width: 100%;
           display: flex;
           align-items: center;
           justify-content: center;
           cursor: pointer;
-
+          @media (max-width: 425px) {
+          padding: 5px;
+          }
         }
 
         .active {

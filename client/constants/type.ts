@@ -24,6 +24,9 @@ export interface offersType {
 export interface offersProps {
   offers:offersType[];
   pageCount?: number;
+  favorite?:number[];
+  onAddFavorite?:(e: number) => void;
+  onDeleteFavorite?:(e: number) => void;
 }
 export interface offersPropsResponse {
   offers: {count: number, rows: offersType[]}

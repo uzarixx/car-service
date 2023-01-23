@@ -1,8 +1,8 @@
 import { AuthTokens } from '../models/authTokens';
 import { Op } from 'sequelize';
 
-export const createAuthToken = async (userId: number, authToken: string): Promise<any> => {
-  const token = await AuthTokens.create({ userId, token: authToken });
+export const createAuthToken = async (userId: number, authToken: string, expiresAt: number): Promise<any> => {
+  const token = await AuthTokens.create({ userId, token: authToken, expiresAt });
   return token;
 };
 

@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import styles from './OfferNewAdDescription.module.scss';
-import SpacingMiddle from '../../ui/spacings/SpacingMiddle';
-import TextArea from '../../ui/textArea';
-import SpacingSmall from '../../ui/spacings/SpacingSmall';
+import SpacingMiddle from '@/components/ui/spacings/SpacingMiddle';
+import TextArea from '@/components/ui/textArea';
+import SpacingSmall from '@/components/ui/spacings/SpacingSmall';
 
 interface props {
   methods: any;

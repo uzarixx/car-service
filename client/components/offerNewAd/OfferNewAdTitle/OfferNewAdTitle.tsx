@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import styles from './OfferNewAdTitle.module.scss';
-import SpacingMiddle from '../../ui/spacings/SpacingMiddle';
-import PostNewAdInput from '../../ui/inputs/postNewAdInput';
-import SpacingSmall from '../../ui/spacings/SpacingSmall';
+import SpacingMiddle from '@/components/ui/spacings/SpacingMiddle';
+import PostNewAdInput from '@/components/ui/inputs/postNewAdInput';
+import SpacingSmall from '@/components/ui/spacings/SpacingSmall';
 
 interface props {
   methods: any

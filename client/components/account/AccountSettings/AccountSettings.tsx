@@ -1,21 +1,21 @@
-import React, { FC, useState, useMemo } from 'react';
+import React, { FC, useState } from 'react';
 import styles from './AccountSettings.module.scss';
-import SpacingMiddle from '../../ui/spacings/SpacingMiddle';
-import SpacingSmall from '../../ui/spacings/SpacingSmall';
+import SpacingMiddle from '@/components/ui/spacings/SpacingMiddle';
+import SpacingSmall from '@/components/ui/spacings/SpacingSmall';
 import { FormProvider, useForm } from 'react-hook-form';
-import AccountSettingsInput from '../../ui/inputs/accountSettingsInput';
-import ButtonGreen from '../../ui/buttons/buttonGreen';
+import AccountSettingsInput from '@/components/ui/inputs/accountSettingsInput';
+import ButtonGreen from '@/components/ui/buttons/buttonGreen';
 import { yupResolver } from '@hookform/resolvers/yup';
 import {
   accountSettingsValidate,
-} from '../../../utils/validation/accountSettingsValidate';
-import userService from '../../../service/userService';
-import DropDown from '../../ui/dropDown';
-import { useFetchCities } from '../../../utils/fetchCity';
-import SuccessData from '../../ui/alerts/successData/SuccessData';
-import { changeUserData } from '../../../store/userData';
-import AvatarUpload from '../../ui/avatarUpload/AvatarUpload';
-import { userInputs } from '../../../constants/userInputArray';
+} from '@/utils/validation/accountSettingsValidate';
+import userService from '@/service/userService';
+import DropDown from '@/components/ui/dropDown';
+import { useFetchCities } from '@/utils/fetchCity';
+import SuccessData from '@/components//ui/alerts/successData/SuccessData';
+import { changeUserData } from '@/store/userData';
+import AvatarUpload from '@/components/ui/avatarUpload/AvatarUpload';
+import { userInputs } from '@/constants/userInputArray';
 
 interface User {
   id: number;

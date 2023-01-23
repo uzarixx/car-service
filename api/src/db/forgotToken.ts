@@ -1,8 +1,8 @@
 import { ForgotTokens } from '../models/forgotTokens';
 
 
-export const createForgotToken = async (token: string, userId: number): Promise<any> => {
-  return await ForgotTokens.create({ userId, token });
+export const createForgotToken = async (token: string, userId: number, expiresAt: number): Promise<any> => {
+  return await ForgotTokens.create({ userId, token, expiresAt });
 };
 
 export const deleteTokenByUser = async (userId: number): Promise<any> => {

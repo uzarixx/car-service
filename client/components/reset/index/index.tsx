@@ -1,12 +1,12 @@
 import React, { FC, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import styles from './ResetComponent.module.scss';
-import StandardInput from '../../ui/inputs/standardInput';
-import SpacingMiddle from '../../ui/spacings/SpacingMiddle';
-import ButtonGreen from '../../ui/buttons/buttonGreen';
+import StandardInput from '@/components/ui/inputs/standardInput';
+import SpacingMiddle from '@/components//ui/spacings/SpacingMiddle';
+import ButtonGreen from '@/components/ui/buttons/buttonGreen';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { resetPasswordValidate } from '../../../utils/validation/resetPassword';
-import forgotService from '../../../service/forgotService';
+import { resetPasswordValidate } from '@/utils/validation/resetPassword';
+import forgotService from '@/service/forgotService';
 import Link from 'next/link';
 
 const ResetComponent: FC = () => {

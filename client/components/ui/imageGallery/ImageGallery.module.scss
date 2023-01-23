@@ -15,6 +15,18 @@
   gap: 20px;
   flex-wrap: wrap;
 
+  &::-webkit-scrollbar {
+    width: 5px;
+    background: var(--darkWhite);
+    margin: 5px;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--green);
+    border-radius: 4px;
+  }
+
   .imageBlock {
     position: relative;
     flex: 0 1 calc(34.3% - 20px);
@@ -22,6 +34,10 @@
     min-height: 150px;
     cursor: pointer;
     overflow: hidden;
+    @media (max-width: 425px) {
+      flex: 0 1 calc(50% - 20px);
+    }
+
     .delete {
       position: absolute;
       color: white;
@@ -56,10 +72,12 @@
         height: 100%;
         background-color: var(--background-popup);
       }
+
       .delete {
         top: 40%;
         z-index: 2;
       }
+
       .open {
         top: 60%;
         z-index: 2;

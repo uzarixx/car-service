@@ -17,9 +17,15 @@
   }
   input {
     max-width: 70%;
+    @media (max-width: 425px) {
+      max-width: 100%;
+    }
   }
   button {
     max-width: 70%;
+    @media (max-width: 425px) {
+      max-width: 100%;
+    }
   }
   p {
     margin-bottom: 5px;

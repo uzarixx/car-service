@@ -1,12 +1,12 @@
 import React, { FC, useEffect, useRef, useState } from 'react';
 import styles from './OfferDetailMain.module.scss';
-import { offerProps } from '../../../../constants/type';
-import SpacingSmall from '../../../ui/spacings/SpacingSmall';
-import SpacingMiddle from '../../../ui/spacings/SpacingMiddle';
-import CreateChat from '../../../ui/createChat/CreateChat';
+import { offerProps } from '@/constants/type';
+import SpacingSmall from '@/components/ui/spacings/SpacingSmall';
+import SpacingMiddle from '@/components/ui/spacings/SpacingMiddle';
+import CreateChat from '@/components/ui/createChat/CreateChat';
 import { useStore } from 'effector-react';
-import { $data } from '../../../../store/userData';
-import ButtonGreen from '../../../ui/buttons/buttonGreen';
+import { $data } from '@/store/userData';
+import ButtonGreen from '@/components/ui/buttons/buttonGreen';
 
 const OfferDetailMain: FC<offerProps> = ({ offer }) => {
   const user: any = useStore($data)

@@ -17,15 +17,14 @@ const Pagination: FC<props> = ({ pageCount, paginateRoute }) => {
     page,
     pages,
   } = usePaginationHook(pageCount, paginateRoute);
-
   return (
     <div className={styles.paginationWrapper}>
-      {page >= 2 && <button onClick={onClickMinus}>{'<'}</button>}
+       <button onClick={onClickMinus} className={`${page <= 1 && styles.disabled}`} disabled={page <= 1}>{'<'}</button>
       {pagesValue.map((el: number, i: number) =>
         <p key={i} className={`${page === el && styles.active}`} onClick={onClickPage(el)}>
           {el}
         </p>)}
-      {page !== pages && <button onClick={onClickPlus}>{'>'}</button>}
+        <button onClick={onClickPlus} className={`${page == pages && styles.disabled}`} disabled={page === pages}>{'>'}</button>
     </div>
   );
 };

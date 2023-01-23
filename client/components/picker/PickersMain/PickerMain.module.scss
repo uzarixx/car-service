@@ -1,9 +1,11 @@
 .pickersWrapper {
-
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
 
+  @media (max-width: 768px) {
+    justify-content: center;
+  }
 
   .pickerBlock {
     position: relative;
@@ -11,8 +13,12 @@
     border-radius: 4px;
     width: 100%;
     padding: 20px;
-    background: var(--darkWhite);
-    box-shadow: 0 10px 10px rgba(5, 5, 6, 0.13);
+    box-shadow: rgb(0 0 0 / 12%) 0 2px 5px, rgb(0 0 0 / 14%) 0 1px 2px;
+    flex: 0 1 calc(50% - 20px);
+    @media (max-width: 768px) {
+      flex: 0 1 calc(100% - 20px);
+      width: 100%;
+    }
 
     img {
       width: 30px;
@@ -23,19 +29,21 @@
 
     p {
       font-weight: 500;
+      display: flex;
+      align-items: center;
     }
 
     .Date {
       position: absolute;
-      right: 20px;
-      top: 10px;
+      left: 20px;
+      bottom: 5px;
       font-weight: 300;
       color: var(--textPrimary);
+      @media (max-width: 768px) {
+        left: 10px;
+      }
     }
 
-    button {
-      max-width: 20%;
-    }
     .description {
       max-width: 500px;
       font-weight: 400;

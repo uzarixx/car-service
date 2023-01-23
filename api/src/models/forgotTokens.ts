@@ -8,6 +8,5 @@ export const ForgotTokens = sequelize.define('forgotTokens', {
   expiresAt: {
     type: DataTypes.DATE,
     allowNull: false,
-    defaultValue: Date.now() + 1000 * 60 * 5,
   },
 }, { timestamps: false });

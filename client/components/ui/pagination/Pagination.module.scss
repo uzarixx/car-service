@@ -8,6 +8,13 @@
     background: transparent;
     font-size: 40px;
     margin: 0 10px;
+    color: black;
+    font-weight: 300;
+  }
+
+  .disabled {
+    color: var(--disabled);
+    cursor: not-allowed;
   }
 
   p {
@@ -21,13 +28,13 @@
     margin: 0 5px;
     border-radius: 50%;
     font-size: 20px;
-
+    box-shadow: rgb(0 0 0 / 12%) 0 2px 3px, rgb(0 0 0 / 14%) 0 2px 3px;
     &:hover {
-      border: 4px solid var(--green);
+      box-shadow: rgb(0 0 0 / 12%) 0 5px 5px, rgb(0 0 0 / 14%) 0 5px 10px;
     }
   }
 
   .active {
-    border: 2px solid var(--green);
+    box-shadow: rgb(0 0 0 / 12%) 0 5px 5px, rgb(0 0 0 / 14%) 0 5px 10px;
   }
 }

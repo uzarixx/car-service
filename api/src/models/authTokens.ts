@@ -8,6 +8,5 @@ export const AuthTokens = sequelize.define('authTokens', {
   expiresAt: {
     type: DataTypes.DATE,
     allowNull: false,
-    defaultValue: Date.now() + 1000 * 60 * 5,
   },
 }, { timestamps: false });

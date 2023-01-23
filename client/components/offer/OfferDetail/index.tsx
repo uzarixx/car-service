@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import styles from './OfferDetail.module.scss';
-import { offerProps } from '../../../constants/type';
+import { offerProps } from '@/constants/type';
 import OfferDetailHead from './OfferDetailHead/OfferDetailHead';
 import OfferDetailMain from './OfferDetailMain/OfferDetailMain';
-import SpacingMiddle from '../../ui/spacings/SpacingMiddle';
+import SpacingMiddle from '@/components/ui/spacings/SpacingMiddle';
 import OfferDetailUser from './OfferDetailUser/OfferDetailUser';
 
 const OfferDetailComponent: FC<offerProps> = ({ offer }) => {

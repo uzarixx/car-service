@@ -1,6 +1,11 @@
-.layoutWrapper {
-  max-width: 1286px;
-  margin: 0 auto;
-  margin-top: 20px;
-  padding: 0 20px;
+.layoutContainer {
+  display: flex;
+  justify-content: center;
+
+  .layoutWrapper {
+    max-width: 1286px;
+    width: 100%;
+    margin-top: 20px;
+    padding: 0 20px;
+  }
 }

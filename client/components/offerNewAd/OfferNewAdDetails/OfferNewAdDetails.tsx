@@ -1,11 +1,11 @@
 import React, { FC, Fragment } from 'react';
 import styles from './OfferNewAdDetails.module.scss';
-import SpacingSmall from '../../ui/spacings/SpacingSmall';
-import SpacingMiddle from '../../ui/spacings/SpacingMiddle';
-import PostNewAdInput from '../../ui/inputs/postNewAdInput';
-import ButtonCarBrands from '../../ui/buttons/buttonCarBrands';
-import SelectDefault from '../../ui/select/selectDefault';
-import { PostNewAdCarType } from '../../../constants/selectArrays';
+import SpacingSmall from '@/components/ui/spacings/SpacingSmall';
+import SpacingMiddle from '@/components/ui/spacings/SpacingMiddle';
+import PostNewAdInput from '@/components/ui/inputs/postNewAdInput';
+import ButtonCarBrands from '@/components/ui/buttons/buttonCarBrands';
+import SelectDefault from '@/components/ui/select/selectDefault';
+import { PostNewAdCarType } from '@/constants/selectArrays';
 
 interface props {
   methods: any;

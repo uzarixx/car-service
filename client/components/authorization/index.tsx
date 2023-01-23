@@ -2,14 +2,14 @@ import React, { FC, useState } from 'react';
 import styles from './Authorization.module.scss';
 import ButtonGreen from '../ui/buttons/buttonGreen';
 import { useForm, FormProvider } from 'react-hook-form';
-import { login, register } from '../../utils/validation/authValidate';
+import { login, register } from '@/utils/validation/authValidate';
 import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import { yupResolver } from '@hookform/resolvers/yup';
 import authServices from '../../service/authService';
 import { useRouter } from 'next/router';
 import { destroyCookie } from 'nookies';
-import { cookieSet } from '../../utils/cookie';
+import { cookieSet } from '@/utils/cookie';
 import Link from 'next/link';
 
 

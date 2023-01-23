@@ -1,0 +1,22 @@
+.empty {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
+
+  svg {
+    margin-bottom: 10px;
+  }
+
+  h3 {
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  p {
+    color: var(--textPrimary);
+    font-weight: 400;
+  }
+}

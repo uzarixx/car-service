@@ -19,6 +19,7 @@ import ChatController from '../controllers/chat';
 import UserActivateController from '../controllers/userActivate';
 import UserAvatarController from 'controllers/userAvatar';
 import UserForgot from '../controllers/userForgot';
+import FavoriteController from '../controllers/favorite';
 
 const storage = multer.memoryStorage();
 const multerUpload = multer({ storage });
@@ -74,6 +75,14 @@ router.get('/offer-get-id/:id', authUser, handleErrorMiddleware(OfferController.
 router.get('/offer-get-all', CheckRoleMiddleware('Picker'), handleErrorMiddleware(OfferController.getAllOffers));
 router.get('/offer-get-client', CheckRoleMiddleware('Client'), authUser, handleErrorMiddleware(OfferController.getOffers));
 
+
+/*
+Favorite
+ */
+router.post('/create-favorite', authUser, CheckRoleMiddleware('Picker'), handleErrorMiddleware(FavoriteController.createFavorite))
+router.delete('/delete-favorite', authUser, CheckRoleMiddleware('Picker'), handleErrorMiddleware(FavoriteController.deleteFavorite))
+router.get('/get-favorites-id', authUser, CheckRoleMiddleware('Picker'), handleErrorMiddleware(FavoriteController.getFavoritesId))
+router.get('/get-favorites', authUser, CheckRoleMiddleware('Picker'), handleErrorMiddleware(FavoriteController.getAllFavorites))
 
 /*
 Chat

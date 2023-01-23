@@ -4,7 +4,10 @@
   max-width: 300px;
   width: 100%;
   margin-right: 10px;
-
+  @media (max-width: 768px) {
+    max-width: 100%;
+    margin-bottom: 30px;
+  }
   .isNotActive {
     font-size: 12px;
     text-align: center;
@@ -18,7 +21,8 @@
 
 .userBlock {
   padding: 20px 10px;
-  background: var(--darkWhite);
+  box-shadow: rgb(0 0 0 / 12%) 0 2px 5px, rgb(0 0 0 / 14%) 0 1px 2px;
+  border-radius: 4px;
   width: 100%;
   max-height: 125px;
 
@@ -52,23 +56,27 @@
 .router {
   display: flex;
   flex-direction: column;
-
   a {
     color: var(--text);
     margin-bottom: 10px;
     padding: 5px;
+    border-radius: 4px;
 
     &:last-child {
       margin-bottom: 0;
     }
 
     &:hover {
-      background: var(--darkWhite);
+      box-shadow: rgb(0 0 0 / 12%) 0 1px 3px, rgb(0 0 0 / 14%) 0 1px 2px;
     }
   }
 
   .active {
-    background: var(--darkWhite);
+    box-shadow: rgb(0 0 0 / 12%) 0 2px 5px, rgb(0 0 0 / 14%) 0 1px 2px;
+
+    &:hover {
+      box-shadow: rgb(0 0 0 / 12%) 0 2px 5px, rgb(0 0 0 / 14%) 0 1px 2px;
+    }
   }
 
 }

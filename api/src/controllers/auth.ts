@@ -25,7 +25,7 @@ const AuthController = {
     });
     const token = generateJWt(user.id, user.userName, user.role);
     const activationLink = uuid.v4();
-    await createAuthToken(user.id, activationLink);
+    await createAuthToken(user.id, activationLink, Date.now() + 1000 * 60 * 5);
     await sendEmail({
       to: email,
       link: `${process.env.API_URL}/activated/${activationLink}`,

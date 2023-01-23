@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import styles from './Messages.module.scss';
 import MessagesUsers from './messagesUsers/MessagesUsers';
 import MessagesChat from './messagesChat/MessagesChat';
-import { chatType } from '../../constants/type';
+import { chatType } from '@/constants/type';
 import PreloaderDots from '../ui/preloaders/PreloaderDots';
 
 interface props {

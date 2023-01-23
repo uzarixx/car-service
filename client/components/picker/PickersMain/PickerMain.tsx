@@ -1,16 +1,16 @@
 import React, { FC } from 'react';
 import styles from './PickerMain.module.scss';
-import Date from '../../../utils/date';
-import { userProps } from '../../../constants/type';
-import SpacingSmall from '../../ui/spacings/SpacingSmall';
-import ButtonGreen from '../../ui/buttons/buttonGreen';
+import Date from '@/utils/date';
+import { userProps } from '@/constants/type';
+import SpacingSmall from '@/components/ui/spacings/SpacingSmall';
 import { useRouter } from 'next/router';
-import UserIcon from '../../ui/icons/UserIcon';
+import UserIcon from '@/components/ui/icons/UserIcon';
+import LocationIco from '@/components/ui/icons/LocationIco';
 
 const PickerMain: FC<userProps> = ({ users }) => {
   const router = useRouter();
-  const onClickPicker = (id: number) => {
-    router.push(`/picker/${id}`);
+  const onClickPicker = async(id: number) => {
+    await router.push(`/picker/${id}`);
   };
   return (
     <div className={styles.pickersWrapper}>
@@ -27,9 +27,8 @@ const PickerMain: FC<userProps> = ({ users }) => {
           <p>Детальніша інформація: </p>
           <p className={styles.description}>{el.description.slice(0, 45)}...</p>
           <SpacingSmall />
-          <p>Місто: {el.city}</p>
+          <p><LocationIco/> {el.city}</p>
           <SpacingSmall />
-          <ButtonGreen>Відкрити</ButtonGreen>
         </div>,
       )}
     </div>

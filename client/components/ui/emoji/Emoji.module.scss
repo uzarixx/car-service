@@ -1,0 +1,37 @@
+.emojiWrapper {
+  right: 5px;
+  bottom: 55px;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  max-width: 250px;
+  min-height: 150px;
+  max-height: 300px;
+  overflow-y: auto;
+  gap: 10px;
+  background: var(--white);
+  border: 1px solid var(--borderInputOpacity);
+  border-radius: 4px;
+
+  &::-webkit-scrollbar {
+    width: 5px;
+    background: var(--darkWhite);
+    margin: 5px;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: var(--green);
+    border-radius: 4px;
+  }
+
+  b {
+    font-size: 30px;
+    cursor: pointer;
+  }
+}
+
+.button {
+  font-size: 20px;
+}

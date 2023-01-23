@@ -1,22 +1,19 @@
 import React, { FC, useEffect, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import OfferNewAdTitle from '../OfferNewAdTitle/OfferNewAdTitle';
-import OfferNewAdDescription
-  from '../OfferNewAdDescription/OfferNewAdDescription';
+import OfferNewAdDescription from '../OfferNewAdDescription/OfferNewAdDescription';
 import OfferNewAdDetails from '../OfferNewAdDetails/OfferNewAdDetails';
 import { yupResolver } from '@hookform/resolvers/yup';
-import {
-  offerNewAdValidate,
-} from '../../../utils/validation/offerNewAdValidate';
+import { offerNewAdValidate, } from '@/utils/validation/offerNewAdValidate';
 import OfferNewAdBudget from '../OfferNewAdBudget/OfferNewAdBudget';
 import PostNewAdUser from '../OfferNewAdUser/PostNewAdUser';
-import ButtonGreen from '../../ui/buttons/buttonGreen';
-import SpacingMiddle from '../../ui/spacings/SpacingMiddle';
-import offerService from '../../../service/offerService';
+import ButtonGreen from '@/components//ui/buttons/buttonGreen';
+import SpacingMiddle from '@/components/ui/spacings/SpacingMiddle';
+import offerService from '@/service/offerService';
 import { useRouter } from 'next/router';
-import { userType } from '../../../constants/type';
+import { userType } from '@/constants/type';
 import { useStore } from 'effector-react';
-import { $data } from '../../../store/userData';
+import { $data } from '@/store/userData';
 
 const OfferNewAdForm: FC = () => {
   const router = useRouter();

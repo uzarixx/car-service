@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import { pickerProps } from '../../../constants/type';
+import { pickerProps } from '@/constants/type';
 import PickerDetailHead from './PickerDetailHead/PickerDetailHead';
-import SpacingMiddle from '../../ui/spacings/SpacingMiddle';
+import SpacingMiddle from '@/components/ui/spacings/SpacingMiddle';
 import PickerDetailMain from './PickerDatailMain/PickerDetailMain';
 
 

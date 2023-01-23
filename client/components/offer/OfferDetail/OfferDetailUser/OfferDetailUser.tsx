@@ -1,11 +1,10 @@
 import React, { FC, useState } from 'react';
 import styles from './OfferDetailUser.module.scss';
-import SpacingMiddle from '../../../ui/spacings/SpacingMiddle';
-import SpacingSmall from '../../../ui/spacings/SpacingSmall';
-import LocationIco from '../../../ui/icons/LocationIco';
-import LocationImage from '../../../ui/locationImage/locationImage';
-import ButtonShowNumber
-  from '../../../ui/buttons/buttonShowNumber/ButtonShowNumber';
+import SpacingMiddle from '@/components/ui/spacings/SpacingMiddle';
+import SpacingSmall from '@/components/ui/spacings/SpacingSmall';
+import LocationIco from '@/components/ui/icons/LocationIco';
+import LocationImage from '@/components/ui/locationImage/locationImage';
+import ButtonShowNumber from '@/components/ui/buttons/buttonShowNumber/ButtonShowNumber';
 
 interface props {
   userName: string;

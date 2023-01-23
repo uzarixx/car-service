@@ -1,10 +1,11 @@
 import React, { FC, useEffect, useState } from 'react';
 import styles from './AccountOffers.module.scss';
-import offerService from '../../../service/offerService';
-import date from '../../../utils/date';
-import ButtonLinkGreen from '../../ui/buttons/buttonLinks/ButtonLinkGreen';
-import PreloaderDots from '../../ui/preloaders/PreloaderDots';
-import DeletePortfolioImage from '../../ui/alerts/deleteAlert/DeleteAlert';
+import offerService from '@/service/offerService';
+import date from '@/utils/date';
+import ButtonLinkGreen from '@/components/ui/buttons/buttonLinks/ButtonLinkGreen';
+import PreloaderDots from '@/components/ui/preloaders/PreloaderDots';
+import DeletePortfolioImage from '@/components/ui/alerts/deleteAlert/DeleteAlert';
+import DeleteIcon from '@/components/ui/icons/DeleteIcon';
 
 interface offerType {
   title: string;
@@ -50,7 +51,7 @@ const AccountOffers: FC = () => {
               id={offerId}
               service={offerService.deleteOffer}
             />
-            <button className={styles.deleteButton} onClick={()=>onDeleteOffer(el.id)}>Видалити оголошення</button>
+            <button className={styles.deleteButton} onClick={()=>onDeleteOffer(el.id)}><DeleteIcon/></button>
             <span>{el.description}</span>
             <div className={styles.offerFooter}>
               <p>{date(el.createdAt)}</p>

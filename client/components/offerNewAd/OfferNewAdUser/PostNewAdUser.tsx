@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import styles from './PostNewAdUser.module.scss';
-import SpacingSmall from '../../ui/spacings/SpacingSmall';
-import PostNewAdInput from '../../ui/inputs/postNewAdInput';
-import DropDown from '../../ui/dropDown';
-import SpacingMiddle from '../../ui/spacings/SpacingMiddle';
-import { useFetchCities } from '../../../utils/fetchCity';
+import SpacingSmall from '@/components/ui/spacings/SpacingSmall';
+import PostNewAdInput from '@/components/ui/inputs/postNewAdInput';
+import DropDown from '@/components/ui/dropDown';
+import SpacingMiddle from '@/components/ui/spacings/SpacingMiddle';
+import { useFetchCities } from '@/utils/fetchCity';
 
 interface props {
   methods: any;

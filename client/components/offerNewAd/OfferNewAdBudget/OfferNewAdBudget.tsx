@@ -1,10 +1,10 @@
 import React, { FC, Fragment } from 'react';
 import styles from './OfferNewAdBudget.module.scss';
-import SpacingMiddle from '../../ui/spacings/SpacingMiddle';
-import PostNewAdInput from '../../ui/inputs/postNewAdInput';
-import SpacingSmall from '../../ui/spacings/SpacingSmall';
-import Select from '../../ui/select/select';
-import { CourseArray } from '../../../constants/selectArrays';
+import SpacingMiddle from '@/components/ui/spacings/SpacingMiddle';
+import PostNewAdInput from '@/components/ui/inputs/postNewAdInput';
+import SpacingSmall from '@/components/ui/spacings/SpacingSmall';
+import Select from '@/components/ui/select/select';
+import { CourseArray } from '@/constants/selectArrays';
 
 interface props {
   methods: any;

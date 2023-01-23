@@ -11,6 +11,9 @@
   }
 }
 .linksWrapper {
+  @media (max-width: 425px) {
+    display: none;
+  }
   a {
     margin: 5px;
   }

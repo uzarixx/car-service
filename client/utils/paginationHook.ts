@@ -16,7 +16,15 @@ export const usePaginationHook = (pageCount: number, paginateRoute: string) => {
     router.push(`/${paginateRoute}?${query}`);
     document.body.scrollTo({ top: 0, behavior: 'smooth' });
   }, [page]);
-
+  useEffect(() => {
+    setPage(1);
+  }, [
+    router.query.carType,
+    router.query.carTransmission,
+    router.query.carGas,
+    router.query.carDrive,
+    router.query.city,
+  ]);
   const onClickPage = (el: number) => () => {
     setPage(el);
   };

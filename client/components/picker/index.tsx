@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { userProps } from '../../constants/type';
+import { userProps } from '@/constants/type';
 import PickerMain from './PickersMain/PickerMain';
 import Pagination from '../ui/pagination/Pagination';
 

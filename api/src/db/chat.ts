@@ -23,7 +23,7 @@ export const findCreatedChat = async (secondId: number, lastId: number): Promise
 export const getChatsByUser = async (id: number): Promise<any> => {
   const chats = await Chat.findAll({
     where: { [Op.or]: [{ secondId: id }, { lastId: id }] },
-    order: [['updatedAt', 'DESC']]
+    order: [['updatedAt', 'DESC']],
   });
   return chats;
 };
@@ -43,6 +43,8 @@ export const getChatById = async (chatId: number): Promise<any> => {
 };
 
 export const getMessages = async (chatId: number): Promise<any> => {
-  const messages = await Messages.findAll({ where: { chatId } });
+  const messages = await Messages.findAll({
+    where: { chatId }
+  });
   return messages;
 };

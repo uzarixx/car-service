@@ -16,6 +16,7 @@ export const useOfferFilter = () => {
     page: router.query.page
   });
   useEffect(() => {
+    filteredParam.page >= 2 && query.append('page', '1')
     Object.keys(filteredParam).forEach(key => filteredParam[key] && query.append(key, filteredParam[key]));
     router.push(`/offer?${query}`);
   }, [filteredParam]);

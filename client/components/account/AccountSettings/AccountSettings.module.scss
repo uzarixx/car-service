@@ -3,7 +3,9 @@
   flex-direction: column;
   width: 100%;
   max-width: 640px;
-
+  @media (max-width: 768px) {
+    max-width: 100%;
+  }
 
   .formInput {
     display: flex;
@@ -14,13 +16,21 @@
       font-size: 16px;
       font-weight: 400;
       width: 130px;
+      @media (max-width: 425px) {
+        display: none;
+      }
     }
 
     .inputWrapper {
       display: flex;
       flex-direction: column;
       position: relative;
-
+      @media (max-width: 425px) {
+        width: 100%;
+        input {
+          width: 100%;
+        }
+      }
       span {
         position: absolute;
         bottom: -15px;
@@ -38,9 +48,14 @@
 
     .buttonWrapper {
       padding-left: 140px;
-
+      @media (max-width: 425px) {
+        padding: 0;
+      }
       button {
         max-width: 240px;
+        @media (max-width: 425px) {
+          max-width: 100%;
+        }
       }
     }
   }

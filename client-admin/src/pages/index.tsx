@@ -1,9 +1,10 @@
-import UserCard from '@/components/user/userCard';
+import AdminLayout from '@/components/layout/AdminLayout';
+
 
 const Home = () => {
   return (
     <>
-      <UserCard />
+      <AdminLayout />
     </>
   );
 };

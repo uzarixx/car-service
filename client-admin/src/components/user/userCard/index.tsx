@@ -4,7 +4,8 @@ import styles from './UserCard.module.scss';
 const UserCard: FC = () => {
   return (
     <div className={styles.userCardWrapper}>
-      <span className={`${styles.statusDot} ${1 == 1 && styles.statusDotActive}`}></span>
+      <span
+        className={`${styles.statusDot} ${true || styles.statusDotActive}`}></span>
       <div className={styles.userParams}>
         <div className={styles.avatar}></div>
         <p>Підбиральщик</p>

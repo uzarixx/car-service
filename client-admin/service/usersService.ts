@@ -7,4 +7,10 @@ export default class usersService {
   static async getUserById(id: number) {
     return $api.get(`/get-user/${id}`)
   }
+  static async updateUser(data: { [key: string]: string }) {
+    return $api.post(`/update-user`, {data})
+  }
+  static async verifyUser(id: number) {
+    return $api.post('/verify-user', {id})
+  }
 }

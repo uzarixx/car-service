@@ -1,6 +1,6 @@
 .container {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   margin: 20px;
   padding: 20px;
   box-shadow: rgb(0 0 0 / 12%) 0 2px 5px, rgb(0 0 0 / 14%) 0 1px 2px;
@@ -16,6 +16,36 @@
     p {
       margin-left: 5px;
       color: var(--text);
+    }
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .verifyBlock {
+    .status {
+      display: flex;
+      align-items: center;
+      span {
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: var(--red);
+      }
+      .active {
+        background: var(--green);
+      }
+      p {
+        margin-left: 5px;
+      }
+    }
+    button {
+      margin-top: 10px;
     }
   }
 }

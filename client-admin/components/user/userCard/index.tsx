@@ -43,8 +43,8 @@ const UserCard: FC = () => {
           className={styles.userCardWrapper}
           onClick={onClickUser(el.id)}
           key={el.id}>
-          <span
-            className={`${styles.statusDot} ${el.verify || styles.statusDotActive}`}></span>
+          {el.role === 'Picker' && <span
+            className={`${styles.statusDot} ${el.verify || styles.statusDotActive}`}></span>}
           <div className={styles.userParams}>
             <div className={styles.avatar}>{el.photo ?
               <img src={el.photo} alt='user-avatar' /> : <UserIcon />}</div>

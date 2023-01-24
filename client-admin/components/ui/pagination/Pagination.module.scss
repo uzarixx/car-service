@@ -1,0 +1,40 @@
+.paginationWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+
+  button {
+    background: transparent;
+    font-size: 40px;
+    margin: 0 10px;
+    color: black;
+    font-weight: 300;
+  }
+
+  .disabled {
+    color: var(--disabled);
+    cursor: not-allowed;
+  }
+
+  p {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+    border-radius: 50%;
+    font-size: 20px;
+    box-shadow: rgb(0 0 0 / 12%) 0 2px 3px, rgb(0 0 0 / 14%) 0 2px 3px;
+    &:hover {
+      box-shadow: rgb(0 0 0 / 12%) 0 5px 5px, rgb(0 0 0 / 14%) 0 5px 10px;
+    }
+  }
+
+  .active {
+    box-shadow: rgb(0 0 0 / 12%) 0 5px 5px, rgb(0 0 0 / 14%) 0 5px 10px;
+  }
+}

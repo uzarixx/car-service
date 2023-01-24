@@ -19,24 +19,36 @@ const fetchUser = async (id: number) => {
 
 const UserDetail: FC = () => {
   const [user, setUser] = useState<{ [key: string]: string }>({});
+  const [updateData, setUpdateData] = useState(false);
   const router = useRouter();
   useEffect(() => {
     router.query.id && fetchUser(Number(router.query.id)).then((res) => setUser(res)).catch((e) => console.error(e));
   }, [router]);
   const methods = useForm();
   useSetValue({ methods, user });
+
+  const updateDataTimer = () => {
+    setUpdateData(true);
+    setTimeout(() => {
+      setUpdateData(false);
+    }, 3000);
+  };
   const onSubmit = async (data: any) => {
     await usersService.updateUser({ ...data, id: user.id });
+    updateDataTimer();
   };
   const onVerifyUser = async () => {
     await usersService.verifyUser(Number(user.id));
     const data = await fetchUser(Number(user.id));
     setUser(data);
+    updateDataTimer();
   };
   return (
     <FormProvider {...methods}>
       <form className={styles.container}
             onSubmit={methods.handleSubmit(onSubmit)}>
+        <span
+          className={`${styles.updateData} ${updateData && styles.updateDataActive}`}>Дані збережені</span>
         <div className={styles.form}>
           <div className={styles.mainAvatar}>
             <UserIcon />

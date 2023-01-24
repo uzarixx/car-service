@@ -9,7 +9,8 @@ import {
 
 const UserController = {
   getAllUser: async (req: Request, res: Response) => {
-    const users = await getAllUsers();
+    const {page} = req.query
+    const users = await getAllUsers(Number(page));
     res.json(users);
   },
   getUserById: async (req: Request, res: Response) => {

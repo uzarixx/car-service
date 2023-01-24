@@ -7,8 +7,8 @@ import OfferIco from '@/components/icons/OfferIco';
 const Navigation: FC = () => {
   return (
     <nav className={styles.nav}>
-      <Link href={'/?path=users'}><UserIcon/></Link>
-      <Link href={'/?path=offers'}><OfferIco/></Link>
+      <Link href={'/?page=1'}><UserIcon /></Link>
+      <Link href={'/offers'}><OfferIco /></Link>
     </nav>
   );
 };

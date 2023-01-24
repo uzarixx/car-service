@@ -3,6 +3,7 @@ import styles from './UserCard.module.scss';
 import { useRouter } from 'next/router';
 import usersService from '@/service/usersService';
 import UserIcon from '@components/icons/UserIcon';
+import Pagination from '@components/ui/pagination/Pagination';
 
 interface usersType {
   id: number;
@@ -19,8 +20,8 @@ interface usersType {
 }
 
 
-const fetchUsers = async () => {
-  const { data } = await usersService.getUsers();
+const fetchUsers = async (page: number) => {
+  const { data } = await usersService.getUsers(page);
   return (
     await data
   );
@@ -29,13 +30,17 @@ const fetchUsers = async () => {
 
 const UserCard: FC = () => {
   const [users, setUsers] = useState([]);
+  const [pageCount, setPageCount] = useState(0)
   const router = useRouter();
   const onClickUser = (id: number) => () => {
     return router.push(`/user/${id}`);
   };
   useEffect(() => {
-    fetchUsers().then((res) => setUsers(res)).catch((e) => console.error(e));
-  }, []);
+    fetchUsers(Number(router.query.page)).then((res) => {
+      setUsers(res.rows);
+      setPageCount(res.count)
+    }).catch((e) => console.error(e));
+  }, [router.query]);
   return (
     <>
       {users.map((el: usersType) =>
@@ -58,6 +63,7 @@ const UserCard: FC = () => {
           </div>
         </div>,
       )}
+      <Pagination pageCount={pageCount} paginateRoute={''} />
     </>
   );
 };

@@ -6,6 +6,25 @@
   padding: 20px;
   position: relative;
   cursor: pointer;
+  .statusDot {
+    display: block;
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: var(--green);
+    right: 10px;
+    transform: translateY(-50%);
+    top: 50%;
+    @media (max-width: 425px) {
+      top: 20px;
+      right: 20px;
+    }
+  }
+
+  .statusDotActive {
+    background: var(--red);
+  }
 
   .offerParams {
     display: flex;

@@ -7,7 +7,7 @@ import TextArea from '@components/ui/input/textArea';
 import SubmitButton from '@components/ui/button/submitButton';
 import { useRouter } from 'next/router';
 import usersService from '@/service/usersService';
-import { useSetValue } from '@/utils/useSetValue';
+import { useSetUserValue } from '@/utils/useSetValue';
 
 
 const fetchUser = async (id: number) => {
@@ -25,8 +25,7 @@ const UserDetail: FC = () => {
     router.query.id && fetchUser(Number(router.query.id)).then((res) => setUser(res)).catch((e) => console.error(e));
   }, [router]);
   const methods = useForm();
-  useSetValue({ methods, user });
-
+  useSetUserValue({ methods, user });
   const updateDataTimer = () => {
     setUpdateData(true);
     setTimeout(() => {

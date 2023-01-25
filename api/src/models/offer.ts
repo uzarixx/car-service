@@ -14,4 +14,5 @@ export const Offer = sequelize.define('offer', {
   budgetService: { type: DataTypes.STRING, defaultValue: '' },
   carBrand: { type: DataTypes.STRING, defaultValue: '' },
   carModel: { type: DataTypes.STRING, defaultValue: '' },
+  isVerify: {type: DataTypes.BOOLEAN, defaultValue: false}
 });

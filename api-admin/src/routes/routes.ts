@@ -18,6 +18,6 @@ router.post('/verify-user', authUser, handleErrorMiddleware(UserController.verif
 GetOffers
  */
 router.get('/get-all-offers', authUser, handleErrorMiddleware(OffersController.getAllOffers))
-
+router.get('/get-offer/:id', authUser, handleErrorMiddleware(OffersController.getOfferById))
 
 export default router;

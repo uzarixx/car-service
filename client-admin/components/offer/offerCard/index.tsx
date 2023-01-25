@@ -9,6 +9,7 @@ interface offerType {
   sliceDesc: string;
   city: string;
   id: number;
+  isVerify: boolean;
 }
 
 const fetchOffers = async (page: number) => {
@@ -23,16 +24,22 @@ const OfferCard: FC = () => {
   const router = useRouter();
   const [offers, setOffers] = useState([]);
   const [pageCount, setPageCount] = useState(0);
+  const onClickOffer = (id: number) => () => {
+    return router.push(`/offers/${id}`)
+  }
   useEffect(() => {
     fetchOffers(Number(router.query.page)).then((res) => {
       setOffers(res.rows);
       setPageCount(res.count);
     }).catch((e) => console.error(e));
   }, [router.query]);
+
   return (
     <>
       {offers.map((el: offerType) =>
-        <div className={styles.offersCardWrapper} key={el.id}>
+        <div className={styles.offersCardWrapper} key={el.id} onClick={onClickOffer(el.id)}>
+          <span
+            className={`${styles.statusDot} ${el.isVerify || styles.statusDotActive}`}></span>
           <div className={styles.offerParams}>
             <p>{el.title}</p>
             <p>{el.sliceDesc}</p>

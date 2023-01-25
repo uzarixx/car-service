@@ -1,7 +1,7 @@
 import { User } from '../models/user';
 
 export const getAllUsers = async (page: number): Promise<any> => {
-  return await User.findAndCountAll({ attributes: { exclude: ['description', 'password'] }, limit: 10, offset: (page || 1) * 10 - 10 });
+  return await User.findAndCountAll({ attributes: { exclude: ['description', 'password'] }, limit: 5, offset: (page || 1) * 5 - 5, order: [['verify', 'ASC']] });
 };
 export const getUserById = async (id: string): Promise<any> => {
   return await User.findOne({

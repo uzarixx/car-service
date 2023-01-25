@@ -39,8 +39,10 @@ const UserCard: FC = () => {
     fetchUsers(Number(router.query.page)).then((res) => {
       setUsers(res.rows);
       setPageCount(res.count)
+      console.log(res);
     }).catch((e) => console.error(e));
   }, [router.query]);
+
   return (
     <>
       {users.map((el: usersType) =>

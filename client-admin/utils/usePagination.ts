@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 
 export const usePaginationHook = (pageCount: number, paginateRoute: string) => {
   const router = useRouter();
-  const pages = Math.ceil(pageCount / 10);
+  const pages = Math.ceil(pageCount / 5);
   const [page, setPage] = useState(Number(router?.query?.page) || 1);
   const pagesValue: number[] = [];
   for (let i = 0; i < pages; ++i) {

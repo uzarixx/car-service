@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import { getAllOffers, getOfferById } from '../db/offers';
+import { getAllOffers, getOfferById, updateOfferById } from '../db/offers';
 
 
 const OffersController = {
@@ -13,6 +13,11 @@ const OffersController = {
     const offer = await getOfferById(id);
     return res.json(offer);
   },
+  updateOfferById: async (req: Request, res: Response) => {
+    const data = req.body
+    await updateOfferById(data)
+    return res.json('success')
+  }
 };
 
 export default OffersController;

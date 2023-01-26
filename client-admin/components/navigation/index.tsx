@@ -8,7 +8,7 @@ const Navigation: FC = () => {
   return (
     <nav className={styles.nav}>
       <Link href={'/?page=1'}><UserIcon /></Link>
-      <Link href={'/offers'}><OfferIco /></Link>
+      <Link href={'/offers?page=1'}><OfferIco /></Link>
     </nav>
   );
 };

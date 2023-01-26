@@ -36,10 +36,9 @@ const UserCard: FC = () => {
     return router.push(`/user/${id}`);
   };
   useEffect(() => {
-    fetchUsers(Number(router.query.page)).then((res) => {
+    router.query.page && fetchUsers(Number(router.query.page)).then((res) => {
       setUsers(res.rows);
       setPageCount(res.count)
-      console.log(res);
     }).catch((e) => console.error(e));
   }, [router.query]);
 

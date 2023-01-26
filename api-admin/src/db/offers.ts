@@ -16,3 +16,8 @@ export const getOfferById = async (id: string): Promise<any> => {
   const offerParams = await OfferParams.findOne({ where: { offerId: id } });
   return ({ ...offer.dataValues, ...offerParams.dataValues });
 };
+
+export const updateOfferById = async ({ data }: any): Promise<any> => {
+  await Offer.update({...data}, {where: { ...data.offerId }})
+  return await OfferParams.update({...data}, {where: {offerId: data.offerId}})
+}

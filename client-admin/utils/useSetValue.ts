@@ -26,8 +26,8 @@ export const useSetOfferValue = ({methods, offer}: propsOffer) => {
   useEffect(() => {
     methods.setValue('userName', offer.userName);
     methods.setValue('title', offer.title);
-    methods.setValue('budget', `${offer.budget} ${offer.currency}`);
-    methods.setValue('budgetService', `${offer.budgetService} грн.`);
+    methods.setValue('budget', offer.budget);
+    methods.setValue('budgetService', offer.budgetService);
     methods.setValue('carBrand', offer.carBrand);
     methods.setValue('carModel', offer.carModel);
     methods.setValue('carLiters', offer.carLiters);

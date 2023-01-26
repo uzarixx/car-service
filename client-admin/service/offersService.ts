@@ -7,4 +7,7 @@ export default class offersService {
   static async getOfferById(id: number) {
     return $api.get(`/get-offer/${id}`)
   }
+  static async updateOfferById(data: any) {
+    return $api.post('/update-offer-by-id', {data})
+  }
 }

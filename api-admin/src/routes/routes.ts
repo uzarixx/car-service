@@ -19,5 +19,6 @@ GetOffers
  */
 router.get('/get-all-offers', authUser, handleErrorMiddleware(OffersController.getAllOffers))
 router.get('/get-offer/:id', authUser, handleErrorMiddleware(OffersController.getOfferById))
+router.post('/update-offer-by-id', authUser, handleErrorMiddleware(OffersController.updateOfferById))
 
 export default router;

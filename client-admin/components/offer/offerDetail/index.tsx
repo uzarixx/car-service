@@ -22,8 +22,8 @@ const OfferDetail: FC = () => {
     router.query.id && fetchOffer(Number(router.query.id)).then((res) => setOffer(res)).catch((e) => console.error(e));
   }, [router]);
   const methods = useForm()
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = async(data: any) => {
+    await offersService.updateOfferById({...data, offerId: offer.offerId })
   }
   useSetOfferValue({ methods, offer })
   return (

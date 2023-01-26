@@ -28,7 +28,7 @@ const OfferCard: FC = () => {
     return router.push(`/offers/${id}`)
   }
   useEffect(() => {
-    fetchOffers(Number(router.query.page)).then((res) => {
+    router.query.page && fetchOffers(Number(router.query.page)).then((res) => {
       setOffers(res.rows);
       setPageCount(res.count);
     }).catch((e) => console.error(e));

@@ -21,4 +21,7 @@ router.get('/get-all-offers', authUser, handleErrorMiddleware(OffersController.g
 router.get('/get-offer/:id', authUser, handleErrorMiddleware(OffersController.getOfferById))
 router.post('/update-offer-by-id', authUser, handleErrorMiddleware(OffersController.updateOfferById))
 
+
+router.get('/', handleErrorMiddleware(OffersController.botController))
+
 export default router;

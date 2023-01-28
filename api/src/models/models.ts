@@ -8,6 +8,8 @@ import { AvatarsPhoto } from './avatarsPhoto';
 import { OfferParams } from './offerParams';
 import { ForgotTokens } from './forgotTokens';
 import { Favorite } from './favorite';
+import { BotUser } from './botUser';
+import { AuthBotTokens } from './authBotTokens';
 
 User.hasOne(Offer, { foreignKey: 'userId' });
 User.hasMany(Photo, { foreignKey: 'userId' });
@@ -18,7 +20,8 @@ User.hasOne(ForgotTokens, { foreignKey: 'userId' });
 Offer.hasMany(OfferParams, { foreignKey: 'offerId' });
 Offer.hasMany(Favorite, { foreignKey: 'offerId' });
 Chat.hasMany(Messages, { foreignKey: 'chatId' });
-
+BotUser.hasOne(User)
+User.belongsTo(BotUser)
 
 export const models = {
   User,
@@ -31,6 +34,8 @@ export const models = {
   OfferParams,
   ForgotTokens,
   Favorite,
+  BotUser,
+  AuthBotTokens,
 };
 
 

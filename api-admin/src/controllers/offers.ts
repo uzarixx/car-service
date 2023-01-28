@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import { getAllOffers, getOfferById, updateOfferById } from '../db/offers';
-import { Telegraf } from 'telegraf';
 
 const OffersController = {
   getAllOffers: async (req: Request, res: Response) => {
@@ -17,11 +16,6 @@ const OffersController = {
     const data = req.body;
     await updateOfferById(data);
     return res.json('success');
-  },
-  botController: async (req: Request, res: Response) => {
-    const bot = new Telegraf('5826422816:AAFO5_qy-Ofp8zaXIDkJJJ0LfC6S7cttcSc');
-    await bot.telegram.sendMessage(872585345, 'test');
-    res.json('success')
   },
 };
 

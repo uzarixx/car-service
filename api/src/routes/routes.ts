@@ -57,6 +57,8 @@ router.delete('/delete-picker-portfolio-images', CheckRoleMiddleware('Picker'), 
 router.get('/picker-portfolio-images', authUser, CheckRoleMiddleware('Picker'), handleErrorMiddleware(UserController.pickerPortfolioImages));
 router.get('/get-all-pickers', authUser, CheckRoleMiddleware('Client'), handleErrorMiddleware(UserController.getAllPickers));
 router.get('/get-picker-id/:id', authUser, CheckRoleMiddleware('Client'), handleErrorMiddleware(UserController.getPickerById));
+router.get('/telegram-activate', authUser, handleErrorMiddleware(UserController.telegramActivate))
+router.get('/telegram-notifications', authUser, handleErrorMiddleware(UserController.telegramNotifications))
 
 
 /*

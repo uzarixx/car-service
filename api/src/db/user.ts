@@ -1,5 +1,6 @@
 import { User } from '../models/user';
 import { Op } from 'sequelize';
+import { BotUser } from '../models/botUser';
 
 const attributesArray = ['id', 'role', 'photo', 'userName', 'city', 'email', 'userLastName', 'phoneNumber', 'experience', 'description', 'status'];
 
@@ -82,3 +83,10 @@ export const updateUserPassword = async (password: string, id: number): Promise<
   return await User.update({ password: password }, { where: { id } });
 };
 
+export const getUserFromTgBot = async (email: string): Promise<any> => {
+  return await BotUser.findOne({ where: { email } });
+};
+
+export const notificationsStatus = async (userId: string, notifications: boolean): Promise<any> => {
+  return await BotUser.update({ notifications: !notifications }, { where: { userId } });
+};

@@ -27,4 +27,12 @@ export default class authServices {
       },
     });
   }
+
+  static async getTelegramActivate() {
+    return $api.get('/telegram-activate')
+  }
+
+  static async telegramNotifications() {
+    return $api.get('/telegram-notifications')
+  }
 }

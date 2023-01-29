@@ -3,7 +3,7 @@ import {
   changeAuthUser,
   changePortfolio, getPickerById,
   getPickers,
-  getUserById
+  getUserById, getUserFromTgBot, notificationsStatus,
 } from '../db/user';
 import { validationResult } from 'express-validator';
 import {
@@ -72,6 +72,22 @@ const UserController = {
     const photos = await getPhoto(Number(id));
     res.json({ picker, photos });
   },
+  telegramActivate: async (req: Request | any, res: Response) => {
+    const { email } = req.user;
+    const user = await getUserFromTgBot(email);
+    if (!user) return res.json({
+      telegramActivate: false,
+      notifications: false,
+    });
+    res.json({ telegramActivate: true, notifications: user.notifications });
+  },
+  telegramNotifications: async (req: Request | any, res: Response) => {
+    const {email} = req.user;
+    const user = await getUserFromTgBot(email);
+    if (!user) return res.json('Ви не активували бота')
+    await notificationsStatus(user.userId, user.notifications)
+    res.json('success')
+  }
 };
 
 

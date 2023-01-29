@@ -16,6 +16,8 @@ import SuccessData from '@/components//ui/alerts/successData/SuccessData';
 import { changeUserData } from '@/store/userData';
 import AvatarUpload from '@/components/ui/avatarUpload/AvatarUpload';
 import { userInputs } from '@/constants/userInputArray';
+import TelegramActivate from '@/components/ui/telegramActivate';
+import authServices from '@/service/authService';
 
 interface User {
   id: number;
@@ -27,6 +29,7 @@ interface User {
   phoneNumber: string;
   city: string;
   status: boolean;
+  telegramActivate: boolean;
 }
 
 interface Props {
@@ -50,7 +53,8 @@ const AccountSettings: FC<Props> = ({ user }) => {
     try {
       setSuccessChange(true);
       const changeData = await userService.userInfoSettings(data.email, data.userName, data.userLastName, data.city, data.phoneNumber);
-      changeUserData(changeData.data);
+      const response = await authServices.getTelegramActivate();
+      changeUserData({ ...changeData.data, ...response.data });
       setTimeout(() => {
         setSuccessChange(false);
       }, 2000);
@@ -94,6 +98,7 @@ const AccountSettings: FC<Props> = ({ user }) => {
           <div className={styles.buttonWrapper}>
             <ButtonGreen type={'submit'}>Зберегти зміни</ButtonGreen>
           </div>
+          <TelegramActivate />
         </form>
       </FormProvider>
     </div>

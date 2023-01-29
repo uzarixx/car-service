@@ -73,6 +73,7 @@ export interface userType {
   experience: string;
   description: string;
   status: boolean;
+  telegramActivate: boolean;
 }
 
 export interface photosType {

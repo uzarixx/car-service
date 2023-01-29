@@ -6,4 +6,5 @@ export const BotUser = sequelize.define('botUser', {
   userId: { type: DataTypes.STRING, unique: true },
   email: { type: DataTypes.STRING, unique: true },
   isActivated: { type: DataTypes.BOOLEAN, defaultValue: false },
+  notifications: {type: DataTypes.BOOLEAN, defaultValue: true}
 });

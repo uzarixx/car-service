@@ -1,7 +1,24 @@
 import { Markup, Scenes } from 'telegraf';
 import { ISceneContext } from '../context/context.interface';
+import axios from 'axios';
 
 export const accountMain = new Scenes.BaseScene<ISceneContext>('accountMain');
-accountMain.enter(ctx => ctx.reply('Особистий кабінет, оберіть пункт', Markup.keyboard([
-  Markup.button.callback('Вимкнути повідомлення', 'notifications'),
-]).oneTime().resize()));
+accountMain.enter(async (ctx) => {
+  await ctx.reply('Особистий кабінет, оберіть пункт', Markup.keyboard([
+    Markup.button.callback('Налаштування повідомлень', 'notifications'),
+  ]).oneTime().resize());
+});
+
+accountMain.hears('Налаштування повідомлень', async (ctx) => {
+  const { data } = await axios.get(`${process.env.API_URL}/get-user/${ctx.message?.from.id}`);
+  ctx.reply(`Зараз повідомлення ${data.notifications ? 'вмикнуті 🔔' : 'вимкнуті 🔕'}`, Markup.inlineKeyboard([
+    Markup.button.callback(`${data.notifications ? 'Вимкнути 🔕' : 'Вмикнути 🔔'}`, 'notificationActive'),
+  ]));
+});
+
+accountMain.action('notificationActive', async (ctx) => {
+  await axios.post(`${process.env.API_URL}/notification-status`, {
+    userId: ctx.update.callback_query.from.id
+  });
+  ctx.scene.enter('accountMain');
+});

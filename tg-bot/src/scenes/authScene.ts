@@ -9,6 +9,7 @@ auth1.on('text', async (ctx) => {
   try {
     const { data } = await axios.post(`${process.env.API_URL}/create-user`, {
       userId: ctx.message.from.id,
+      username: ctx.message.from.first_name,
       email: ctx.message.text,
     });
     if (data && data.userId == ctx.message.from.id) {

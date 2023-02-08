@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken'
 import {NextFunction, Response} from "express";
-import {getUserById} from "../db/users";
+import { getUserMainById } from '../db/users';
 
 
 export default async function authUser(req: any, res: Response, next: NextFunction) {
@@ -12,9 +12,8 @@ export default async function authUser(req: any, res: Response, next: NextFuncti
     const secret = process.env.SECRET_KEY
     const decoded: any = jwt.verify(token, secret)
     if (!decoded) return res.status(401).json({message: "Ви не авторізовані"})
-    const user = await getUserById(decoded.id)
+    const user = await getUserMainById(decoded.id)
     if (!user) return res.status(401).json({message: "Ви не авторізовані"})
-    if (user.role !== 'Admin') return res.status(403).json({message: 'Немає доступу'})
     req.user = user
     next()
   } catch (e) {

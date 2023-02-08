@@ -13,8 +13,9 @@ const ImageOpen: FC<props> = ({ imageLink, setLink }) => {
   return (
     <div
       className={`${styles.imageOpen} ${imageLink.length > 1 && styles.active}`}
-      onClick={onCloseImage}>
-      <img src={imageLink} alt={'image'}/>
+      onClick={onCloseImage}
+    >
+      <img src={imageLink} alt={'image'} />
     </div>
   );
 };

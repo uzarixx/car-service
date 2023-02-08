@@ -5,6 +5,7 @@ import OfferDetailHead from './OfferDetailHead/OfferDetailHead';
 import OfferDetailMain from './OfferDetailMain/OfferDetailMain';
 import SpacingMiddle from '@/components/ui/spacings/SpacingMiddle';
 import OfferDetailUser from './OfferDetailUser/OfferDetailUser';
+import CreateChat from '@/components/ui/createChat/CreateChat';
 
 const OfferDetailComponent: FC<offerProps> = ({ offer }) => {
   return (
@@ -13,7 +14,7 @@ const OfferDetailComponent: FC<offerProps> = ({ offer }) => {
       <SpacingMiddle />
       <div className={styles.offerContainer}>
         <div className={styles.leftOfferBlock}>
-        <OfferDetailMain offer={offer} />
+          <OfferDetailMain offer={offer} />
         </div>
         <OfferDetailUser
           userName={offer.userName}

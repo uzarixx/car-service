@@ -1,27 +1,12 @@
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 import Layout from '../../components/ui/layout/Layout';
-import MessagesComponent from '../../components/messages';
-import PreloaderDots from '../../components/ui/preloaders/PreloaderDots';
-import {
-  $data,
-  $loadingData,
-  getChats,
-} from '../../store/chatData';
-import { useStore } from 'effector-react';
 
 
 const Messages: FC = () => {
-  const chats = useStore($data);
-  const isLoading = useStore($loadingData);
-
-  useEffect(() => {
-    getChats();
-  }, []);
-
-
   return (
-    <Layout>
-      {isLoading ? <PreloaderDots /> : <MessagesComponent chats={chats} />}
+    <Layout title={``} description={''}>
+      <h2>404</h2>
+      {/*{isLoading ? <PreloaderDots /> : <MessagesComponent chats={chats} />}*/}
     </Layout>
   );
 };

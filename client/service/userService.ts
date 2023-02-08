@@ -14,6 +14,7 @@ export default class userService {
   }
 
   static async pickerChangePortfolio(formData: FormData | any) {
+    console.log(formData);
     return $api.patch('/picker-change-portfolio',
       formData ,
       { headers: { 'content-type': 'multipart/form-data' } });

@@ -1,4 +1,4 @@
-import React, {FC} from 'react'
+import React, { FC } from 'react';
 import Layout from '../../components/ui/layout/Layout';
 import AccountComponent from '../../components/account';
 import { GetServerSideProps } from 'next';
@@ -9,7 +9,7 @@ import { UserRole } from '../../constants/type';
 
 const Portfolio: FC = () => {
   return (
-    <Layout>
+    <Layout title={'Акаунт - Портфоліо'} description={'Налаштування вашого особистого портфоліо, це дуже просто та зручно!'}>
       <AccountComponent />
     </Layout>
   );

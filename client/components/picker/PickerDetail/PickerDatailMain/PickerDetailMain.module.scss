@@ -25,12 +25,6 @@
       max-width: 85%;
     }
   }
-
-  .locationText {
-    display: flex;
-    align-items: center;
-  }
-
   .swiper {
     width: 50px;
     height: 100%;
@@ -46,11 +40,5 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
-  .location {
-    @media (max-width: 768px) {
-      margin-top: 30px;
-    }
   }
 }

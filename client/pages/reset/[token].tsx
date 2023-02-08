@@ -4,7 +4,7 @@ import Layout from '../../components/ui/layout/Layout';
 
 const Token: FC = () => {
   return (
-    <Layout>
+    <Layout title={'Відновлення паролю'} description={''}>
       <ForgotToken/>
     </Layout>
   )

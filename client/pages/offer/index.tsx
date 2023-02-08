@@ -7,7 +7,7 @@ import { redirectToHome } from '../../utils/protectRoute';
 
 const Offer: FC<offersPropsResponse> = ({ offers }) => {
   return (
-    <Layout>
+    <Layout title={`Всі оголошення`} description={'Список оголошень, це дуже зручно та просто'}>
       <OfferComponent offers={offers?.rows} pageCount={offers?.count} />
     </Layout>
   );
@@ -20,7 +20,6 @@ export const getServerSideProps = async ({ req, query }: any) => {
   try {
     offers = await offerService.getAllOffers(req.cookies.authToken, carTransmission, carType, carDrive, carGas, city, page);
   } catch (e) {
-    console.log(e);
     return redirectToHome();
   }
   const response = offers.data;

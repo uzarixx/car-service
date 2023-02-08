@@ -7,7 +7,7 @@ import {offersPropsResponse } from '../../constants/type';
 
 const Favorite: FC<offersPropsResponse> = ({ offers }) => {
   return (
-    <Layout>
+    <Layout title={'Збережені оголошення'} description={'Збережені оглошення, все дуже зручно, та просто, за один клік додавайте в список збережених оголошення які вам сободобались'}>
       <FavoriteComponent offers={offers?.rows} pageCount={offers?.count} />
     </Layout>
   );

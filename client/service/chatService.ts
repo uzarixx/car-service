@@ -1,9 +1,14 @@
+import axios from 'axios';
 import $api from '../http';
 
 export default class chatService {
 
-  static async createChat (lastId: number, message: number) {
-    return $api.post('/new-chat-create', {lastId, message})
+  static async createNotifications (receiverId: number, message: number, token: string) {
+    return axios.post('http://localhost:5000/create-notification', {receiverId, message}, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    })
   }
 
   static async createMessage(chatId: number, message: string) {

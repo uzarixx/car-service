@@ -3,7 +3,7 @@ import Layout from '../../components/ui/layout/Layout';
 import ActivatedComponent from '../../components/activated';
 const Activated: FC = () => {
   return (
-    <Layout>
+    <Layout title={`Активація акаунту`} description={'Активація акаунту, це нам допомогає підтвердити те що ваш акаунт дійсний'}>
       <ActivatedComponent />
     </Layout>
   );

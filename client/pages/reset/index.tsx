@@ -4,7 +4,7 @@ import ResetComponent from '../../components/reset/index';
 
 const Reset: FC = () => {
   return (
-    <Layout>
+    <Layout title={'Відновлення паролю'} description={''}>
       <ResetComponent />
     </Layout>
   );

@@ -7,7 +7,7 @@ import OfferDetailComponent from '../../components/offer/OfferDetail';
 
 const Offer: FC<offerProps> = ({ offer }) => {
   return (
-    <Layout>
+    <Layout title={`Кліент ${offer.userName}`} description={''}>
       <OfferDetailComponent offer={offer} />
     </Layout>
   );

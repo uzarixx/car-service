@@ -20,6 +20,7 @@ import UserActivateController from '../controllers/userActivate';
 import UserAvatarController from 'controllers/userAvatar';
 import UserForgot from '../controllers/userForgot';
 import FavoriteController from '../controllers/favorite';
+import ResponsesController from '../controllers/responses';
 
 const storage = multer.memoryStorage();
 const multerUpload = multer({ storage });
@@ -95,5 +96,11 @@ router.post('/new-message', authUser, ...createMessageValidate, handleErrorMiddl
 router.get('/get-messages/:chatId', authUser, handleErrorMiddleware(ChatController.getMessage));
 router.get('/get-chat/:chatId', authUser, handleErrorMiddleware(ChatController.getChat));
 router.get('/get-chats', authUser, handleErrorMiddleware(ChatController.getChats));
+
+/*
+Responses
+ */
+
+router.get('/get-all-responses', authUser, handleErrorMiddleware(ResponsesController.getAllResponses))
 
 export default router;

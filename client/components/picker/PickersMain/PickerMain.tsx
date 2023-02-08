@@ -12,6 +12,7 @@ const PickerMain: FC<userProps> = ({ users }) => {
   const onClickPicker = async(id: number) => {
     await router.push(`/picker/${id}`);
   };
+
   return (
     <div className={styles.pickersWrapper}>
       {users.map((el, i) =>
@@ -25,7 +26,7 @@ const PickerMain: FC<userProps> = ({ users }) => {
           <p>Досвід: {el.experience}</p>
           <SpacingSmall />
           <p>Детальніша інформація: </p>
-          <p className={styles.description}>{el.description.slice(0, 45)}...</p>
+          <p className={styles.description}>{el.sliceDesc}</p>
           <SpacingSmall />
           <p><LocationIco/> {el.city}</p>
           <SpacingSmall />

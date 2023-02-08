@@ -51,7 +51,7 @@ export const getFilteredAll = async (
     carDrive: carDrive && carDrive,
     carType: carType && carType,
     carGas: carGas && carGas,
-    city: city &&  {[Op.like]: `%${city}%`}
+    city: city && { [Op.like]: `%${city}%` },
   };
   const offers: any = await OfferParams.findAll({
     where: makeFilter(filter),

@@ -10,12 +10,21 @@ export const getUserByEmail = async (email: string): Promise<any> => {
   return await User.findOne({ where: { email } });
 };
 
+export const getUserMainById = async (id: string): Promise<any> => {
+  return await User.findOne({ where: { id } });
+};
+
+export const getFromBot = async (id: string): Promise<any> => {
+  const user = await User.findOne({ where: { id } });
+  return BotUser.findOne({ where: { email: user.dataValues.email } });
+};
+
 export const getBotUserByEmail = async (email: string): Promise<any> => {
   return await BotUser.findOne({ where: { email } });
 };
 
-export const createUserBot = async (email: string, userId: string): Promise<any> => {
-  return await BotUser.create({ email, userId, isActivated: false });
+export const createUserBot = async (email: string, userId: string, username: string): Promise<any> => {
+  return await BotUser.create({ email, userId, username, isActivated: false });
 };
 
 export const createAuthToken = async (user: string, token: string, expiresAt: number): Promise<any> => {
@@ -35,4 +44,8 @@ export const updateIsActive = async (user: string): Promise<any> => {
 
 export const notificationStatus = async (userId: string, notifications: boolean): Promise<any> => {
   return await BotUser.update({ notifications: !notifications }, { where: { userId } });
+};
+
+export const updateUserName = async (id: number, username: string): Promise<any> => {
+  return await BotUser.update({ username }, { where: { id } });
 };

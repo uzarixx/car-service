@@ -1,5 +1,4 @@
 import React, { FC, useEffect, useState } from 'react';
-import MessagesComponentDetail from '../../components/messages/DetailComponent';
 import Layout from '../../components/ui/layout/Layout';
 import chatService from '../../service/chatService';
 import { useRouter } from 'next/router';
@@ -25,8 +24,9 @@ const MessagesDetail: FC = () => {
     chatId && getChatById();
   }, [chatId]);
   return (
-    <Layout>
-      <MessagesComponentDetail chats={chats} chatData={chatMessages} isLoading={isLoading} />
+    <Layout title={``} description={''}>
+      <h2>404</h2>
+      {/*<MessagesComponentDetail chats={chats} chatData={chatMessages} isLoading={isLoading} />*/}
     </Layout>
   );
 };

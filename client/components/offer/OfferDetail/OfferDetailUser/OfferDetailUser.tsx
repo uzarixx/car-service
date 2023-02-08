@@ -17,6 +17,7 @@ const OfferDetailUser: FC<props> = ({ userName, city, phoneNumber }) => {
   const onClickNumber = () => {
     setPhoneShower(true);
   };
+
   return (
     <div className={styles.offerUserContainer}>
       <h3>Користувач</h3>

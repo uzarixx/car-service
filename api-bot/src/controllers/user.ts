@@ -4,7 +4,11 @@ import {
   createUserBot,
   getBotUserByEmail,
   getToken,
-  getUserByEmail, getUserById, notificationStatus, updateIsActive,
+  getUserByEmail,
+  getUserById,
+  notificationStatus,
+  updateIsActive,
+  updateUserName,
 } from '../db/users';
 import { sendEmail } from '../service/email';
 
@@ -17,15 +21,19 @@ const UserController = {
     res.json(user);
   },
   createUser: async (req: Request, res: Response) => {
-    const { userId, email } = req.body;
+    const { userId, email, username } = req.body;
     const user = await getUserByEmail(email);
     if (!user) return res.status(403).json('Користувач не знайдено, потрібно спочатку зареєструватись на сайти Find Car Picker');
     const botUser = await getBotUserByEmail(email);
     if (botUser && botUser.isActivated) return res.json(botUser);
-    if (!botUser) await createUserBot(email, String(userId));
+    if (!botUser) await createUserBot(email, String(userId), username);
     const code = Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000;
     await createAuthToken(String(userId), String(code), Date.now() + 1000 * 60 * 5);
-    await sendEmail({to: email, code: String(code), subject: 'Активація бота' });
+    await sendEmail({
+      to: email,
+      code: String(code),
+      subject: 'Активація бота',
+    });
     res.json('success');
   },
   activateUser: async (req: Request, res: Response) => {
@@ -34,6 +42,13 @@ const UserController = {
     if (!tokenRes || tokenRes.expiresAt < Date.now()) return res.status(403).json('Токен не дійсний');
     await updateIsActive(String(userId));
     res.json(tokenRes.token);
+  },
+  updateName: async (req: Request, res: Response) => {
+    const {userId, username} = req.body;
+    const user = await getUserById(String(userId));
+    if (!user) return res.status(403).json('Користувач не знайден');
+    await updateUserName(user.id, username)
+    res.json('success')
   },
   notificationStatus: async (req: Request, res: Response) => {
     const { userId } = req.body;

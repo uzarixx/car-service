@@ -9,16 +9,16 @@ import { $data } from '@/store/userData';
 import ButtonGreen from '@/components/ui/buttons/buttonGreen';
 
 const OfferDetailMain: FC<offerProps> = ({ offer }) => {
-  const user: any = useStore($data)
-  const [openDesc, setOpenDesc] = useState(false)
-  const [descHeight, setDescHeight] = useState(0)
-  const ref = useRef<any>(null)
+  const user: any = useStore($data);
+  const [openDesc, setOpenDesc] = useState(false);
+  const [descHeight, setDescHeight] = useState(0);
+  const ref = useRef<any>(null);
   useEffect(() => {
-    setDescHeight(ref.current.clientHeight)
-  }, [])
+    setDescHeight(ref.current.clientHeight);
+  }, []);
   const onOpenDesc = () => {
-    setOpenDesc(true)
-  }
+    setOpenDesc(true);
+  };
 
   return (
     <div className={styles.offerMainContainer}>
@@ -32,22 +32,31 @@ const OfferDetailMain: FC<offerProps> = ({ offer }) => {
         <span>Модель авто: {offer.carModel}</span>
         <span>Тип палива: {offer.carGas}</span>
         {offer.carForces && <span>Потужність: {offer.carForces} л.с</span>}
-        {offer.carLiters && <span>Об{'\''}єм двигуна: {offer.carLiters} л.</span>}
+        {offer.carLiters &&
+          <span>Об{'\''}єм двигуна: {offer.carLiters} л.</span>}
         <span>Тип приводу: {offer.carDrive}</span>
         <span>Тип трансмісії: {offer.carTransmission}</span>
         <span>Тип кузову: {offer.carType}</span>
         {offer.carYear && <span>Рік авто: {offer.carYear}</span>}
       </div>
       <SpacingMiddle />
-      <div className={`${styles.description} ${openDesc && styles.active}`} ref={ref}>
+      <div className={`${styles.description} ${openDesc && styles.active}`}
+           ref={ref}>
         <h2>Опис</h2>
         <SpacingSmall />
         <p>{offer.description}</p>
-        {descHeight >= 250 && !openDesc && <ButtonGreen onClick={onOpenDesc}>Детальніше</ButtonGreen>}
+        {
+          descHeight >= 250 &&
+          !openDesc &&
+          <ButtonGreen onClick={onOpenDesc}>
+            Детальніше
+          </ButtonGreen>
+        }
       </div>
       <SpacingMiddle />
       {user.id !== offer.userId && <CreateChat userId={offer.userId} />}
     </div>
+
   );
 };
 

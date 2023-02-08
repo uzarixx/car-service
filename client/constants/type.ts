@@ -74,6 +74,7 @@ export interface userType {
   description: string;
   status: boolean;
   telegramActivate: boolean;
+  sliceDesc?: string;
 }
 
 export interface photosType {

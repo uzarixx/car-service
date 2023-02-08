@@ -5,7 +5,7 @@ import Layout from '../components/ui/layout/Layout';
 const Home: FC = () => {
 
   return (
-    <Layout>
+    <Layout title={'Головна'}>
       <Main />
     </Layout>
   );

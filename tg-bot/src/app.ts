@@ -7,6 +7,7 @@ import { StartCommand } from './commands/start.command';
 import LocalSession from 'telegraf-session-local';
 import { auth1, auth2 } from './scenes/authScene';
 import { accountMain } from './scenes/accountScene';
+import { AccountCommand } from './commands/account.command';
 
 
 class Bot {
@@ -20,7 +21,7 @@ class Bot {
   }
 
   init() {
-    this.commands = [new StartCommand(this.bot)];
+    this.commands = [new StartCommand(this.bot), new AccountCommand(this.bot)];
     for (const command of this.commands) {
       command.handle();
     }

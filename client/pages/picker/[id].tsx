@@ -7,7 +7,7 @@ import { pickerProps } from '../../constants/type';
 
 const Picker: FC<pickerProps> = ({ picker, photos }) => {
   return (
-    <Layout>
+    <Layout title={`Підбирач ${picker.userName}`} description={''}>
       <PickerDetail picker={picker} photos={photos}/>
     </Layout>
   );

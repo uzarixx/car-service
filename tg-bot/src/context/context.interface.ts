@@ -3,6 +3,7 @@ import { Context, Scenes } from 'telegraf';
 export interface SessionData {
   courseLike: boolean;
   userId: number;
+  username: string | undefined;
 }
 
 export interface IBotContext extends Context {

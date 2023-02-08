@@ -9,7 +9,7 @@ import { UserRole } from '../../constants/type';
 
 const Offers: FC = () => {
   return (
-    <Layout>
+    <Layout title={`Акаунт - Оголошення`} description={'Список ваших оголошень, ви можете дивитись та видаляти свої оголошеня.'}>
       <AccountComponent />
     </Layout>
   );

@@ -32,6 +32,7 @@ const AccountUser: FC<Props> = ({ user }) => {
   const isSettings = pathname === '/account';
   const isOffer = pathname === '/account/offers';
   const isPortfolio = pathname === '/account/portfolio';
+  const isStatistic = pathname === '/account/statistic'
   const onLogout = async () => {
     destroyCookie(null, 'authToken', { path: '/' });
     logoutUser();
@@ -64,12 +65,21 @@ const AccountUser: FC<Props> = ({ user }) => {
       <div className={styles.router}>
         <Link href={'/account'} className={`${isSettings && styles.active}`}>Налаштування
           акаунту</Link>
-        {user.role === UserRole.Client && <Link href={'/account/offers'}
-                                                className={`${isOffer && styles.active}`}>Мої
-          оголошення</Link>}
-        {user.role === UserRole.Picker && <Link href={'/account/portfolio'}
-                                                className={`${isPortfolio && styles.active}`}>Моє
-          портфоліо</Link>}
+        {user.role === UserRole.Client &&
+          <Link href={'/account/offers'}
+                className={`${isOffer && styles.active}`}>
+            Мої оголошення
+          </Link>}
+        {user.role === UserRole.Picker &&
+          <Link href={'/account/portfolio'}
+                className={`${isPortfolio && styles.active}`}>
+            Моє портфоліо
+          </Link>}
+        {user.role === UserRole.Picker &&
+          <Link href={'/account/statistic'}
+                className={`${isStatistic && styles.active}`}>
+            Статистика відгуків
+          </Link>}
       </div>
     </nav>
   );

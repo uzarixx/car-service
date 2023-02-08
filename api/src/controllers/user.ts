@@ -82,12 +82,12 @@ const UserController = {
     res.json({ telegramActivate: true, notifications: user.notifications });
   },
   telegramNotifications: async (req: Request | any, res: Response) => {
-    const {email} = req.user;
+    const { email } = req.user;
     const user = await getUserFromTgBot(email);
-    if (!user) return res.json('Ви не активували бота')
-    await notificationsStatus(user.userId, user.notifications)
-    res.json('success')
-  }
+    if (!user) return res.json('Ви не активували бота');
+    await notificationsStatus(user.userId, user.notifications);
+    res.json('success');
+  },
 };
 
 

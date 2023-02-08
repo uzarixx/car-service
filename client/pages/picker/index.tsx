@@ -9,7 +9,7 @@ import PickerComponent from '../../components/picker';
 
 const Picker: FC<userProps> = ({ users }) => {
   return (
-    <Layout>
+    <Layout title={'Всі підбирачі авто'} description={'Список підбирачів авто, це дуже зручно та просто'}>
       <PickerComponent users={users} />
     </Layout>
   );

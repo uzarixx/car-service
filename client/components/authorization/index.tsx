@@ -31,7 +31,7 @@ const AuthorizationForm: FC = () => {
         const response = await authServices.registerData(data.userName, data.email, data.password, roleState);
         await cookieSet(response.data.token);
       }
-      await router.push('/account');
+      await router.push('/');
     } catch (e: any) {
       setErrorHandler(e.response?.data.message);
       console.log(e);

@@ -3,10 +3,9 @@ import styles from './Header.module.scss';
 import Link from 'next/link';
 import ButtonLinkGreen from '@/components/ui/buttons/buttonLinks/ButtonLinkGreen';
 import nookies from 'nookies';
-import ChatIco from '@/components/ui/icons/ChatIco';
 import { useStore } from 'effector-react';
 import { $data } from '@/store/userData';
-import { userType } from '@/constants/type';
+import { UserRole, userType } from '@/constants/type';
 import FavoriteIco from '@/components/ui/icons/FavoriteIco';
 import BurgerIco from '@/components/ui/icons/BurgerIco';
 
@@ -22,8 +21,8 @@ const Header: FC = () => {
   return (
     <header className={styles.header}>
       <div className={styles.headerWrapper}>
-        <Link href={'/'} className={styles.headerLeft}>
-          LOGO
+        <Link href={isAuth ? authUser.role === UserRole.Client ? '/picker' : '/offer' :'/'} className={styles.headerLeft}>
+          <img src={'https://res.cloudinary.com/djfgenv7u/image/upload/v1676213842/logo_lo7qc7.png'} alt={'logo'} height={45}/>
         </Link>
         <div className={`${styles.headerRight} ${active && styles.active}`} onClick={() => setActive(false)}>
           <span>Закрити</span>

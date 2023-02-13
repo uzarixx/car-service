@@ -10,6 +10,10 @@ export const getUserByEmail = async (email: string): Promise<any> => {
   return await User.findOne({ where: { email } });
 };
 
+export const deleteUser = async (userId: string): Promise<any> => {
+  return await BotUser.destroy({ where: { userId } });
+};
+
 export const getUserMainById = async (id: string): Promise<any> => {
   return await User.findOne({ where: { id } });
 };

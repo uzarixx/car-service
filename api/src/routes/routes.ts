@@ -45,9 +45,11 @@ router.get('/user-activated/:token', authUser, handleErrorMiddleware(UserActivat
 UserForgot
  */
 
-router.post('/create-forgot-token', handleErrorMiddleware(UserForgot.createForgotToken))
-router.post('/update-user-password/:token', handleErrorMiddleware(UserForgot.resetPassword))
-router.get('/verify-forgot-token/:token', handleErrorMiddleware(UserForgot.verifyForgotToken))
+router.post('/create-forgot-token', handleErrorMiddleware(UserForgot.createForgotToken));
+router.post('/update-user-password/:token', handleErrorMiddleware(UserForgot.resetPassword));
+router.post('/update-password', authUser, handleErrorMiddleware(UserForgot.updatePassword));
+router.get('/verify-forgot-token/:token', handleErrorMiddleware(UserForgot.verifyForgotToken));
+
 
 /*
 User
@@ -56,10 +58,10 @@ router.patch('/user-info-settings', ...validationUserSettings, authUser, handleE
 router.patch('/picker-change-portfolio', ...pickerChangePortfolioValidate, authUser, CheckRoleMiddleware('Picker'), multerUpload.array('image'), handleErrorMiddleware(UserController.pickerChangePortfolio));
 router.delete('/delete-picker-portfolio-images', CheckRoleMiddleware('Picker'), handleErrorMiddleware(UserController.deletePickerPortfolioImages));
 router.get('/picker-portfolio-images', authUser, CheckRoleMiddleware('Picker'), handleErrorMiddleware(UserController.pickerPortfolioImages));
-router.get('/get-all-pickers', authUser, CheckRoleMiddleware('Client'), handleErrorMiddleware(UserController.getAllPickers));
-router.get('/get-picker-id/:id', authUser, CheckRoleMiddleware('Client'), handleErrorMiddleware(UserController.getPickerById));
-router.get('/telegram-activate', authUser, handleErrorMiddleware(UserController.telegramActivate))
-router.get('/telegram-notifications', authUser, handleErrorMiddleware(UserController.telegramNotifications))
+router.get('/get-all-pickers', handleErrorMiddleware(UserController.getAllPickers));
+router.get('/get-picker-id/:id', handleErrorMiddleware(UserController.getPickerById));
+router.get('/telegram-activate', authUser, handleErrorMiddleware(UserController.telegramActivate));
+router.get('/telegram-notifications', authUser, handleErrorMiddleware(UserController.telegramNotifications));
 
 
 /*
@@ -74,23 +76,22 @@ Offers
  */
 router.delete('/offer-delete', authUser, handleErrorMiddleware(OfferController.offerDelete));
 router.post('/offer-new-create', authUser, ...validationCreateOffer, handleErrorMiddleware(OfferController.createOffer));
-router.get('/offer-get-id/:id', authUser, handleErrorMiddleware(OfferController.getOfferById));
-router.get('/offer-get-all', CheckRoleMiddleware('Picker'), handleErrorMiddleware(OfferController.getAllOffers));
-router.get('/offer-get-client', CheckRoleMiddleware('Client'), authUser, handleErrorMiddleware(OfferController.getOffers));
+router.get('/offer-get-id/:id', handleErrorMiddleware(OfferController.getOfferById));
+router.get('/offer-get-all', handleErrorMiddleware(OfferController.getAllOffers));
+router.get('/offer-get-client', authUser, handleErrorMiddleware(OfferController.getOffers));
 
 
 /*
 Favorite
  */
-router.post('/create-favorite', authUser, CheckRoleMiddleware('Picker'), handleErrorMiddleware(FavoriteController.createFavorite))
-router.delete('/delete-favorite', authUser, CheckRoleMiddleware('Picker'), handleErrorMiddleware(FavoriteController.deleteFavorite))
-router.get('/get-favorites-id', authUser, CheckRoleMiddleware('Picker'), handleErrorMiddleware(FavoriteController.getFavoritesId))
-router.get('/get-favorites', authUser, CheckRoleMiddleware('Picker'), handleErrorMiddleware(FavoriteController.getAllFavorites))
+router.post('/create-favorite', authUser, CheckRoleMiddleware('Picker'), handleErrorMiddleware(FavoriteController.createFavorite));
+router.delete('/delete-favorite', authUser, CheckRoleMiddleware('Picker'), handleErrorMiddleware(FavoriteController.deleteFavorite));
+router.get('/get-favorites-id', authUser, CheckRoleMiddleware('Picker'), handleErrorMiddleware(FavoriteController.getFavoritesId));
+router.get('/get-favorites', authUser, CheckRoleMiddleware('Picker'), handleErrorMiddleware(FavoriteController.getAllFavorites));
 
 /*
 Chat
  */
-
 router.post('/new-chat-create', authUser, ...chatCreateValidate, handleErrorMiddleware(ChatController.createChat));
 router.post('/new-message', authUser, ...createMessageValidate, handleErrorMiddleware(ChatController.createMessage));
 router.get('/get-messages/:chatId', authUser, handleErrorMiddleware(ChatController.getMessage));
@@ -100,7 +101,6 @@ router.get('/get-chats', authUser, handleErrorMiddleware(ChatController.getChats
 /*
 Responses
  */
-
-router.get('/get-all-responses', authUser, handleErrorMiddleware(ResponsesController.getAllResponses))
+router.get('/get-all-responses', authUser, handleErrorMiddleware(ResponsesController.getAllResponses));
 
 export default router;

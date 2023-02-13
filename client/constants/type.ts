@@ -90,6 +90,7 @@ export interface photosType {
 
 export interface userProps {
   users: userType[];
+  count?: number;
 }
 
 export interface pickerProps {

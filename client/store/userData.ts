@@ -1,5 +1,5 @@
 import { createStore, createEvent } from 'effector';
-import { userType } from '../constants/type';
+import { userType } from '@/constants/type';
 import authServices from '../service/authService';
 
 

@@ -30,6 +30,7 @@
         max-width: 100%;
       }
     }
+
     button {
       max-width: 50%;
       margin-top: 10px;
@@ -40,5 +41,9 @@
     p {
       max-height: 100%;
     }
+  }
+
+  .linkWrapper {
+    display: flex
   }
 }

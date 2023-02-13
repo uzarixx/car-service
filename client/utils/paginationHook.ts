@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 
-export const usePaginationHook = (pageCount: number, paginateRoute: string) => {
+export const usePaginationHook = (pageCount: number, paginateRoute: string, ignoreRoutes?: boolean) => {
   const router = useRouter();
   const pages = Math.ceil(pageCount / 10);
-  const [page, setPage] = useState(Number(router.query.page) || 1);
+  const [page, setPage] = useState(Number(router.query.page));
   const pagesValue: number[] = [];
   for (let i = 0; i < pages; ++i) {
     pagesValue.push(i + 1);
@@ -16,7 +16,7 @@ export const usePaginationHook = (pageCount: number, paginateRoute: string) => {
     router.push(`/${paginateRoute}?${query}`);
     document.body.scrollTo({ top: 0, behavior: 'smooth' });
   }, [page]);
-  useEffect(() => {
+  ignoreRoutes || useEffect(() => {
     setPage(1);
   }, [
     router.query.carType,

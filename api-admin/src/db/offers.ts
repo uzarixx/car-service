@@ -18,6 +18,17 @@ export const getOfferById = async (id: string): Promise<any> => {
 };
 
 export const updateOfferById = async ({ data }: any): Promise<any> => {
-  await Offer.update({...data}, {where: { ...data.offerId }})
-  return await OfferParams.update({...data}, {where: {offerId: data.offerId}})
-}
+  await Offer.update({
+    ...data,
+    isVerify: true,
+  }, { where: { id: data.offerId } });
+  return await OfferParams.update({ ...data }, { where: { offerId: data.offerId } });
+};
+
+export const removeVerification = async (offerId: string): Promise<any> => {
+  return await Offer.update({ isVerify: false }, { where: { id: offerId } });
+};
+
+export const deleteOffer = async (offerId: number): Promise<any> => {
+  return await Offer.destroy({ where: { id: offerId } });
+};

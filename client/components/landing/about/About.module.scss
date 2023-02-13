@@ -1,0 +1,56 @@
+.aboutWrapper {
+  margin-top: 56px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  h2 {
+    font-weight: 700;
+    font-size: 40px;
+    line-height: 47px;
+    background: radial-gradient(61.06% 1356.98% at 83.4% 72.34%, #0057B8 0%, #001AFF 0.01%, #FFD700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 90px;
+  }
+
+  .aboutContainer {
+    width: 100%;
+    margin-bottom: 23px;
+    align-items: flex-end;
+    display: flex;
+    flex-direction: column;
+
+    h3 {
+      margin-bottom: 19px;
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 38px;
+      color: var(--text);
+      max-width: 700px;
+      width: 100%;
+      text-align: center;
+    }
+
+    ul {
+      padding: 20px 30px;
+      border-radius: 5px;
+      background: var(--green);
+      color: var(--white);
+      font-size: 15px;
+      line-height: 17.58px;
+      font-weight: 700;
+      max-width: 700px;
+
+      li {
+        margin-bottom: 11px;
+        list-style: initial;
+      }
+
+      li:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

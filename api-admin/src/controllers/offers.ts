@@ -1,5 +1,11 @@
 import { Request, Response } from 'express';
-import { getAllOffers, getOfferById, updateOfferById } from '../db/offers';
+import {
+  deleteOffer,
+  getAllOffers,
+  getOfferById,
+  removeVerification,
+  updateOfferById,
+} from '../db/offers';
 
 const OffersController = {
   getAllOffers: async (req: Request, res: Response) => {
@@ -16,6 +22,16 @@ const OffersController = {
     const data = req.body;
     await updateOfferById(data);
     return res.json('success');
+  },
+  removeVerification: async (req: Request, res: Response) => {
+    const { offerId } = req.body;
+    await removeVerification(offerId);
+    return res.json('success');
+  },
+  deleteOffer: async (req: Request, res: Response) => {
+    const { id } = req.params;
+    await deleteOffer(Number(id));
+    return res.json('success')
   },
 };
 

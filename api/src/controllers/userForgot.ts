@@ -1,7 +1,12 @@
 import { Request, Response } from 'express';
 import * as uuid from 'uuid';
 import { sendEmail } from '../service/email';
-import { getUserByEmail, getUserById, updateUserPassword } from '../db/user';
+import {
+  getPasswordById,
+  getUserByEmail,
+  getUserById,
+  updateUserPassword,
+} from '../db/user';
 import {
   createForgotToken, deleteToken,
   findToken,
@@ -51,6 +56,17 @@ const UserForgotController = {
     const jwt = generateJWt(user.id, user.userName, user.role);
     await deleteToken(token);
     res.json({ jwt });
+  },
+  updatePassword: async (req: Request | any, res: Response) => {
+    const { oldPassword, password } = req.body;
+    const { id } = req.user;
+    const existingUser = await getPasswordById(id);
+    if (!existingUser) return res.status(400).json({ message: `Користувач не знайден` });
+    const comparePassword = await bcrypt.compare(oldPassword, existingUser.password);
+    if (!comparePassword) return res.status(400).json({ message: 'Пароль не вірний' });
+    const hashPassword = await bcrypt.hash(password, 7);
+    await updateUserPassword(hashPassword, id);
+    res.json('Пароль змінен')
   },
 };
 

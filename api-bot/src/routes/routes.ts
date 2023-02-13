@@ -15,5 +15,6 @@ router.post('/activate-user', handleErrorMiddleware(UserController.activateUser)
 router.post('/notification-status', handleErrorMiddleware(UserController.notificationStatus))
 router.post('/create-notification', authUser, handleErrorMiddleware(NotificationsController.createNotification))
 router.post('/updateName', handleErrorMiddleware(UserController.updateName))
+router.post('/delete-user', handleErrorMiddleware(UserController.deleteUser))
 
 export default router;

@@ -1,14 +1,14 @@
 import React, { FC } from 'react';
 import styles from './Pagination.module.scss';
-import { usePaginationHook } from '../../../utils/paginationHook';
+import { usePaginationHook } from '@/utils/paginationHook';
 
 interface props {
   pageCount: number;
   paginateRoute: string;
+  ignoreRoutes?: boolean;
 }
 
-const Pagination: FC<props> = ({ pageCount, paginateRoute }) => {
-
+const Pagination: FC<props> = ({ pageCount, paginateRoute, ignoreRoutes }) => {
   const {
     pagesValue,
     onClickPlus,
@@ -16,7 +16,7 @@ const Pagination: FC<props> = ({ pageCount, paginateRoute }) => {
     onClickPage,
     page,
     pages,
-  } = usePaginationHook(pageCount, paginateRoute);
+  } = usePaginationHook(pageCount, paginateRoute, ignoreRoutes);
   return (
     <div className={styles.paginationWrapper}>
        <button onClick={onClickMinus} className={`${page <= 1 && styles.disabled}`} disabled={page <= 1}>{'<'}</button>

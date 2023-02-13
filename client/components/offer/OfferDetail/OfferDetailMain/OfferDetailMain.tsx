@@ -7,9 +7,12 @@ import CreateChat from '@/components/ui/createChat/CreateChat';
 import { useStore } from 'effector-react';
 import { $data } from '@/store/userData';
 import ButtonGreen from '@/components/ui/buttons/buttonGreen';
+import ButtonLinkGreen
+  from '@/components/ui/buttons/buttonLinks/ButtonLinkGreen';
 
 const OfferDetailMain: FC<offerProps> = ({ offer }) => {
   const user: any = useStore($data);
+  const userArray = Object.keys(user);
   const [openDesc, setOpenDesc] = useState(false);
   const [descHeight, setDescHeight] = useState(0);
   const ref = useRef<any>(null);
@@ -54,7 +57,14 @@ const OfferDetailMain: FC<offerProps> = ({ offer }) => {
         }
       </div>
       <SpacingMiddle />
-      {user.id !== offer.userId && <CreateChat userId={offer.userId} />}
+      {user.id !== offer.userId && userArray.length >= 1 ?
+        <CreateChat userId={offer.userId} /> :
+        <> {
+          user.id === offer.userId ||
+          <div className={styles.linkWrapper}><ButtonLinkGreen
+            href={'/authorization'}>Реєстрація</ButtonLinkGreen></div>
+        }</>
+      }
     </div>
 
   );

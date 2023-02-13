@@ -5,10 +5,6 @@ import { Op } from 'sequelize';
 import { makeFilter } from '../service/makeFilter';
 
 
-interface props {
-
-}
-
 export const createOffer = async ({
   data,
   userId,
@@ -31,13 +27,13 @@ export const createOfferParams = async ({ data, offerId }:
   return offerParams;
 };
 
-export const getOffers = async (id: number): Promise<any> => {
-  const offers = await Offer.findAll({
+export const getOffers = async (id: number, page: string): Promise<any> => {
+  return await Offer.findAndCountAll({
     where: { userId: id },
+    limit: 10,
+    offset: (Number(page) || 1) * 10 - 10,
   });
-  return offers;
 };
-
 
 export const getFilteredAll = async (
   carTransmission: string | undefined,
@@ -58,7 +54,10 @@ export const getFilteredAll = async (
   });
   const offersId = offers.map((el: { offerId: number }) => el.offerId);
   return await Offer.findAndCountAll({
-    ...(offers.length >= 1 ? { where: { [Op.or]: [{ id: offersId }] } } : {}),
+    where: {
+      ...(offers.length >= 1 && { [Op.or]: [{ id: offersId }] }),
+      isVerify: true,
+    },
     attributes: { exclude: ['description'] },
     limit: 10,
     offset: (Number(page) || 1) * 10 - 10,

@@ -1,11 +1,10 @@
-import React, {FC} from 'react'
+import React, { FC } from 'react';
+import Landing from '@/components/landing';
 
 const Main: FC = () => {
   return (
-    <>
-    1
-    </>
-  )
-}
+    <Landing />
+  );
+};
 
 export default Main;

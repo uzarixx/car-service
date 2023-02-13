@@ -60,7 +60,8 @@ const UserController = {
     res.json('Видалено.');
   },
   getAllPickers: async (req: Request | any, res: Response) => {
-    const pickers = await getPickers();
+    const {page, city} = req.query
+    const pickers = await getPickers(page, city || undefined);
     res.json(pickers);
   },
   getPickerById: async (req: Request, res: Response) => {

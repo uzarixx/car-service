@@ -8,10 +8,9 @@ import PickerDetailMain from './PickerDatailMain/PickerDetailMain';
 const PickerDetail: FC<pickerProps> = ({ picker, photos }) => {
   return (
     <>
-      <PickerDetailHead id={picker.id} title={picker.userName} />
+      <PickerDetailHead/>
       <SpacingMiddle />
       <PickerDetailMain picker={picker} photos={photos} photo={picker.photo}/>
-
     </>
   );
 };

@@ -15,11 +15,13 @@ router.post('/update-user', authUser, handleErrorMiddleware(UserController.updat
 router.post('/verify-user', authUser, handleErrorMiddleware(UserController.verifyUser))
 
 /*
-GetOffers
+Offers
  */
 router.get('/get-all-offers', authUser, handleErrorMiddleware(OffersController.getAllOffers))
 router.get('/get-offer/:id', authUser, handleErrorMiddleware(OffersController.getOfferById))
 router.post('/update-offer-by-id', authUser, handleErrorMiddleware(OffersController.updateOfferById))
+router.post('/remove-verification', authUser, handleErrorMiddleware(OffersController.removeVerification))
+router.delete('/delete-offer/:id', authUser, handleErrorMiddleware(OffersController.deleteOffer))
 
 
 export default router;

@@ -5,7 +5,7 @@ import Layout from "../components/ui/layout/Layout";
 
 const Authorization: FC = () => {
   return (
-    <Layout>
+    <Layout title={'Рєестрація | AUTO-POSHUK'} description={'Швидка та зручна реєстрація'}>
       <AuthorizationForm />
     </Layout>
   );

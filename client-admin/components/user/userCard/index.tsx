@@ -30,7 +30,7 @@ const fetchUsers = async (page: number) => {
 
 const UserCard: FC = () => {
   const [users, setUsers] = useState([]);
-  const [pageCount, setPageCount] = useState(0)
+  const [pageCount, setPageCount] = useState(0);
   const router = useRouter();
   const onClickUser = (id: number) => () => {
     return router.push(`/user/${id}`);
@@ -38,7 +38,7 @@ const UserCard: FC = () => {
   useEffect(() => {
     router.query.page && fetchUsers(Number(router.query.page)).then((res) => {
       setUsers(res.rows);
-      setPageCount(res.count)
+      setPageCount(res.count);
     }).catch((e) => console.error(e));
   }, [router.query]);
 
@@ -49,8 +49,8 @@ const UserCard: FC = () => {
           className={styles.userCardWrapper}
           onClick={onClickUser(el.id)}
           key={el.id}>
-          {el.role === 'Picker' && <span
-            className={`${styles.statusDot} ${el.verify || styles.statusDotActive}`}></span>}
+          <span
+            className={`${styles.statusDot} ${el.verify || styles.statusDotActive}`}></span>
           <div className={styles.userParams}>
             <div className={styles.avatar}>{el.photo ?
               <img src={el.photo} alt='user-avatar' /> : <UserIcon />}</div>

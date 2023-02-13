@@ -6,15 +6,18 @@ import SpacingSmall from '@/components/ui/spacings/SpacingSmall';
 import { useRouter } from 'next/router';
 import UserIcon from '@/components/ui/icons/UserIcon';
 import LocationIco from '@/components/ui/icons/LocationIco';
+import Input from '@/components/ui/inputs/input';
+import { useOfferFilter } from '@/utils/cityFilterHook';
 
 const PickerMain: FC<userProps> = ({ users }) => {
+  const { filterCity } = useOfferFilter();
   const router = useRouter();
-  const onClickPicker = async(id: number) => {
+  const onClickPicker = async (id: number) => {
     await router.push(`/picker/${id}`);
   };
-
   return (
     <div className={styles.pickersWrapper}>
+      <Input filterCity={filterCity} />
       {users.map((el, i) =>
         <div key={i} className={styles.pickerBlock}
              onClick={() => onClickPicker(el.id)}>
@@ -28,7 +31,7 @@ const PickerMain: FC<userProps> = ({ users }) => {
           <p>Детальніша інформація: </p>
           <p className={styles.description}>{el.sliceDesc}</p>
           <SpacingSmall />
-          <p><LocationIco/> {el.city}</p>
+          <p><LocationIco /> {el.city}</p>
           <SpacingSmall />
         </div>,
       )}

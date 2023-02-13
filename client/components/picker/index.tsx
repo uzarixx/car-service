@@ -3,11 +3,12 @@ import { userProps } from '@/constants/type';
 import PickerMain from './PickersMain/PickerMain';
 import Pagination from '../ui/pagination/Pagination';
 
-const PickerComponent: FC<userProps> = ({ users }) => {
+const PickerComponent: FC<userProps> = ({ users, count }) => {
+
   return (
     <>
       <PickerMain users={users} />
-      <Pagination pageCount={2} paginateRoute={'picker'}/>
+      <Pagination pageCount={Number(count)} paginateRoute={'picker'}/>
     </>
   );
 };

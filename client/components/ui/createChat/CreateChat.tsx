@@ -17,12 +17,22 @@ const CreateChat: FC<props> = ({ userId }) => {
     resolver: yupResolver(createChatValidation),
   });
   const onSubmit = async (data: any) => {
-    try {
-      const token = nookies.get('authToken' as any).authToken;
-      await chatService.createNotifications(userId, data.message, token);
-      methods.reset()
-    } catch (e: any) {
-      methods.setError('message', { type: 'custom', message: e.response.data });
+    if (data.message.includes('@') || data.message.includes('0')) {
+      try {
+        const token = nookies.get('authToken' as any).authToken;
+        await chatService.createNotifications(userId, data.message, token);
+        methods.reset();
+      } catch (e: any) {
+        methods.setError('message', {
+          type: 'custom',
+          message: e.response.data,
+        });
+      }
+    } else {
+      methods.setError('message', {
+        type: 'custom',
+        message: 'Введіть свій нік-нейм в телеграм через символ "@", або номер телефону від вашего телеграм',
+      });
     }
   };
   return (

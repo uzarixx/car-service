@@ -30,8 +30,8 @@ export default class userService {
     return $api.get('/picker-portfolio-images')
   }
 
-  static async getAllPickers(token: string) {
-    return axios.get(`${process.env.NEXT_PUBLIC_API_URL}get-all-pickers`, {
+  static async getAllPickers(token: string | undefined, page: string, city: string) {
+    return axios.get(`${process.env.NEXT_PUBLIC_API_URL}get-all-pickers?page=${page || 1}&city=${city || ''}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -46,7 +46,7 @@ export default class userService {
     return $api.get(`/user-activated/${token}`)
   }
 
-  static async getPickerById(id: string, token: string) {
+  static async getPickerById(id: string, token: string | undefined) {
     return axios.get(`${process.env.NEXT_PUBLIC_API_URL}get-picker-id/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,

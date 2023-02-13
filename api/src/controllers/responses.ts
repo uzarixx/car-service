@@ -7,7 +7,7 @@ const ResponsesController = {
     const { id } = req.user;
     const responses = await getResponses(id);
     res.json(responses);
-  },
+  }
 };
 
 export default ResponsesController;

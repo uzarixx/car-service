@@ -15,7 +15,7 @@ export default class favoriteService {
     return $api.get('/get-favorites-id')
   }
 
-  static async getFavoriteSSR(token: string) {
+  static async getFavoriteSSR(token: string | undefined) {
     return axios.get(`${process.env.NEXT_PUBLIC_API_URL}get-favorites`, {
       headers: {
         Authorization: `Bearer ${token}`,

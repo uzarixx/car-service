@@ -1,8 +1,9 @@
 import { User } from '../models/user';
 import { Op } from 'sequelize';
 import { BotUser } from '../models/botUser';
+import { makeFilter } from '../service/makeFilter';
 
-const attributesArray = ['id', 'role', 'photo', 'userName', 'city', 'email', 'userLastName', 'phoneNumber', 'experience', 'description', 'status'];
+const attributesArray = ['id', 'role', 'photo', 'userName', 'city', 'email', 'userLastName', 'phoneNumber', 'experience', 'description', 'status', 'verify'];
 
 export const getUserByEmail = async (email: string): Promise<any> => {
   return await User.findOne({ where: { email } });
@@ -24,6 +25,10 @@ export const getUserById = async (id: string): Promise<any> => {
   });
 };
 
+export const getPasswordById = async (id: string): Promise<any> => {
+  return await User.findOne({ where: { id }, attributes: ['password'] });
+};
+
 export const getReceiversUsers = async (array: any): Promise<any> => {
   return await User.findAll({
     where: { id: { [Op.in]: array } },
@@ -31,10 +36,17 @@ export const getReceiversUsers = async (array: any): Promise<any> => {
   });
 };
 
-export const getPickers = async (): Promise<any> => {
-  return await User.findAll({
-    where: { role: 'Picker', verify: true },
+export const getPickers = async (page: string, city: string): Promise<any> => {
+  const filter = {
+    city: city && { [Op.like]: `%${city}%` },
+    verify: true,
+    role: 'Picker'
+  };
+  return await User.findAndCountAll({
+    where: makeFilter(filter),
     attributes: ['id', 'photo', 'userName', 'city', 'experience', 'sliceDesc', 'createdAt'],
+    limit: 10,
+    offset: (Number(page) || 1) * 10 - 10
   });
 };
 
@@ -56,6 +68,7 @@ export const changeAuthUser = async (id: string, email: string, userName: string
     userLastName,
     city,
     phoneNumber,
+    verify: false,
   }, { where: { id } });
 };
 

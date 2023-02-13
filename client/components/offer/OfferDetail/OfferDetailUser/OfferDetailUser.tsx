@@ -4,7 +4,10 @@ import SpacingMiddle from '@/components/ui/spacings/SpacingMiddle';
 import SpacingSmall from '@/components/ui/spacings/SpacingSmall';
 import LocationIco from '@/components/ui/icons/LocationIco';
 import LocationImage from '@/components/ui/locationImage/locationImage';
-import ButtonShowNumber from '@/components/ui/buttons/buttonShowNumber/ButtonShowNumber';
+import ButtonShowNumber
+  from '@/components/ui/buttons/buttonShowNumber/ButtonShowNumber';
+import { useStore } from 'effector-react';
+import { $data } from '@/store/userData';
 
 interface props {
   userName: string;
@@ -13,11 +16,12 @@ interface props {
 }
 
 const OfferDetailUser: FC<props> = ({ userName, city, phoneNumber }) => {
+  const user: any = useStore($data);
+  const userArray = Object.keys(user)
   const [phoneShower, setPhoneShower] = useState(false);
   const onClickNumber = () => {
     setPhoneShower(true);
   };
-
   return (
     <div className={styles.offerUserContainer}>
       <h3>Користувач</h3>
@@ -25,8 +29,11 @@ const OfferDetailUser: FC<props> = ({ userName, city, phoneNumber }) => {
       <div className={styles.userInfo}>
         <p>{userName}</p>
         <SpacingSmall />
-        <ButtonShowNumber onClick={onClickNumber} phoneShower={phoneShower}
-                          phoneNumber={phoneNumber} />
+        {userArray.length >= 1 &&
+          <ButtonShowNumber
+            onClick={onClickNumber}
+            phoneShower={phoneShower}
+            phoneNumber={phoneNumber} />}
       </div>
       <SpacingMiddle />
       <div className={styles.location}>

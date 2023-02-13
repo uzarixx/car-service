@@ -23,6 +23,7 @@ const AvatarUpload: FC<props> = ({ photo }) => {
   const deletePhoto = async () => {
     const { data } = await userService.deleteAvatar(photo || image);
     setImage(data);
+    await getAuthUser();
   };
   return (
     <div className={styles.uploadAvatar}>
@@ -31,7 +32,7 @@ const AvatarUpload: FC<props> = ({ photo }) => {
       <label htmlFor='user-image'>
         {image || photo ? <><img
             src={image || photo} alt='avatarImg' />
-            <button onClick={deletePhoto}><DeleteIcon /></button>
+            <button type={'button'} onClick={deletePhoto}><DeleteIcon /></button>
           </> :
           <UserBigIcon />}
       </label>

@@ -64,7 +64,7 @@ const UserDetail: FC = () => {
           <UserInput placeholder={'email'} name={'email'} />
           <SubmitButton type={'submit'}>Зберегти</SubmitButton>
         </div>
-        {user.role === 'Picker' && <div className={styles.verifyBlock}>
+       <div className={styles.verifyBlock}>
           <div className={styles.status}>
             <span
               className={`${styles.verifyDot} ${user.verify && styles.active}`}></span>
@@ -73,7 +73,7 @@ const UserDetail: FC = () => {
           <SubmitButton type={'button'} onClick={onVerifyUser}>
             {user.verify ? 'Деверефікувати' : 'Верефікувати'}
           </SubmitButton>
-        </div>}
+        </div>
       </form>
     </FormProvider>
   );

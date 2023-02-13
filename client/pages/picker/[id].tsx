@@ -1,21 +1,21 @@
 import React, { FC } from 'react';
-import { GetServerSideProps } from 'next';
+import { GetServerSideProps, GetServerSidePropsContext } from 'next';
 import userService from '../../service/userService';
 import Layout from '../../components/ui/layout/Layout';
 import PickerDetail from '../../components/picker/PickerDetail';
-import { pickerProps } from '../../constants/type';
+import { pickerProps } from '@/constants/type';
 
 const Picker: FC<pickerProps> = ({ picker, photos }) => {
   return (
-    <Layout title={`Підбирач ${picker.userName}`} description={''}>
+    <Layout title={`Підбирач ${picker.userName} | AUTO-POSHUK`} description={''}>
       <PickerDetail picker={picker} photos={photos}/>
     </Layout>
   );
 };
 
 
-export const getServerSideProps: GetServerSideProps = async ({ params, req }: any) => {
-  const { id } = params;
+export const getServerSideProps: GetServerSideProps = async ({ params, req }: GetServerSidePropsContext) => {
+  const { id } = params as { id: string };
   const { data } = await userService.getPickerById(id, req.cookies.authToken);
   return {
     props: {
@@ -23,7 +23,6 @@ export const getServerSideProps: GetServerSideProps = async ({ params, req }: an
       photos: data.photos
     },
   };
-
 };
 
 export default Picker;

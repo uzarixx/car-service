@@ -12,7 +12,7 @@ interface props {
 
 const inputs = [
   {title: 'Бюджет на авто*', placeholder: 'Введіть ваш бюджет на авто', name: 'budget'},
-  {title: 'Бюджет за підбор*', placeholder: 'Введіть ваш бюджет за підбор', name: 'budgetService'}
+  {title: 'Бюджет за підбор (грн.)*', placeholder: 'Введіть ваш бюджет за підбор', name: 'budgetService'}
 ]
 
 const OfferNewAdBudget: FC<props> = ({ methods }) => {

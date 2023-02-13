@@ -10,4 +10,10 @@ export default class offersService {
   static async updateOfferById(data: any) {
     return $api.post('/update-offer-by-id', {data})
   }
+  static async removeVerification(id: string) {
+    return $api.post('/remove-verification', {offerId: id})
+  }
+  static async onDeleteOffer(id: string) {
+    return $api.delete(`/delete-offer/${id}`)
+  }
 }

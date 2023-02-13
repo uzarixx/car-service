@@ -1,6 +1,6 @@
 import React, { FC, useCallback, useEffect, useRef, useState } from 'react';
 import styles from './Emoji.module.scss';
-import { emojiArray } from '../../../constants/emoji';
+import { emojiArray } from '@/constants/emoji';
 
 interface props {
   setValue: any;
@@ -21,9 +21,7 @@ const Emoji: FC<props> = ({ setValue }) => {
       if (ref.current && !ref.current.contains(e.target as Node)) {
         setActive(false);
       }
-    },
-    [ref],
-  );
+    }, [ref]);
   const openEmoji = () => {
     setActive(true);
   };

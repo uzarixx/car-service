@@ -6,11 +6,13 @@ import {
   Chart as ChartJS,
   LinearScale,
   LineElement,
-  PointElement,
+  PointElement, scales,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
 import { $data, getResponses } from '@/store/responsesData';
 import { useStore } from 'effector-react';
+import { dates } from '@/constants/dates';
+import SpacingMiddle from '@/components/ui/spacings/SpacingMiddle';
 
 ChartJS.register(
   CategoryScale,
@@ -18,34 +20,51 @@ ChartJS.register(
   PointElement,
   LineElement,
 );
-const dates = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31'];
+
+const months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+const dateNow = new Date();
+const month = months[dateNow.getMonth()];
 const AccountStatistic: FC = () => {
   const data = useStore($data);
   useEffect(() => {
     getResponses();
   }, []);
-  const objects = data.map((value: { createdAt: string }) => date(value.createdAt)).reduce((acc: any, el: any) => {
-    acc[el] = (acc[el] || 0) + 1;
-    return acc;
-  }, {});
+  const objects: Record<string, number> = data
+    .map((value: { createdAt: string }) => date(value.createdAt))
+    .filter((el: boolean | { month: string }) => typeof el !== 'boolean' && el.month == month)
+    .map((el: boolean | { day: number }) => typeof el !== 'boolean' && el.day)
+    .reduce((acc:any, el: any) => {
+      acc[el] = (acc[el] || 0) + 1;
+      return acc;
+    }, {});
   return (
     <div className={styles.wrapper}>
+      <h2>Статистика кількості відгуків на ваше портфоліо</h2>
+      <SpacingMiddle />
       <Line
         width={'700px'}
         height={'300px'}
+        options={{
+          scales: {
+            y: {
+              ticks: {
+                precision: 0,
+              },
+            },
+          },
+        }}
         data={{
           labels: dates,
           datasets: [
             {
               label: '',
-              pointRadius: 0,
               data: Object.entries(objects).map((el) => {
                 return {
                   x: el[0],
                   y: el[1],
                 };
               }),
-              borderColor: '#4F46E5',
+              borderColor: '#79be00',
             },
           ],
         }}

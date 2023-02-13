@@ -7,6 +7,7 @@ import {
   getOffers,
 } from '../db/offer';
 import { validationResult } from 'express-validator';
+import { getUserById } from '../db/user';
 
 
 interface Query {
@@ -27,6 +28,8 @@ const OfferController = {
     }
     const data = req.body;
     const user = req.user;
+    const { verify } = await getUserById(user.id);
+    if (!verify) return res.status(400).json({ message: 'Ваш акаунт не веріфікован.' });
     const offer = await createOffer({
       data,
       userId: user.id,
@@ -37,15 +40,14 @@ const OfferController = {
   },
   getOffers: async (req: Request | any, res: Response) => {
     const { id } = req.user;
-    const offers = await getOffers(id);
+    const { page } = req.query;
+    const offers = await getOffers(id, page);
     res.json(offers);
   },
   getOfferById: async (req: Request, res: Response) => {
     const { id } = req.params;
     const offer = await getOfferById(id);
-    if (!offer) {
-      return res.status(404).json({ message: 'Нічого не знайдено' });
-    }
+    if (!offer) return res.status(404).json({ message: 'Нічого не знайдено' });
     const offerParams = await getOfferParamsById(offer.id);
     res.json({ ...offer.dataValues, ...offerParams.dataValues });
   },

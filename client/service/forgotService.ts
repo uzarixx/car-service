@@ -1,4 +1,5 @@
 import axios from 'axios';
+import $api from '@/http';
 
 export default class forgotService {
   static async createForgotToken(email: string) {
@@ -10,5 +11,9 @@ export default class forgotService {
 
   static async changePassword(token: string, password: string) {
     return axios.post(`${process.env.NEXT_PUBLIC_API_URL}update-user-password/${token}`, {password})
+  }
+
+  static async updatePassword(oldPassword: string, password: string) {
+    return $api.post('/update-password', {oldPassword, password})
   }
 }

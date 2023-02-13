@@ -9,11 +9,11 @@ export default class offerService {
     });
   }
 
-  static async getOffers() {
-    return $api.get('/offer-get-client');
+  static async getOffers(page: number) {
+    return $api.get(`/offer-get-client?page=${page}`);
   }
 
-  static async getOfferById(id: string, token: string) {
+  static async getOfferById(id: string, token: string|undefined) {
     return axios.get(`${process.env.NEXT_PUBLIC_API_URL}offer-get-id/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -21,7 +21,7 @@ export default class offerService {
     });
   }
 
-  static async getAllOffers(token: string, carTransmission: string, carType: string, carDrive: string, carGas: string, city: string, page: string) {
+  static async getAllOffers(token: string | undefined, carTransmission: string, carType: string, carDrive: string, carGas: string, city: string, page: string) {
     return axios.get(`${process.env.NEXT_PUBLIC_API_URL}offer-get-all`, {
       headers: {
         Authorization: `Bearer ${token}`,

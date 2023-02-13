@@ -20,7 +20,7 @@ export default class authServices {
     return $api.get(`/auth-user`);
   }
 
-  static async getUserDataSSR(token: string) {
+  static async getUserDataSSR(token: string | undefined) {
     return axios.get(`${process.env.NEXT_PUBLIC_API_URL}auth-user`, {
       headers: {
         Authorization: `Bearer ${token}`,

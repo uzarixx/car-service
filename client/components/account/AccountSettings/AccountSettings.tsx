@@ -18,6 +18,8 @@ import AvatarUpload from '@/components/ui/avatarUpload/AvatarUpload';
 import { userInputs } from '@/constants/userInputArray';
 import TelegramActivate from '@/components/ui/telegramActivate';
 import authServices from '@/service/authService';
+import ChangePassword
+  from '@/components/account/AccountSettings/ChangePassword/ChangePassword';
 
 interface User {
   id: number;
@@ -98,8 +100,15 @@ const AccountSettings: FC<Props> = ({ user }) => {
           <div className={styles.buttonWrapper}>
             <ButtonGreen type={'submit'}>Зберегти зміни</ButtonGreen>
           </div>
-          <TelegramActivate />
         </form>
+        <SpacingMiddle />
+        <p>Зміна паролю</p>
+        <SpacingSmall />
+        <ChangePassword />
+        <SpacingMiddle />
+        <p>Telegram-повідомлення</p>
+        <SpacingSmall />
+        <TelegramActivate />
       </FormProvider>
     </div>
   );

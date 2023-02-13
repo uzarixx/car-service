@@ -14,7 +14,7 @@ const Layout: FC<Props> = ({ children, title, description }) => {
   return (
     <>
       <Head>
-        <title>{title} | Find Card Picker</title>
+        <title>{title}</title>
         <meta key='viewport' name='viewport'
               content='width=device-width, initial-scale=1, maximum-scale=1' />
         <meta name='description' content={description} />

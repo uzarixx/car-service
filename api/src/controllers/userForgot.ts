@@ -28,7 +28,7 @@ const UserForgotController = {
     const createToken = await createForgotToken(token, user.id, Date.now() + 1000 * 60 * 5);
     await sendEmail({
       to: email,
-      link: `${process.env.FRONTEND_URL}/reset/${token}`,
+      link: `${process.env.API_FRONTEND_URL}reset/${token}`,
       subject: 'Відновлення паролю, якщо ви не робили цього то ігноруйте це повідомлення',
     });
     res.json(createToken);

@@ -2,9 +2,9 @@
   "name": "express-gen-ts",
   "version": "0.0.0",
   "scripts": {
-    "build": "tsc",
-    "lint": "npx eslint --ext .ts src/",
-    "lint:tests": "npx eslint --ext .ts spec/",
+    "build": "npx ts-node build.ts",
+    "lint": "npx eslint --ext .ts ./src",
+    "lint:tests": "npx eslint --ext .ts src/spec/",
     "start": "node -r module-alias/register ./dist --env=production",
     "dev": "nodemon ./src",
     "test": "nodemon --config ./spec/nodemon.json",

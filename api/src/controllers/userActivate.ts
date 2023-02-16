@@ -17,7 +17,7 @@ const UserActivateController = {
     await createAuthToken(id, activationLink, Date.now() + 1000 * 60 * 5);
     await sendEmail({
       to: email,
-      link: `${process.env.FRONTEND_URL}/activated/${activationLink}`,
+      link: `${process.env.FRONTEND_URL}activated/${activationLink}`,
       subject: 'Створення аккаунту на сайті "Car service"'
     });
     res.json('На вашу пошту надіслано письмо активації');

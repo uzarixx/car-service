@@ -1,5 +1,5 @@
 import axios from 'axios';
-import $api from '../http';
+import $api, { API_URL } from '../http';
 
 
 export default class favoriteService {
@@ -16,7 +16,7 @@ export default class favoriteService {
   }
 
   static async getFavoriteSSR(token: string | undefined) {
-    return axios.get(`${process.env.NEXT_PUBLIC_API_URL}get-favorites`, {
+    return axios.get(`${API_URL}get-favorites`, {
       headers: {
         Authorization: `Bearer ${token}`,
       }

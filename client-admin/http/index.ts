@@ -2,7 +2,7 @@ import axios from 'axios';
 import nookies from 'nookies';
 
 
-export const API_URL = 'http://localhost:4000/';
+export const API_URL = typeof window === 'undefined' ? process.env.API_URL : process.env.NEXT_PUBLIC_API_URL;
 
 const $api = axios.create({
   withCredentials: true,

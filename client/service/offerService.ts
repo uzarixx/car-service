@@ -1,5 +1,5 @@
 import axios from 'axios';
-import $api from '../http';
+import $api, { API_URL } from '../http';
 
 
 export default class offerService {
@@ -14,7 +14,7 @@ export default class offerService {
   }
 
   static async getOfferById(id: string, token: string|undefined) {
-    return axios.get(`${process.env.NEXT_PUBLIC_API_URL}offer-get-id/${id}`, {
+    return axios.get(`${API_URL}offer-get-id/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -22,7 +22,7 @@ export default class offerService {
   }
 
   static async getAllOffers(token: string | undefined, carTransmission: string, carType: string, carDrive: string, carGas: string, city: string, page: string) {
-    return axios.get(`${process.env.NEXT_PUBLIC_API_URL}offer-get-all`, {
+    return axios.get(`${API_URL}offer-get-all`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

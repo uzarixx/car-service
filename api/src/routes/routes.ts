@@ -17,7 +17,7 @@ import { CheckRoleMiddleware } from '../middlewares/checkRoleMiddlewate';
 import handleErrorMiddleware from '../middlewares/handleErrorMiddleware';
 import ChatController from '../controllers/chat';
 import UserActivateController from '../controllers/userActivate';
-import UserAvatarController from 'controllers/userAvatar';
+import UserAvatarController from '../controllers/userAvatar';
 import UserForgot from '../controllers/userForgot';
 import FavoriteController from '../controllers/favorite';
 import ResponsesController from '../controllers/responses';

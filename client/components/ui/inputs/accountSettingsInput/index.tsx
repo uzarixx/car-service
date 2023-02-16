@@ -26,7 +26,7 @@ const AccountSettingsInput: FC<props> = ({
       className={`${styles.input} ${error && styles.active}`}
       type={type}
       {...register(name as string, {
-        required: true, onChange: (e) => {
+        required: true, onChange: (e: any) => {
           name === 'city' && fetching(e.target.value);
         },
       })}

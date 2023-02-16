@@ -1,4 +1,4 @@
-import $api from '../http';
+import $api, { API_URL } from '../http';
 import axios from 'axios';
 
 export default class authServices {
@@ -21,7 +21,7 @@ export default class authServices {
   }
 
   static async getUserDataSSR(token: string | undefined) {
-    return axios.get(`${process.env.NEXT_PUBLIC_API_URL}auth-user`, {
+    return axios.get(`${API_URL}auth-user`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

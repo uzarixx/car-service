@@ -1,5 +1,9 @@
 import { User } from '../models/user';
 
+
+export const getUserByEmail = async (email: string): Promise<any> => {
+  return await User.findOne({ where: { email } });
+};
 export const getAllUsers = async (page: number): Promise<any> => {
   return await User.findAndCountAll({
     where: { role: ['Client', 'Picker'] },

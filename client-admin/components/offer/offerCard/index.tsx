@@ -3,6 +3,7 @@ import styles from './OfferCard.module.scss';
 import offersService from '@/service/offersService';
 import { useRouter } from 'next/router';
 import Pagination from '@components/ui/pagination/Pagination';
+import Auth from '@components/auth';
 
 interface offerType {
   title: string;
@@ -33,6 +34,12 @@ const OfferCard: FC = () => {
       setPageCount(res.count);
     }).catch((e) => console.error(e));
   }, [router.query]);
+
+  if (offers.length <= 0) {
+    return (
+      <Auth/>
+    );
+  }
 
   return (
     <>

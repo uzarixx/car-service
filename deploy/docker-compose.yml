@@ -1,0 +1,105 @@
+version: "3.9"
+services:
+  db:
+    image: 'postgres:14'
+    container_name: "db"
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+    ports:
+      - '5432:5432'
+    volumes:
+      - 'db-data-car:/var/lib/postgresql/data'
+    restart: always
+  pgadmin:
+    image: 'dpage/pgadmin4:4.18'
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@linuxhint.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+      PGADMIN_LISTEN_PORT: 80
+    volumes:
+      - 'pgadmin-data:/var/lib/pgadmin'
+  api:
+    build:
+      context: '../api'
+      dockerfile: '../api/Dockerfile'
+    container_name: "api"
+    environment:
+      API_PORT: ${API_PORT}
+      API_URL: ${API_URL}
+      DB_HOST: 'db'
+      DB_PORT: '5432'
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      API_FRONTEND_URL: ${API_FRONTEND_URL}
+      FRONTEND_URL: ${FRONTEND_URL}
+      SECRET_KEY: ${API_SECRET_KEY}
+      CLOUDINARY_CLOUD_NAME: ${CLOUDINARY_CLOUD_NAME}
+      CLOUDINARY_API_KEY: ${CLOUDINARY_API_KEY}
+      CLOUDINARY_SECRET: ${CLOUDINARY_SECRET}
+    ports:
+      - '${API_PORT}:${API_PORT}'
+    depends_on:
+      - db
+    restart: always
+  frontend:
+    build:
+      context: '../client'
+      dockerfile: '../client/Dockerfile'
+      args:
+        - 'NEXT_PUBLIC_API_URL=${API_URL}'
+    container_name: "frontend"
+    environment:
+      API_URL: 'http://api:4000/'
+    ports:
+      - '3000:3000'
+    depends_on:
+      - api
+    restart: always
+  frontend-admin:
+    build:
+      context: '../client-admin'
+      dockerfile: '../client-admin/Dockerfile'
+      args:
+        - 'NEXT_PUBLIC_API_URL=${API_ADMIN_URL}'
+    container_name: "frontend-admin"
+    environment:
+      API_URL: 'http://api:5001/'
+    ports:
+      - '5000:5000'
+    depends_on:
+      - api
+    restart: always
+  api-admin:
+    build:
+      context: '../api-admin'
+      dockerfile: '../api-admin/Dockerfile'
+    container_name: "api-admin"
+    environment:
+      API_PORT: ${API_ADMIN_PORT}
+      API_URL: ${API_ADMIN_URL}
+      DB_HOST: 'db'
+      DB_PORT: '5432'
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      API_FRONTEND_URL: ${API_FRONTEND_ADMIN_URL}
+      FRONTEND_URL: ${FRONTEND_ADMIN_URL}
+      SECRET_KEY: ${API_SECRET_KEY}
+      CLOUDINARY_CLOUD_NAME: ${CLOUDINARY_CLOUD_NAME}
+      CLOUDINARY_API_KEY: ${CLOUDINARY_API_KEY}
+      CLOUDINARY_SECRET: ${CLOUDINARY_SECRET}
+    ports:
+      - '${API_ADMIN_PORT}:${API_ADMIN_PORT}'
+    depends_on:
+      - db
+    restart: always
+volumes:
+  db-data-car:
+  pgadmin-data:

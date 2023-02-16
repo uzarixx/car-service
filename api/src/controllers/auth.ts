@@ -13,7 +13,7 @@ const AuthController = {
     const errors = validationResult(req);
     if (!errors.isEmpty()) return res.status(400).json({ message: `Помилка валідації` });
     const { userName, email, password, city, role } = req.body;
-    if (role.toLowerCase() !== 'client' || role.toLowerCase() !== 'picker') return res.status(403).json({message: 'Ви не можете отримати другу роль'})
+    if (role.toLowerCase() !== 'client' && role.toLowerCase() !== 'picker') return res.status(403).json({message: 'Ви не можете отримати другу роль'})
     const existingUser = await getUserByEmail(email);
     if (existingUser) return res.status(400).json({ message: `Користувач з почтою ${email} вже є` });
     const hashPassword = await bcrypt.hash(password, 7);
@@ -29,7 +29,7 @@ const AuthController = {
     await createAuthToken(user.id, activationLink, Date.now() + 1000 * 60 * 5);
     await sendEmail({
       to: email,
-      link: `${process.env.API_URL}/activated/${activationLink}`,
+      link: `${process.env.API_FRONTEND_URL}activated/${activationLink}`,
       subject: 'Створення аккаунту на сайті "Car service"',
     });
     res.json({ token });

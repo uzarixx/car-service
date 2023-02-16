@@ -51,7 +51,7 @@ const AccountUser: FC<Props> = ({ user }) => {
         className={styles.isNotActive}>{statusClick ? 'На вашу пошту надіслано листа' :
         <p onClick={onCreateLink}>
           {user.status || 'Користувач не активовано, якщо на пошту не надійшло повідомлення, то натисіть сюди'}
-          {user.status ? !user.verify ? 'Акаунт не веріфіковано' : '' : ''}
+          {user.status ? !user.verify ? `Акаунт не веріфіковано ${user.role === UserRole.Picker ? ', щоб пришвидишити веріфакацію пропонуємо Вам заповнити дані в розділі "Моє портфоліо"' : ''}` : '' : ''}
         </p>}
       </div>}
       <div className={styles.userBlock}>

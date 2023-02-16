@@ -1,4 +1,4 @@
-import { getResponses } from 'db/responses';
+import { getResponses } from '../db/responses';
 import { Request, Response } from 'express';
 
 

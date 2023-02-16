@@ -4,6 +4,7 @@ import { useRouter } from 'next/router';
 import usersService from '@/service/usersService';
 import UserIcon from '@components/icons/UserIcon';
 import Pagination from '@components/ui/pagination/Pagination';
+import Auth from '@/components/auth';
 
 interface usersType {
   id: number;
@@ -41,6 +42,12 @@ const UserCard: FC = () => {
       setPageCount(res.count);
     }).catch((e) => console.error(e));
   }, [router.query]);
+
+  if (users.length <= 0) {
+    return (
+      <Auth/>
+    );
+  }
 
   return (
     <>

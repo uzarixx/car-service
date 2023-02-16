@@ -1,4 +1,4 @@
-import $api from '../http';
+import $api, { API_URL } from '../http';
 import axios from 'axios';
 
 
@@ -31,7 +31,7 @@ export default class userService {
   }
 
   static async getAllPickers(token: string | undefined, page: string, city: string) {
-    return axios.get(`${process.env.NEXT_PUBLIC_API_URL}get-all-pickers?page=${page || 1}&city=${city || ''}`, {
+    return axios.get(`${API_URL}get-all-pickers?page=${page || 1}&city=${city || ''}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -47,7 +47,7 @@ export default class userService {
   }
 
   static async getPickerById(id: string, token: string | undefined) {
-    return axios.get(`${process.env.NEXT_PUBLIC_API_URL}get-picker-id/${id}`, {
+    return axios.get(`${API_URL}get-picker-id/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

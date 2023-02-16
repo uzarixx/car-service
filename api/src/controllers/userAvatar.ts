@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
 import {
-
   deleteFromCloudinary,
   uploadToCloudinary,
 } from '../service/cloudinary';
